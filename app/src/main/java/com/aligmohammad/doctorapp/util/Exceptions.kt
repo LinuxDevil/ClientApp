@@ -13,3 +13,5 @@ class ApiException(message: String) :  IOException(message)
  * @constructor
  */
 class NoInternetException(message: String): IOException(message)
+
+class NetworkException(message: String): IOException(message)
