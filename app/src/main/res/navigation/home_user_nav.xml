@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_user_nav"
+    app:startDestination="@id/homeFragment">
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.aligmohammad.doctorapp.ui.fragments.homefragment.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/home_fragment">
+        <action
+            android:id="@+id/action_homeFragment_to_bottom_sheet_government"
+            app:destination="@id/homeToGovernmentChoice"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/homeToDoctorMajor"
+            app:destination="@id/doctorMajorFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+    </fragment>
+    <dialog
+        android:id="@+id/homeToGovernmentChoice"
+        android:name="com.aligmohammad.doctorapp.ui.dialogs.governmentchoice.GovernmentHospitalChoice"
+        android:label="Select City / Hospital"
+        tools:layout="@layout/bottom_sheet_government_hospital_choose">
+        <action
+            android:id="@+id/govChoiceToGovHospitals"
+            app:destination="@id/governmentHospitalsFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/govChoiceToPrivateHospitals"
+            app:destination="@id/privateHospitalsFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <argument
+            android:name="type"
+            android:defaultValue="Government Hospitals"
+            app:argType="string" />
+    </dialog>
+    <dialog
+        android:id="@+id/governmentHospitalsFragment"
+        android:name="com.aligmohammad.doctorapp.ui.dialogs.govermenthospitals.GovernmentHospitalsFragment"
+        android:label="Government Hospitals"
+        tools:layout="@layout/government_hospitals_fragment">
+        <action
+            android:id="@+id/governmentToExternal"
+            app:destination="@id/externalLabBottomSheetFragment2"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/governmentToLabs"
+            app:destination="@id/labsBottomSheetFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/governmentToXRay"
+            app:destination="@id/XRayBottomSheetFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/governmentToNaturalist"
+            app:destination="@id/naturalistBottomSheetFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+    </dialog>
+    <dialog
+        android:id="@+id/externalLabBottomSheetFragment2"
+        android:name="com.aligmohammad.doctorapp.ui.dialogs.externalchoice.ExternalLabBottomSheetFragment"
+        android:label="External"
+        tools:layout="@layout/external_lab_bottom_sheet_fragment">
+        <action
+            android:id="@+id/externalToDate"
+            app:destination="@id/dateAndTimeBottomSheetFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+    </dialog>
+    <dialog
+        android:id="@+id/dateAndTimeBottomSheetFragment"
+        android:name="com.aligmohammad.doctorapp.ui.dialogs.datedialogfragment.DateAndTimeBottomSheetFragment"
+        android:label="Select Date and Time"
+        tools:layout="@layout/date_and_time_bottom_sheet_fragment">
+        <action
+            android:id="@+id/backToHome"
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true" />
+    </dialog>
+    <dialog
+        android:id="@+id/labsBottomSheetFragment"
+        android:name="com.aligmohammad.doctorapp.ui.dialogs.labschoice.LabsBottomSheetFragment"
+        android:label="Labs"
+        tools:layout="@layout/labs_bottom_sheet_fragment" />
+    <dialog
+        android:id="@+id/naturalistBottomSheetFragment"
+        android:name="com.aligmohammad.doctorapp.ui.dialogs.naturalistchoice.NaturalistBottomSheetFragment"
+        android:label="Natruralist"
+        tools:layout="@layout/naturalist_bottom_sheet_fragment" />
+    <dialog
+        android:id="@+id/XRayBottomSheetFragment"
+        android:name="com.aligmohammad.doctorapp.ui.dialogs.xraychoice.XRayBottomSheetFragment"
+        android:label="XRay"
+        tools:layout="@layout/x_ray_bottom_sheet_fragment" />
+    <dialog
+        android:id="@+id/privateHospitalsFragment"
+        android:name="com.aligmohammad.doctorapp.ui.dialogs.privatehospitals.PrivateHospitalsFragment"
+        android:label="Private Hospitals">
+        <action
+            android:id="@+id/privateToExternal"
+            app:destination="@id/externalLabBottomSheetFragment2"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/privateToLabs"
+            app:destination="@id/labsBottomSheetFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/privateToXRay"
+            app:destination="@id/XRayBottomSheetFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/privateToNaturalist"
+            app:destination="@id/naturalistBottomSheetFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/privateToOperations"
+            app:destination="@id/opertaionBottomSheetFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+    </dialog>
+    <dialog
+        android:id="@+id/opertaionBottomSheetFragment"
+        android:name="com.aligmohammad.doctorapp.ui.dialogs.operationschoice.OpertaionBottomSheetFragment"
+        android:label="Operation" />
+    <fragment
+        android:id="@+id/doctorMajorFragment"
+        android:name="com.aligmohammad.doctorapp.ui.fragments.doctormajor.DoctorMajorFragment"
+        android:label="doctor_major_fragment_item_list"
+        tools:layout="@layout/doctor_major_fragment_item_list" />
+</navigation>

@@ -1,4 +1,4 @@
-package com.aligmohammad.doctorapp.ui.base
+package com.aligmohammad.doctorapp
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel

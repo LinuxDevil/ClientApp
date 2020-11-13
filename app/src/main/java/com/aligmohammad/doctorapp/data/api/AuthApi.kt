@@ -28,7 +28,7 @@ interface AuthApi {
         operator fun invoke(networkInterceptor: NetworkInterceptor): AuthApi {
             return Retrofit.Builder()
                 .client(OkHttpClient.Builder().addInterceptor(networkInterceptor).build())
-                .baseUrl("")
+                .baseUrl("https://www.google.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build()

@@ -1,5 +1,39 @@
 <resources>
-    <string name="app_name">Doctor App</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="app_name">عيادتي</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="app_logo">App Logo</string>
+    <string name="username">Username</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="register">Register</string>
+    <string name="code">Code</string>
+    <string name="confirm">Confirm</string>
+    <string name="choose_insurance_company">Choose Insurance Company</string>
+    <string name="insurance_number">Insurance Number</string>
+    <string name="skip">Skip</string>
+    <string name="menu_item_image">Menu Item Image</string>
+    <string name="cities">Cities</string>
+    <string name="hospitals">Hospitals</string>
+    <string name="external">External</string>
+    <string name="labs">Labs</string>
+    <string name="x_ray">X-Ray</string>
+    <string name="naturalist">Naturalist</string>
+    <string name="select_date">Select Date</string>
+    <string name="select_time">Select Time</string>
+    <string name="major">Major</string>
+    <string name="doctors">Doctors</string>
+    <string name="reserve">Reserve</string>
+    <string name="tests">Tests</string>
+    <string name="required_tests">Required Tests</string>
+    <string name="time_available">Time Available</string>
+    <string name="operations">Operations</string>
+    <string name="doctor_name">Doctor Name</string>
+    <string name="settings">Settings</string>
+    <string name="profile">Profile</string>
+    <string name="logout">Logout</string>
+    <array name="spinner">
+        <item>NatHealth</item>
+        <item>Insurance 1</item>
+        <item>Insurance 2</item>
+        <item>Insurance 3</item>
+    </array>
 </resources>

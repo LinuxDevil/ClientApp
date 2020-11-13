@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.aligmohammad.doctorapp.ui.fragments.authframent.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/loginToPhoneAction"
+            app:destination="@id/phoneCodeFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/phoneCodeFragment"
+        android:name="com.aligmohammad.doctorapp.ui.fragments.authframent.PhoneCodeFragment"
+        android:label="PhoneCodeFragment">
+        <action
+            android:id="@+id/phoneToInsurance"
+            app:destination="@id/insuranceFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/insuranceFragment"
+        android:name="com.aligmohammad.doctorapp.ui.fragments.insurancefragment.InsuranceFragment"
+        android:label="InsuranceFragment">
+        <action
+            android:id="@+id/insuracneToHome"
+            app:destination="@id/home_user_nav"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popUpTo="@id/main_nav"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <include app:graph="@navigation/home_user_nav" />
+
+</navigation>
