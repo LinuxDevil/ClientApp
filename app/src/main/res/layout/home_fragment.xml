@@ -13,9 +13,11 @@
     </data>
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.constraintlayout.motion.widget.MotionLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        app:layoutDescription="@xml/home_fragment_scene">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
@@ -40,7 +42,8 @@
             app:layout_constraintTop_toBottomOf="@id/toolbar"
             tools:listitem="@layout/home_screen_menu_item" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.motion.widget.MotionLayout>
 
 
 </layout>

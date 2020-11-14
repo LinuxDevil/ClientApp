@@ -14,7 +14,9 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
         logoSplash.animate().alpha(0f).setDuration(3000L).start()
 
-        val countDownTimer = object: CountDownTimer(3000L, 1000L) {
+//        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+
+        val countDownTimer = object : CountDownTimer(3000L, 1000L) {
             override fun onTick(p0: Long) {
             }
 

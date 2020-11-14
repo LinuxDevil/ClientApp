@@ -32,7 +32,8 @@ class HomeFragment : Fragment(), DIAware, OnMenuItemClick {
     ): View? {
         viewModel = ViewModelProvider(this, factory).get(HomeViewModel::class.java)
         binding = DataBindingUtil.inflate(inflater, R.layout.home_fragment, container, false)
-        val appBarConfiguration = AppBarConfiguration(setOf(R.id.homeFragment, R.id.governmentHospitalsFragment))
+        val appBarConfiguration =
+            AppBarConfiguration(setOf(R.id.homeFragment, R.id.governmentHospitalsFragment))
         binding.root.toolbar.setupWithNavController(findNavController(), appBarConfiguration)
         setHasOptionsMenu(true)
         binding.root.toolbar.inflateMenu(R.menu.home_menu)
@@ -46,10 +47,6 @@ class HomeFragment : Fragment(), DIAware, OnMenuItemClick {
         super.onCreateOptionsMenu(menu, inflater)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return super.onOptionsItemSelected(item)
-    }
-
     fun initializeRecycler() {
         val adapter = HomeRecyclerAdapter(viewModel.dummyList(), this)
         binding.homeListRecycler.adapter = adapter
@@ -58,6 +55,8 @@ class HomeFragment : Fragment(), DIAware, OnMenuItemClick {
     override fun onClick(v: View) {
         if (v.findViewById<TextView>(R.id.itemName).text.toString() == "Specialists Doctors") {
             Navigation.findNavController(v).navigate(HomeFragmentDirections.homeToDoctorMajor())
+        } else if (v.findViewById<TextView>(R.id.itemName).text.toString() == "General Doctors") {
+            Navigation.findNavController(v).navigate(HomeFragmentDirections.homeToDoctorList())
         } else {
             Navigation.findNavController(v).navigate(
                 HomeFragmentDirections.actionHomeFragmentToBottomSheetGovernment()
