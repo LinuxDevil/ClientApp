@@ -1,3 +1,27 @@
+/*******************************************************************************
+ *
+ * Copyright RectiCode(c) 2020.
+ * All Rights Reserved
+ *
+ * This product is protected by copyright and distributed under
+ * licenses restricting copying, distribution and de-compilation.
+ *
+ * Created by Ali Mohammad
+ *
+ ******************************************************************************/
+
+/*******************************************************************************
+ *
+ * Copyright RectiCode(c) 2020.
+ * All Rights Reserved
+ *
+ * This product is protected by copyright and distributed under
+ * licenses restricting copying, distribution and de-compilation.
+ *
+ * Created by Ali Mohammad
+ *
+ ******************************************************************************/
+
 package com.aligmohammad.doctorapp.ui.fragments.authframent
 
 import android.os.Bundle
@@ -14,7 +38,7 @@ import org.kodein.di.DIAware
 import org.kodein.di.instance
 
 
-class LoginFragment() : Fragment(), DIAware {
+class LoginFragment : Fragment(), DIAware {
 
     override val di: DI by lazy { (context?.applicationContext as DIAware).di }
 

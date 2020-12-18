@@ -1,5 +1,52 @@
+/*******************************************************************************
+ *
+ * Copyright RectiCode(c) 2020.
+ * All Rights Reserved
+ *
+ * This product is protected by copyright and distributed under
+ * licenses restricting copying, distribution and de-compilation.
+ *
+ * Created by Ali Mohammad
+ *
+ ******************************************************************************/
+
+/*******************************************************************************
+ *
+ * Copyright RectiCode(c) 2020.
+ * All Rights Reserved
+ *
+ * This product is protected by copyright and distributed under
+ * licenses restricting copying, distribution and de-compilation.
+ *
+ * Created by Ali Mohammad
+ *
+ ******************************************************************************/
+
 package com.aligmohammad.doctorapp.data.model
 
-class User {
+import android.os.Parcel
+import android.os.Parcelable
 
+data class User(
+    val name: String? = "",
+) : Parcelable {
+    constructor(parcel: Parcel) : this(parcel.readString())
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(name)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<User> {
+        override fun createFromParcel(parcel: Parcel): User {
+            return User(parcel)
+        }
+
+        override fun newArray(size: Int): Array<User?> {
+            return arrayOfNulls(size)
+        }
+    }
 }

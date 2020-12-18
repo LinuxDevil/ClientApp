@@ -1,3 +1,27 @@
+/*******************************************************************************
+ *
+ * Copyright RectiCode(c) 2020.
+ * All Rights Reserved
+ *
+ * This product is protected by copyright and distributed under
+ * licenses restricting copying, distribution and de-compilation.
+ *
+ * Created by Ali Mohammad
+ *
+ ******************************************************************************/
+
+/*******************************************************************************
+ *
+ * Copyright RectiCode(c) 2020.
+ * All Rights Reserved
+ *
+ * This product is protected by copyright and distributed under
+ * licenses restricting copying, distribution and de-compilation.
+ *
+ * Created by Ali Mohammad
+ *
+ ******************************************************************************/
+
 package com.aligmohammad.doctorapp.ui.activities.main_activity
 
 import android.os.Bundle
@@ -16,8 +40,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         navController = Navigation.findNavController(this, R.id.fragment)
-//        NavigationUI.setupActionBarWithNavController(this, navController)
-
     }
 
     fun addActionBar() {

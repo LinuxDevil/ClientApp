@@ -1,3 +1,27 @@
+/*******************************************************************************
+ *
+ * Copyright RectiCode(c) 2020.
+ * All Rights Reserved
+ *
+ * This product is protected by copyright and distributed under
+ * licenses restricting copying, distribution and de-compilation.
+ *
+ * Created by Ali Mohammad
+ *
+ ******************************************************************************/
+
+/*******************************************************************************
+ *
+ * Copyright RectiCode(c) 2020.
+ * All Rights Reserved
+ *
+ * This product is protected by copyright and distributed under
+ * licenses restricting copying, distribution and de-compilation.
+ *
+ * Created by Ali Mohammad
+ *
+ ******************************************************************************/
+
 package com.aligmohammad.doctorapp.ui.adapters
 
 import android.view.LayoutInflater
@@ -12,13 +36,17 @@ import com.aligmohammad.doctorapp.databinding.DoctorListItemBinding
 import com.aligmohammad.doctorapp.ui.fragments.doctorlist.DoctorListFragmentDirections
 
 class DoctorListRecyclerViewAdapter(
-    private val doctors: List<Doctor>
+    private val doctors: List<Doctor>,
+    private val type: String = "doctor"
 ) : RecyclerView.Adapter<DoctorListRecyclerViewAdapter.DoctorListViewHolder>(), OnMenuItemClick {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DoctorListViewHolder {
+
+        val layout = if (type == "doctor") R.layout.doctor_list_item else R.layout.doctor_list_item
+
         val binding: DoctorListItemBinding = DataBindingUtil.inflate(
             LayoutInflater.from(parent.context),
-            R.layout.doctor_list_item,
+            layout,
             parent,
             false
         )

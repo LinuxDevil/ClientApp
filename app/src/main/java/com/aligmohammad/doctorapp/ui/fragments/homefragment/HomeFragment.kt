@@ -1,8 +1,33 @@
+/*******************************************************************************
+ *
+ * Copyright RectiCode(c) 2020.
+ * All Rights Reserved
+ *
+ * This product is protected by copyright and distributed under
+ * licenses restricting copying, distribution and de-compilation.
+ *
+ * Created by Ali Mohammad
+ *
+ ******************************************************************************/
+
+/*******************************************************************************
+ *
+ * Copyright RectiCode(c) 2020.
+ * All Rights Reserved
+ *
+ * This product is protected by copyright and distributed under
+ * licenses restricting copying, distribution and de-compilation.
+ *
+ * Created by Ali Mohammad
+ *
+ ******************************************************************************/
+
 package com.aligmohammad.doctorapp.ui.fragments.homefragment
 
 import android.os.Bundle
 import android.view.*
 import android.widget.TextView
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -33,10 +58,13 @@ class HomeFragment : Fragment(), DIAware, OnMenuItemClick {
         viewModel = ViewModelProvider(this, factory).get(HomeViewModel::class.java)
         binding = DataBindingUtil.inflate(inflater, R.layout.home_fragment, container, false)
         val appBarConfiguration =
-            AppBarConfiguration(setOf(R.id.homeFragment, R.id.governmentHospitalsFragment))
+            AppBarConfiguration(
+                setOf(R.id.homeFragment, R.id.governmentHospitalsFragment),
+                binding.root.drawerLayout
+            )
         binding.root.toolbar.setupWithNavController(findNavController(), appBarConfiguration)
         setHasOptionsMenu(true)
-        binding.root.toolbar.inflateMenu(R.menu.home_menu)
+        binding.root.navigationView.setupWithNavController(findNavController())
         binding.viewModel = viewModel
         initializeRecycler()
         return binding.root
@@ -53,15 +81,41 @@ class HomeFragment : Fragment(), DIAware, OnMenuItemClick {
     }
 
     override fun onClick(v: View) {
-        if (v.findViewById<TextView>(R.id.itemName).text.toString() == "Specialists Doctors") {
-            Navigation.findNavController(v).navigate(HomeFragmentDirections.homeToDoctorMajor())
-        } else if (v.findViewById<TextView>(R.id.itemName).text.toString() == "General Doctors") {
-            Navigation.findNavController(v).navigate(HomeFragmentDirections.homeToDoctorList())
-        } else {
-            Navigation.findNavController(v).navigate(
-                HomeFragmentDirections.actionHomeFragmentToBottomSheetGovernment()
-                    .setType(v.findViewById<TextView>(R.id.itemName).text.toString())
-            )
+        val navController = Navigation.findNavController(v)
+        when (v.findViewById<TextView>(R.id.itemName).text.toString()) {
+            "Specialists Doctors" -> {
+                navController.navigate(HomeFragmentDirections.homeToDoctorMajor())
+            }
+            "General Doctors" -> {
+                navController.navigate(HomeFragmentDirections.homeToDoctorList())
+            }
+            "X-Rays" -> {
+                navController.navigate(
+                    HomeFragmentDirections.homeToCityDistrictCompany().setType("x-rays")
+                )
+            }
+            "Labs" -> {
+                navController.navigate(
+                    HomeFragmentDirections.homeToCityDistrictCompany().setType("labs")
+                )
+            }
+            "Pharmacies" -> {
+                navController.navigate(
+                    HomeFragmentDirections.homeToCityDistrictCompany().setType("pharmacies")
+                )
+            }
+            "Doctor consultation" -> {
+                navController.navigate(HomeFragmentDirections.homeToDoctorConsulting())
+            }
+            "Offers" -> {
+                Toast.makeText(context, "There's no offers now", Toast.LENGTH_LONG).show()
+            }
+            else -> {
+                navController.navigate(
+                    HomeFragmentDirections.actionHomeFragmentToBottomSheetGovernment()
+                        .setType(v.findViewById<TextView>(R.id.itemName).text.toString())
+                )
+            }
         }
     }
 

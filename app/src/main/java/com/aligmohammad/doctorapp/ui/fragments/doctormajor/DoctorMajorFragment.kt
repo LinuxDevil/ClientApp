@@ -1,3 +1,27 @@
+/*******************************************************************************
+ *
+ * Copyright RectiCode(c) 2020.
+ * All Rights Reserved
+ *
+ * This product is protected by copyright and distributed under
+ * licenses restricting copying, distribution and de-compilation.
+ *
+ * Created by Ali Mohammad
+ *
+ ******************************************************************************/
+
+/*******************************************************************************
+ *
+ * Copyright RectiCode(c) 2020.
+ * All Rights Reserved
+ *
+ * This product is protected by copyright and distributed under
+ * licenses restricting copying, distribution and de-compilation.
+ *
+ * Created by Ali Mohammad
+ *
+ ******************************************************************************/
+
 package com.aligmohammad.doctorapp.ui.fragments.doctormajor
 
 import android.os.Bundle
@@ -10,7 +34,6 @@ import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.aligmohammad.doctorapp.R
 import com.aligmohammad.doctorapp.data.model.RecyclerMenuItem
@@ -49,10 +72,7 @@ class DoctorMajorFragment : Fragment(), OnMenuItemClick {
      */
     private fun initRecycler() {
         with(binding.list) {
-            layoutManager = when {
-                columnCount <= 1 -> LinearLayoutManager(context)
-                else -> GridLayoutManager(context, columnCount)
-            }
+            layoutManager = LinearLayoutManager(context)
             adapter = MyDoctorMajorRecyclerViewAdapter(arrayList, this@DoctorMajorFragment)
         }
     }

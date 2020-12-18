@@ -1,3 +1,15 @@
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  ~
+  ~ Copyright RectiCode(c) 2020.
+  ~ All Rights Reserved
+  ~
+  ~ This product is protected by copyright and distributed under
+  ~ licenses restricting copying, distribution and de-compilation.
+  ~
+  ~ Created by Ali Mohammad
+  ~
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
 <resources>
     <string name="app_name">عيادتي</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -38,6 +50,46 @@
     <string name="reserve_an_appointment">Reserve an appointment</string>
     <string name="ads_banner">Ads Banner</string>
     <string name="medical">Medical</string>
+    <string name="ad_banner">Ad banner</string>
+    <string name="district">District</string>
+    <string name="ricotta_image">ricotta image</string>
+    <string name="select_ricotta_image">Select Ricotta Image</string>
+    <string name="medicine_available">Medicine Available</string>
+    <string name="browse_image">Browse Image</string>
+    <string name="order">Order</string>
+    <string name="consult_general_doctor">Consult General Doctor</string>
+    <string name="request_a_doctor">Request a Doctor</string>
+    <string name="request_a_nurse">Request a Nurse</string>
+    <string name="heat_temperature">Heat temperature</string>
+    <string name="consult">Consult</string>
+    <string name="new_appointment">New Appointment</string>
+    <string name="in_progress">In Progress</string>
+    <string name="history">History</string>
+    <string name="result">Result</string>
+    <string name="lorem40">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A cum debitis delectus eaque excepturi facere harum incidunt inventore ipsa ipsum, itaque molestiae mollitia neque odit pariatur placeat provident quasi recusandae veniam voluptates. Aspernatur doloribus eius, laboriosam laudantium provident quos reprehenderit.</string>
+    <string name="lorem80">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. A cum debitis delectus eaque excepturi facere harum incidunt inventore ipsa ipsum, itaque molestiae mollitia neque odit pariatur placeat provident quasi recusandae veniam voluptates. Aspernatur doloribus eius, laboriosam laudantium provident quos reprehenderit.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. A cum debitis delectus eaque excepturi facere harum incidunt inventore ipsa ipsum, itaque molestiae mollitia neque odit pariatur placeat provident quasi recusandae veniam voluptates. Aspernatur doloribus eius, laboriosam laudantium provident quos reprehenderit
+    </string>
+    <string name="medicine">Medicine</string>
+    <string name="select_location">Select Location</string>
+    <string name="select_pharmacy">Select Pharmacy</string>
+    <string name="delivery_option">Delivery Option</string>
+    <string name="request_medicine">Request Medicine</string>
+    <string name="select_city">Select City</string>
+    <string name="select_district">Select District</string>
+    <string name="select_doctor_major">Select Doctor Major</string>
+    <string name="request">Request</string>
+    <string name="it_s_best_to_cancel_an_appointment_before_1_hour_at_least">*** It’s best to cancel an appointment before 1 hour at least</string>
+    <string name="add_appointment">Add Appointment</string>
+    <string name="appointment_duration">Appointment Duration</string>
+    <string name="current_appointments">Current Appointments</string>
+    <string name="cancel_appointment">Cancel Appointment</string>
+    <string name="my_appointments">My Appointments</string>
+    <string name="back">Back</string>
+    <string name="period">Period</string>
+    <string name="day_time">Day Time</string>
+    <string name="night_time">Night Time</string>
     <array name="spinner">
         <item>NatHealth</item>
         <item>Insurance 1</item>

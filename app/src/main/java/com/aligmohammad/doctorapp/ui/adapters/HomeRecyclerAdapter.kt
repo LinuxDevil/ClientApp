@@ -1,3 +1,27 @@
+/*******************************************************************************
+ *
+ * Copyright RectiCode(c) 2020.
+ * All Rights Reserved
+ *
+ * This product is protected by copyright and distributed under
+ * licenses restricting copying, distribution and de-compilation.
+ *
+ * Created by Ali Mohammad
+ *
+ ******************************************************************************/
+
+/*******************************************************************************
+ *
+ * Copyright RectiCode(c) 2020.
+ * All Rights Reserved
+ *
+ * This product is protected by copyright and distributed under
+ * licenses restricting copying, distribution and de-compilation.
+ *
+ * Created by Ali Mohammad
+ *
+ ******************************************************************************/
+
 package com.aligmohammad.doctorapp.ui.adapters
 
 import android.content.Context
@@ -29,7 +53,6 @@ class HomeRecyclerAdapter(val items: ArrayList<RecyclerMenuItem>, val onMenuItem
     override fun getItemCount(): Int = items.size
 
     class HomeRecyclerViewHolder(val view: HomeScreenMenuItemBinding): RecyclerView.ViewHolder(view.root)
-
 
 
 }
