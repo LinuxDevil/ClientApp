@@ -1,15 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  ~
-  ~ Copyright RectiCode(c) 2020.
-  ~ All Rights Reserved
-  ~
-  ~ This product is protected by copyright and distributed under
-  ~ licenses restricting copying, distribution and de-compilation.
-  ~
-  ~ Created by Ali Mohammad
-  ~
-  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-
+<?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
@@ -21,12 +10,11 @@
             type="com.aligmohammad.doctorapp.ui.fragments.authframent.AuthViewModel" />
     </data>
 
-    <androidx.constraintlayout.motion.widget.MotionLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/loginFragmentMotionLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="15dp"
-        app:layoutDescription="@xml/fragment_login_scene"
         tools:context=".ui.fragments.authframent.LoginFragment">
 
         <ImageView
@@ -35,31 +23,30 @@
             android:layout_height="200dp"
             android:layout_marginTop="20dp"
             android:contentDescription="@string/app_logo"
-            android:src="@drawable/logo"
+            android:src="@drawable/logowords"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/usernameTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:labelFor="@id/usernameEditText"
-            android:text="@string/username"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/logo" />
+<!--        <TextView-->
+<!--            android:id="@+id/usernameTextView"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:labelFor="@id/usernameEditText"-->
+<!--            android:text="@string/username"-->
+<!--            app:layout_constraintLeft_toLeftOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/logo" />-->
 
-        <EditText
-            android:id="@+id/usernameEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:importantForAutofill="no"
-            android:inputType="text"
-            android:text="@={viewModel.username}"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/usernameTextView" />
+<!--        <EditText-->
+<!--            android:id="@+id/usernameEditText"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:importantForAutofill="no"-->
+<!--            android:inputType="text"-->
+<!--            app:layout_constraintLeft_toLeftOf="parent"-->
+<!--            app:layout_constraintRight_toRightOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/usernameTextView" />-->
 
 
         <TextView
@@ -70,7 +57,7 @@
             android:labelFor="@id/phoneEditText"
             android:text="@string/phone_number"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/usernameEditText" />
+            app:layout_constraintTop_toBottomOf="@id/logo" />
 
         <EditText
             android:id="@+id/phoneEditText"
@@ -78,7 +65,6 @@
             android:layout_height="wrap_content"
             android:importantForAutofill="no"
             android:inputType="phone"
-            android:text="@={viewModel.phoneNumber}"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/phoneTextView" />
@@ -88,8 +74,8 @@
             android:id="@+id/registerButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="@{viewModel::onRegisterClicked}"
             android:text="@string/register"
+            android:tag="@string/register"
             android:textAllCaps="false"
             android:textColor="@color/white"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -97,6 +83,6 @@
             app:layout_constraintTop_toBottomOf="@id/phoneEditText" />
 
 
-    </androidx.constraintlayout.motion.widget.MotionLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

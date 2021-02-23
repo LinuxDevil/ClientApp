@@ -1,27 +1,3 @@
-/*******************************************************************************
- *
- * Copyright RectiCode(c) 2020.
- * All Rights Reserved
- *
- * This product is protected by copyright and distributed under
- * licenses restricting copying, distribution and de-compilation.
- *
- * Created by Ali Mohammad
- *
- ******************************************************************************/
-
-/*******************************************************************************
- *
- * Copyright RectiCode(c) 2020.
- * All Rights Reserved
- *
- * This product is protected by copyright and distributed under
- * licenses restricting copying, distribution and de-compilation.
- *
- * Created by Ali Mohammad
- *
- ******************************************************************************/
-
 package com.aligmohammad.doctorapp.data.model
 
 data class Place(
@@ -35,4 +11,37 @@ data class Place(
     val watchers: Int?,
     val visitors: Int?,
     val name: String?,
-)
+    var city: String?,
+    var district: String?,
+    var insuranceCompany: String?,
+    var insuranceNumber: String?,
+    var appointments: List<String>?,
+    var consultation: List<String>?,
+    var orders: List<String>?,
+    var phone: String?,
+    var type: String?,
+    var medicineAvailable: List<String>?,
+) {
+    constructor() : this(
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        0,
+        0,
+        0,
+        "",
+        "",
+        "",
+        "",
+        "",
+        null,
+        null,
+        null,
+        "",
+        "",
+        listOf()
+    )
+}

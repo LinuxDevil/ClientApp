@@ -1,14 +1,4 @@
-/*******************************************************************************
- *
- * Copyright RectiCode(c) 2020.
- * All Rights Reserved
- *
- * This product is protected by copyright and distributed under
- * licenses restricting copying, distribution and de-compilation.
- *
- * Created by Ali Mohammad
- *
- ******************************************************************************/
+
 
 package com.aligmohammad.doctorapp.ui.adapters
 
@@ -21,10 +11,11 @@ import com.aligmohammad.doctorapp.R
 import com.aligmohammad.doctorapp.data.model.DateTime
 import com.aligmohammad.doctorapp.databinding.TimeSingleItemBinding
 
-class TimeRecyclerAdapter(private val times: List<DateTime>) :
+class TimeRecyclerAdapter(private val times: List<String>) :
     RecyclerView.Adapter<TimeRecyclerAdapter.TimeRecyclerViewHolder>() {
 
-    private var isActive = false
+    private var isSelected = false
+    private var selection: String = ""
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -44,7 +35,7 @@ class TimeRecyclerAdapter(private val times: List<DateTime>) :
         position: Int
     ) {
         holder.timeSingleItemBinding.cardView.apply {
-            if (times[position].selected) {
+            if (isSelected) {
                 strokeColor = Color.BLUE
                 strokeWidth = 2
             } else {
@@ -56,13 +47,14 @@ class TimeRecyclerAdapter(private val times: List<DateTime>) :
             holder.timeSingleItemBinding.cardView.apply {
                 resetAll()
                 holder.timeSingleItemBinding.cardView.apply {
-                    if (!times[position].selected) {
+                    if (!isSelected) {
                         strokeColor = Color.BLUE
                         strokeWidth = 2
                     } else {
                         strokeWidth = 0
                     }
-                    times[position].selected = !times[position].selected
+                    selection = times[position]
+                    isSelected = !isSelected
                 }
             }
         }
@@ -70,10 +62,11 @@ class TimeRecyclerAdapter(private val times: List<DateTime>) :
 
     private fun resetAll() {
         times.map { dateTime ->
-            dateTime.selected = false
+            isSelected = false
         }
         notifyDataSetChanged()
     }
+    public fun getSelection(): String = selection
 
     override fun getItemCount(): Int = times.size
 

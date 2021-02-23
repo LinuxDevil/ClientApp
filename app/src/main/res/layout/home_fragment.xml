@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?xml version="1.0" encoding="utf-8"?>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   ~
   ~ Copyright RectiCode(c) 2020.
   ~ All Rights Reserved
@@ -51,23 +52,25 @@
                 android:layout_height="0dp"
                 android:orientation="vertical"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintBottom_toTopOf="@id/adBanner"
+                app:layout_constraintBottom_toTopOf="@id/adView"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/toolbar"
                 tools:listitem="@layout/home_screen_menu_item" />
 
 
-            <ImageView
-                android:id="@+id/adBanner"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:contentDescription="@string/ad_banner"
-                android:imageUrl="@{viewModel.imageUrl}"
-                android:scaleType="centerCrop"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+            <com.google.android.gms.ads.AdView
+                xmlns:ads="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/adView"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                ads:layout_constraintBottom_toBottomOf="parent"
+                ads:layout_constraintStart_toStartOf="parent"
+                ads:layout_constraintEnd_toEndOf="parent"
+                ads:adSize="BANNER"
+                ads:adUnitId="ca-app-pub-4200194132122118/6620452316">
+            </com.google.android.gms.ads.AdView>
+
 
         </androidx.constraintlayout.motion.widget.MotionLayout>
 

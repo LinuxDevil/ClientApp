@@ -1,14 +1,4 @@
-/*******************************************************************************
- *
- * Copyright RectiCode(c) 2020.
- * All Rights Reserved
- *
- * This product is protected by copyright and distributed under
- * licenses restricting copying, distribution and de-compilation.
- *
- * Created by Ali Mohammad
- *
- ******************************************************************************/
+
 
 package com.aligmohammad.doctorapp.data.model
 
@@ -21,16 +11,17 @@ data class Appointment(
     var location: String? = "Amman",
     var rate: Int? = 0,
     var imageUrl: String? = "",
-    val patient: User? = User("Ali Mohammad"),
+    val patient: UserLoginData? = UserLoginData("Ali Mohammad"),
     val inProgress: Boolean? = true
 ) : Parcelable {
+
     constructor(parcel: Parcel) : this(
         parcel.readParcelable(DateTime::class.java.classLoader),
         parcel.readParcelable(DateTime::class.java.classLoader),
         parcel.readString(),
         parcel.readValue(Int::class.java.classLoader) as? Int,
         parcel.readString(),
-        parcel.readParcelable(User::class.java.classLoader),
+        parcel.readParcelable(UserLoginData::class.java.classLoader),
         parcel.readValue(Boolean::class.java.classLoader) as? Boolean
     )
 

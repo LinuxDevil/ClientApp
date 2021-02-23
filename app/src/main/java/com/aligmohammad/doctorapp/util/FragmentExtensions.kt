@@ -1,27 +1,3 @@
-/*******************************************************************************
- *
- * Copyright RectiCode(c) 2020.
- * All Rights Reserved
- *
- * This product is protected by copyright and distributed under
- * licenses restricting copying, distribution and de-compilation.
- *
- * Created by Ali Mohammad
- *
- ******************************************************************************/
-
-/*******************************************************************************
- *
- * Copyright RectiCode(c) 2020.
- * All Rights Reserved
- *
- * This product is protected by copyright and distributed under
- * licenses restricting copying, distribution and de-compilation.
- *
- * Created by Ali Mohammad
- *
- ******************************************************************************/
-
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -85,14 +61,18 @@ fun Fragment.mayNavigate(): Boolean {
     val destinationIdInNavController = navController.currentDestination?.id
 
     // add tag_navigation_destination_id to your ids.xml so that it's unique:
-    val destinationIdOfThisFragment = view?.getTag(R.id.governmentHospitalsFragment) ?: destinationIdInNavController
+    val destinationIdOfThisFragment =
+        view?.getTag(R.id.governmentHospitalsFragment) ?: destinationIdInNavController
 
     // check that the navigation graph is still in 'this' fragment, if not then the app already navigated:
     if (destinationIdInNavController == destinationIdOfThisFragment) {
         view?.setTag(R.id.governmentHospitalsFragment, destinationIdOfThisFragment)
         return true
     } else {
-        Log.d("FragmentExtensions.kt", "May not navigate: current destination is not the current fragment.")
+        Log.d(
+            "FragmentExtensions.kt",
+            "May not navigate: current destination is not the current fragment."
+        )
         return false
     }
 }

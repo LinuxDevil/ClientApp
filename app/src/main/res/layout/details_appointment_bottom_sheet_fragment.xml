@@ -1,15 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  ~
-  ~ Copyright RectiCode(c) 2020.
-  ~ All Rights Reserved
-  ~
-  ~ This product is protected by copyright and distributed under
-  ~ licenses restricting copying, distribution and de-compilation.
-  ~
-  ~ Created by Ali Mohammad
-  ~
-  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -27,7 +16,7 @@
 
         <variable
             name="appointment"
-            type="com.aligmohammad.doctorapp.data.model.Appointment" />
+            type="com.aligmohammad.doctorapp.data.model.firebasemodels.AppointmentFirebaseModel" />
 
     </data>
 
@@ -73,7 +62,7 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:contentDescription="Image"
-            android:imageUrl="@{appointment.imageUrl}"
+            android:imageUrl="@{appointment.userId}"
             android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -86,7 +75,7 @@
             android:layout_margin="10dp"
             android:background="@drawable/active_drawable"
             android:padding="5dp"
-            android:text="@{appointment.patient.name}"
+            android:text="@{appointment.userId}"
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -100,7 +89,7 @@
             android:layout_margin="10dp"
             android:background="@drawable/active_drawable"
             android:padding="5dp"
-            android:text="@{appointment.date.text}"
+            android:text="@{appointment.date}"
             android:textColor="@color/black"
             app:drawableEndCompat="@drawable/date_icon"
             app:layout_constraintEnd_toEndOf="parent"
@@ -115,7 +104,7 @@
             android:layout_margin="10dp"
             android:background="@drawable/active_drawable"
             android:padding="5dp"
-            android:text="@{appointment.time.text}"
+            android:text="@{appointment.time}"
             android:textColor="@color/black"
             app:drawableEndCompat="@drawable/time_icon"
             app:layout_constraintEnd_toEndOf="parent"

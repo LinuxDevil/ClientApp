@@ -23,15 +23,18 @@
         tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/loginToPhoneAction"
-            app:destination="@id/phoneCodeFragment"
+            app:destination="@id/nationalityIdFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/loginToHome"
+            app:destination="@id/home_user_nav" />
     </fragment>
     <fragment
-        android:id="@+id/phoneCodeFragment"
-        android:name="com.aligmohammad.doctorapp.ui.fragments.authframent.PhoneCodeFragment"
+        android:id="@+id/nationalityIdFragment"
+        android:name="com.aligmohammad.doctorapp.ui.fragments.authframent.NationalIDFragment"
         android:label="PhoneCodeFragment">
         <action
             android:id="@+id/phoneToInsurance"
@@ -41,6 +44,7 @@
     </fragment>
 
     <fragment
+        tools:layout="@layout/insurance_fragment"
         android:id="@+id/insuranceFragment"
         android:name="com.aligmohammad.doctorapp.ui.fragments.insurancefragment.InsuranceFragment"
         android:label="InsuranceFragment">

@@ -1,43 +1,37 @@
-/*******************************************************************************
- *
- * Copyright RectiCode(c) 2020.
- * All Rights Reserved
- *
- * This product is protected by copyright and distributed under
- * licenses restricting copying, distribution and de-compilation.
- *
- * Created by Ali Mohammad
- *
- ******************************************************************************/
-
-/*******************************************************************************
- *
- * Copyright RectiCode(c) 2020.
- * All Rights Reserved
- *
- * This product is protected by copyright and distributed under
- * licenses restricting copying, distribution and de-compilation.
- *
- * Created by Ali Mohammad
- *
- ******************************************************************************/
-
 package com.aligmohammad.doctorapp.ui.fragments.insurancefragment
 
-import android.app.Application
 import android.view.View
+import androidx.hilt.lifecycle.ViewModelInject
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.Navigation
-import com.aligmohammad.doctorapp.BaseViewModel
+import com.aligmohammad.doctorapp.data.model.UserInfoModel
+import com.aligmohammad.doctorapp.data.network.Resource
+import com.aligmohammad.doctorapp.data.network.repository.HomeRepository
+import com.aligmohammad.doctorapp.data.network.responses.InsuranceCompanyResponse
+import com.aligmohammad.doctorapp.data.network.responses.UserInfoResponse
+import com.aligmohammad.doctorapp.ui.base.BaseViewModel
+import com.google.firebase.auth.UserInfo
+import kotlinx.coroutines.launch
 
-class InsuranceViewModel(application: Application) : BaseViewModel(application) {
+class InsuranceViewModel @ViewModelInject constructor(private val repository: HomeRepository) :
+    BaseViewModel(repository) {
 
-    fun onConfirmClicked(view: View) {
-//        val options =
-//        Navigation.findNavController(view).navigate(R.id.insuracneToHome, null, NavOptions.Builder().setPopUpTo(
-//            R.id.loginFragment, true).build())
+    private val _insuranceResponse: MutableLiveData<Resource<InsuranceCompanyResponse>> =
+        MutableLiveData()
+    val insuranceResponse: LiveData<Resource<InsuranceCompanyResponse>>
+        get() = _insuranceResponse
 
-        Navigation.findNavController(view).navigate(InsuranceFragmentDirections.insuracneToHome())
+    private val _addInsuranceResponse: MutableLiveData<Resource<UserInfoResponse>> = MutableLiveData()
+    val addInsuranceResponse: LiveData<Resource<UserInfoResponse>> get() = _addInsuranceResponse
 
+    fun getInsuranceCompanies() = viewModelScope.launch {
+        _insuranceResponse.value = repository.getInsuranceCompanyApi()
+    }
+
+    fun updateUserInfo(userInfo: UserInfoModel) = viewModelScope.launch {
+        _addInsuranceResponse.value = repository.addUserInfo(userInfo)
     }
 
 

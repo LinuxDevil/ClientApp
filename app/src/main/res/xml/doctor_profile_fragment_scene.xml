@@ -60,7 +60,7 @@
             android:alpha="0"
             app:layout_constraintTop_toBottomOf="@id/reserveTitleBottom" />
         <Constraint
-            android:id="@+id/dateEditText"
+            android:id="@+id/cities_spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:alpha="0"
@@ -72,7 +72,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:alpha="0"
-            app:layout_constraintTop_toBottomOf="@id/dateEditText" />
+            app:layout_constraintTop_toBottomOf="@id/cities_spinner" />
         <Constraint
             android:id="@+id/timeEditText"
             android:layout_width="match_parent"

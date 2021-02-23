@@ -1,0 +1,134 @@
+package com.aligmohammad.doctorapp.ui.dialogs.citydistrictcompanydialog;
+
+import android.os.Bundle;
+import androidx.annotation.NonNull;
+import androidx.navigation.ActionOnlyNavDirections;
+import androidx.navigation.NavDirections;
+import com.aligmohammad.doctorapp.R;
+import java.lang.IllegalArgumentException;
+import java.lang.Object;
+import java.lang.Override;
+import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.HashMap;
+
+public class CityDistrictCompanyFragmentDirections {
+  private CityDistrictCompanyFragmentDirections() {
+  }
+
+  @NonNull
+  public static LabsToList labsToList() {
+    return new LabsToList();
+  }
+
+  @NonNull
+  public static NavDirections cityToSymptoms() {
+    return new ActionOnlyNavDirections(R.id.cityToSymptoms);
+  }
+
+  public static class LabsToList implements NavDirections {
+    private final HashMap arguments = new HashMap();
+
+    private LabsToList() {
+    }
+
+    @NonNull
+    public LabsToList setMajor(@NonNull String major) {
+      if (major == null) {
+        throw new IllegalArgumentException("Argument \"major\" is marked as non-null but was passed a null value.");
+      }
+      this.arguments.put("major", major);
+      return this;
+    }
+
+    @NonNull
+    public LabsToList setType(@NonNull String type) {
+      if (type == null) {
+        throw new IllegalArgumentException("Argument \"type\" is marked as non-null but was passed a null value.");
+      }
+      this.arguments.put("type", type);
+      return this;
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    @NonNull
+    public Bundle getArguments() {
+      Bundle __result = new Bundle();
+      if (arguments.containsKey("major")) {
+        String major = (String) arguments.get("major");
+        __result.putString("major", major);
+      } else {
+        __result.putString("major", "none");
+      }
+      if (arguments.containsKey("type")) {
+        String type = (String) arguments.get("type");
+        __result.putString("type", type);
+      } else {
+        __result.putString("type", "labs");
+      }
+      return __result;
+    }
+
+    @Override
+    public int getActionId() {
+      return R.id.labsToList;
+    }
+
+    @SuppressWarnings("unchecked")
+    @NonNull
+    public String getMajor() {
+      return (String) arguments.get("major");
+    }
+
+    @SuppressWarnings("unchecked")
+    @NonNull
+    public String getType() {
+      return (String) arguments.get("type");
+    }
+
+    @Override
+    public boolean equals(Object object) {
+      if (this == object) {
+          return true;
+      }
+      if (object == null || getClass() != object.getClass()) {
+          return false;
+      }
+      LabsToList that = (LabsToList) object;
+      if (arguments.containsKey("major") != that.arguments.containsKey("major")) {
+        return false;
+      }
+      if (getMajor() != null ? !getMajor().equals(that.getMajor()) : that.getMajor() != null) {
+        return false;
+      }
+      if (arguments.containsKey("type") != that.arguments.containsKey("type")) {
+        return false;
+      }
+      if (getType() != null ? !getType().equals(that.getType()) : that.getType() != null) {
+        return false;
+      }
+      if (getActionId() != that.getActionId()) {
+        return false;
+      }
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      int result = 1;
+      result = 31 * result + (getMajor() != null ? getMajor().hashCode() : 0);
+      result = 31 * result + (getType() != null ? getType().hashCode() : 0);
+      result = 31 * result + getActionId();
+      return result;
+    }
+
+    @Override
+    public String toString() {
+      return "LabsToList(actionId=" + getActionId() + "){"
+          + "major=" + getMajor()
+          + ", type=" + getType()
+          + "}";
+    }
+  }
+}

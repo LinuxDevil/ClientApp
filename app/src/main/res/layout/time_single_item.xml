@@ -17,7 +17,7 @@
 
         <variable
             name="time"
-            type="com.aligmohammad.doctorapp.data.model.DateTime" />
+            type="String" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:text="@{time.text}"
+            android:text="@{time}"
             android:textColor="@color/black"
             android:textSize="12sp" />
 

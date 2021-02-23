@@ -1,15 +1,3 @@
-/*******************************************************************************
- *
- * Copyright RectiCode(c) 2020.
- * All Rights Reserved
- *
- * This product is protected by copyright and distributed under
- * licenses restricting copying, distribution and de-compilation.
- *
- * Created by Ali Mohammad
- *
- ******************************************************************************/
-
 package com.aligmohammad.doctorapp.ui.dialogs.appointmentmanagment.singleappointment
 
 import android.os.Bundle
@@ -19,18 +7,31 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.aligmohammad.doctorapp.R
+import com.aligmohammad.doctorapp.data.model.firebasemodels.AppointmentFirebaseModel
+import com.aligmohammad.doctorapp.data.network.UserSingleton
 import com.aligmohammad.doctorapp.databinding.SingleAppointmentFragmentBinding
 import com.aligmohammad.doctorapp.ui.adapters.DateRecyclerAdapter
 import com.aligmohammad.doctorapp.ui.adapters.TimeRecyclerAdapter
 import com.aligmohammad.doctorapp.ui.dialogs.OnDialogInteract
+import com.aligmohammad.doctorapp.util.snackbar
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
 class SingleAppointment : BottomSheetDialogFragment(), OnDialogInteract {
 
     private lateinit var viewModel: SingleAppointmentViewModel
     private lateinit var binding: SingleAppointmentFragmentBinding
+
+    private var arrayOfDates = listOf<String>()
+    private var arrayOfTimes = listOf<String>()
+
+    private var shiftSelected: String = ""
+    private var timeSelected: String = ""
+    private var dateSelected: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,15 +48,40 @@ class SingleAppointment : BottomSheetDialogFragment(), OnDialogInteract {
         binding.listener = this
         initializeRecycler()
 
+        binding.dayTime.visibility = View.GONE
+        binding.nightTime.visibility = View.GONE
+
+        navArgs<SingleAppointmentArgs>().value.doctorShifts!!.forEach { shift ->
+            if (shift == "Morning") {
+                binding.dayTime.visibility = View.VISIBLE
+            }
+            if (shift == "After noon") {
+                binding.nightTime.visibility = View.VISIBLE
+            }
+        }
+
+        navArgs<SingleAppointmentArgs>().value.let {
+            arrayOfDates = it.dates!!.toList()
+            arrayOfTimes = it.times!!.toList()
+            initializeRecycler()
+        }
+
         binding.dayTime.setOnClickListener {
             binding.nightTime.background = null
             binding.dayTime.background =
                 ContextCompat.getDrawable(requireContext(), R.drawable.active_drawable)
+            shiftSelected = "Morning"
         }
+
         binding.nightTime.setOnClickListener {
             binding.dayTime.background = null
             binding.nightTime.background =
                 ContextCompat.getDrawable(requireContext(), R.drawable.active_drawable)
+            shiftSelected = "After Noon"
+        }
+
+        binding.reserveButton.setOnClickListener {
+            addUserAppointment()
         }
 
         return binding.root
@@ -63,16 +89,71 @@ class SingleAppointment : BottomSheetDialogFragment(), OnDialogInteract {
 
     private fun initializeRecycler() {
         binding.dateRecyclerView.apply {
-            adapter = DateRecyclerAdapter(viewModel.getDates())
+            adapter = DateRecyclerAdapter(arrayOfDates)
             layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         }
 
         binding.timeRecyclerView.apply {
-            adapter = TimeRecyclerAdapter(viewModel.getTimes())
+            adapter = TimeRecyclerAdapter(arrayOfTimes)
             layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         }
+    }
+
+    private fun addUserAppointment() {
+        // 1- Get user id
+        val userId = UserSingleton.getCurrentUser().username
+        timeSelected = (binding.timeRecyclerView.adapter as TimeRecyclerAdapter).getSelection()
+        dateSelected = (binding.dateRecyclerView.adapter as DateRecyclerAdapter).getSelection()
+        val database = Firebase.database.reference
+        val appointmentUuid = database.push().key
+        // 2- Create appointment
+        val appointment = AppointmentFirebaseModel(
+            dateSelected,
+            timeSelected,
+            shiftSelected,
+            userId,
+            navArgs<SingleAppointmentArgs>().value.doctorUuid!!,
+            null,
+            null,
+            true,
+            appointmentUuid
+        )
+        // 3- Push Appointment to db
+        if (appointmentUuid != null) {
+            database.child("Appointments").child(appointmentUuid).setValue(appointment)
+                .addOnCompleteListener {
+                    // 4- Add appointment id to user
+                    // 5- Push user changes
+                    database.child("Users").child(userId!!.substring(1, userId!!.length))
+                        .child("Appointments").child(appointmentUuid).setValue(appointmentUuid)
+                        .addOnCompleteListener {
+                        }.addOnFailureListener {
+                        binding.reserveButton.snackbar(it.localizedMessage!!)
+                    }
+
+                    database.child("Doctors")
+                        .child(navArgs<SingleAppointmentArgs>().value.doctorUuid!!)
+                        .child("Appointments").child(appointmentUuid).setValue(appointmentUuid)
+                        .addOnCompleteListener {
+                            database.child("Doctors")
+                                .child(navArgs<SingleAppointmentArgs>().value.doctorUuid!!)
+                                .child("Dates").child(dateSelected).removeValue()
+                            database.child("Doctors")
+                                .child(navArgs<SingleAppointmentArgs>().value.doctorUuid!!)
+                                .child("Times").child(timeSelected).removeValue()
+                            binding.reserveButton.snackbar("Reserved!")
+                            dismiss()
+                        }.addOnFailureListener {
+                        binding.reserveButton.snackbar(it.localizedMessage!!)
+                    }
+
+                }.addOnFailureListener {
+                binding.reserveButton.snackbar(it.localizedMessage!!)
+            }
+        }
+
     }
 
     override fun onBackButtonClicked(view: View) {

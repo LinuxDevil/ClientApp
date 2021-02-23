@@ -1,14 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  ~
-  ~ Copyright RectiCode(c) 2020.
-  ~ All Rights Reserved
-  ~
-  ~ This product is protected by copyright and distributed under
-  ~ licenses restricting copying, distribution and de-compilation.
-  ~
-  ~ Created by Ali Mohammad
-  ~
-  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<?xml version="1.0" encoding="utf-8"?>
 
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -20,6 +10,29 @@
         android:name="com.aligmohammad.doctorapp.ui.fragments.homefragment.HomeFragment"
         android:label="Home"
         tools:layout="@layout/home_fragment">
+        <action
+            android:id="@+id/actionHomeToNewAppointment"
+            app:destination="@id/newAppointmentFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/homeToProfile"
+            app:destination="@id/mainProfileFragment" />
+        <action
+            android:id="@+id/homeToAppointemtnsUser"
+            app:destination="@id/appointmentListFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_offersListFragment"
+            app:destination="@id/offersListFragment" />
+        <action
+            android:id="@+id/homeToSettings"
+            app:destination="@id/settingsFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/newAppointmentFragment"
+        android:name="com.aligmohammad.doctorapp.ui.fragments.newappointmentfragment.NewAppointmentFragment"
+        android:label="New Appointment"
+        tools:layout="@layout/fragment_new_appointment">
         <action
             android:id="@+id/action_homeFragment_to_bottom_sheet_government"
             app:destination="@id/homeToGovernmentChoice"
@@ -58,6 +71,21 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/homeToProfile"
+            app:destination="@id/mainProfileFragment" />
+        <action
+            android:id="@+id/homeToAppointemtnsUser"
+            app:destination="@id/appointmentListFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_offersListFragment"
+            app:destination="@id/offersListFragment" />
+        <action
+            android:id="@+id/homeToSettings"
+            app:destination="@id/settingsFragment2" />
+        <action
+            android:id="@+id/homeToTodaysAppointment"
+            app:destination="@id/todayAppointments" />
     </fragment>
     <dialog
         android:id="@+id/homeToGovernmentChoice"
@@ -123,18 +151,39 @@
         tools:layout="@layout/date_and_time_bottom_sheet_fragment">
         <action
             android:id="@+id/backToHome"
-            app:destination="@id/homeFragment"
+            app:destination="@id/newAppointmentFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:launchSingleTop="true"
-            app:popUpTo="@id/homeFragment"
+            app:popUpTo="@id/newAppointmentFragment"
             app:popUpToInclusive="true" />
     </dialog>
     <dialog
         android:id="@+id/labsBottomSheetFragment"
         android:name="com.aligmohammad.doctorapp.ui.dialogs.labschoice.LabsBottomSheetFragment"
         android:label="Labs"
-        tools:layout="@layout/labs_bottom_sheet_fragment" />
+        tools:layout="@layout/labs_bottom_sheet_fragment">
+        <argument
+            android:name="type"
+            android:defaultValue="Labs"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="times"
+            android:defaultValue="@null"
+            app:argType="string[]"
+            app:nullable="true" />
+        <argument
+            android:name="dates"
+            android:defaultValue="@null"
+            app:argType="string[]"
+            app:nullable="true" />
+        <argument
+            android:name="placeUuid"
+            android:defaultValue="0"
+            app:argType="string"
+            app:nullable="true" />
+    </dialog>
     <dialog
         android:id="@+id/naturalistBottomSheetFragment"
         android:name="com.aligmohammad.doctorapp.ui.dialogs.naturalistchoice.NaturalistBottomSheetFragment"
@@ -226,7 +275,47 @@
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:popExitAnim="@anim/nav_default_pop_exit_anim">
+            <argument
+                android:name="type"
+                android:defaultValue="Labs"
+                app:argType="string"
+                app:nullable="true" />
+            <argument
+                android:name="times"
+                android:defaultValue="@null"
+                app:argType="string[]"
+                app:nullable="true" />
+            <argument
+                android:name="dates"
+                android:defaultValue="@null"
+                app:argType="string[]"
+                app:nullable="true" />
+            <argument
+                android:name="placeUuid"
+                android:defaultValue="0"
+                app:argType="string"
+                app:nullable="true" />
+        </action>
+        <argument
+            android:name="doctorArray"
+            android:defaultValue="@null"
+            app:argType="string[]"
+            app:nullable="true" />
+        <argument
+            android:name="city"
+            android:defaultValue="عمان"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="district"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="insuranceName"
+            android:defaultValue="NatHealth"
+            app:argType="string"
+            app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/doctorProfileFragment"
@@ -236,6 +325,9 @@
         <argument
             android:name="doctor"
             app:argType="com.aligmohammad.doctorapp.data.model.Doctor" />
+        <action
+            android:id="@+id/doctorToAppointment"
+            app:destination="@id/singleAppointment" />
     </fragment>
     <dialog
         android:id="@+id/cityDistrictCompanyFragment"
@@ -269,13 +361,55 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:launchSingleTop="true"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:popExitAnim="@anim/nav_default_pop_exit_anim">
+            <argument
+                android:name="doctorArray"
+                android:defaultValue="@null"
+                app:argType="string[]"
+                app:nullable="true" />
+            <argument
+                android:name="city"
+                android:defaultValue="عمان"
+                app:argType="string"
+                app:nullable="true" />
+            <argument
+                android:name="district"
+                android:defaultValue=""
+                app:argType="string"
+                app:nullable="true" />
+            <argument
+                android:name="insuranceName"
+                android:defaultValue="NatHealth"
+                app:argType="string"
+                app:nullable="true" />
+        </action>
     </dialog>
 
     <dialog
         android:id="@+id/pharmacyRicottaBottomSheetFragment"
         android:name="com.aligmohammad.doctorapp.ui.dialogs.pharmacyricottaorder.PharmacyRicottaBottomSheetFragment"
-        android:label="Order" />
+        android:label="Order">
+        <argument
+            android:name="type"
+            android:defaultValue="Labs"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="times"
+            android:defaultValue="@null"
+            app:argType="string[]"
+            app:nullable="true" />
+        <argument
+            android:name="dates"
+            android:defaultValue="@null"
+            app:argType="string[]"
+            app:nullable="true" />
+        <argument
+            android:name="placeUuid"
+            android:defaultValue="0"
+            app:argType="string"
+            app:nullable="true" />
+    </dialog>
 
     <dialog
         android:id="@+id/doctorConsult"
@@ -308,6 +442,25 @@
         android:id="@+id/symptomsFragment"
         android:name="com.aligmohammad.doctorapp.ui.dialogs.doctorconsulting.symptoms.SymptomsBottomSheetFragment"
         android:label="Consult General Doctor">
+        <argument
+            android:name="doctorArray"
+            android:defaultValue="@null"
+            app:argType="string[]"
+            app:nullable="true" />
+        <argument
+            android:name="city"
+            android:defaultValue="عمان"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="district"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="insuranceName"
+            android:defaultValue="NatHealth"
+            app:argType="string"
+            app:nullable="true" />
         <action
             android:id="@+id/symptomsToResult"
             app:destination="@id/doctorConsultResultFragment"
@@ -344,7 +497,11 @@
     <fragment
         android:id="@+id/mainProfileFragment"
         android:name="com.aligmohammad.doctorapp.ui.fragments.main_profile.MainProfileFragment"
-        android:label="Profile" />
+        android:label="Profile" >
+        <action
+            android:id="@+id/profileToEditProfile"
+            app:destination="@id/editProfile" />
+    </fragment>
     <fragment
         android:id="@+id/appointmentListFragment"
         android:name="com.aligmohammad.doctorapp.ui.fragments.appointment_list.AppointmentListFragment"
@@ -360,6 +517,56 @@
         tools:layout="@layout/details_appointment_bottom_sheet_fragment">
         <argument
             android:name="appointment"
-            app:argType="com.aligmohammad.doctorapp.data.model.Appointment" />
+            app:argType="com.aligmohammad.doctorapp.data.model.firebasemodels.AppointmentFirebaseModel" />
     </dialog>
+    <dialog
+        android:id="@+id/singleAppointment"
+        android:name="com.aligmohammad.doctorapp.ui.dialogs.appointmentmanagment.singleappointment.SingleAppointment"
+        android:label="@string/reserve_an_appointment">
+        <argument
+            android:name="dates"
+            android:defaultValue="@null"
+            app:argType="string[]"
+            app:nullable="true" />
+        <argument
+            android:name="times"
+            android:defaultValue="@null"
+            app:argType="string[]"
+            app:nullable="true" />
+        <argument
+            android:name="doctorUuid"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="doctorShifts"
+            android:defaultValue="@null"
+            app:argType="string[]"
+            app:nullable="true" />
+    </dialog>
+    <fragment
+        android:id="@+id/offersListFragment"
+        android:name="com.aligmohammad.doctorapp.ui.fragments.offers_list.OffersListFragment"
+        android:label="Offers" />
+    <fragment
+        android:id="@+id/settingsFragment2"
+        android:name="com.aligmohammad.doctorapp.ui.fragments.settings.SettingsFragment"
+        android:label="@string/settings" />
+    <fragment
+        android:id="@+id/editProfile"
+        android:name="com.aligmohammad.doctorapp.ui.fragments.authframent.EditProfileFragment"
+        android:label="Edit Profile" >
+        <action
+            android:id="@+id/editToHome"
+            app:destination="@id/homeFragment" />
+        <argument
+            android:name="user"
+            app:argType="com.aligmohammad.doctorapp.data.network.response.User"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
+    <fragment
+        android:id="@+id/todayAppointments"
+        android:name="com.aligmohammad.doctorapp.ui.fragments.todaysappointments.TodayAppointments"
+        android:label="fragment_today_appointments"
+        tools:layout="@layout/fragment_today_appointments" />
 </navigation>

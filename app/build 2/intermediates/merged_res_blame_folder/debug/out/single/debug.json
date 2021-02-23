@@ -1,0 +1,310 @@
+[
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/drawable_time_icon.xml.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/drawable/time_icon.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/layout_activity_main.xml.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/layout/activity_main.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/layout_doctor_consulting_bottom_sheet_fragment.xml.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/layout/doctor_consulting_bottom_sheet_fragment.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/mipmap-mdpi_ic_launcher.png.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/mipmap-mdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/menu_home_menu.xml.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/menu/home_menu.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/drawable_next_icon.xml.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/drawable/next_icon.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/drawable_location_icon.xml.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/drawable/location_icon.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/xml_doctor_profile_fragment_scene.xml.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/xml/doctor_profile_fragment_scene.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/drawable_date_icon.xml.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/drawable/date_icon.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/xml_doctor_major_item_scene.xml.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/xml/doctor_major_item_scene.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/layout_medicine_item.xml.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/layout/medicine_item.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/layout_activity_splash.xml.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/layout/activity_splash.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/layout_x_ray_bottom_sheet_fragment.xml.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/layout/x_ray_bottom_sheet_fragment.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/layout_doctor_list_fragment.xml.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/layout/doctor_list_fragment.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/layout_doctor_major_fragment_item_list.xml.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/layout/doctor_major_fragment_item_list.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/xml_doctor_major_fragment_item_list_scene.xml.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/xml/doctor_major_fragment_item_list_scene.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/navigation_main_nav.xml.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/navigation/main_nav.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/layout_home_fragment.xml.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/layout/home_fragment.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/drawable_back_black_icon.xml.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/drawable/back_black_icon.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/layout_request_doctor_nurse_bottom_sheet_fragment.xml.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/layout/request_doctor_nurse_bottom_sheet_fragment.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/layout_date_and_time_bottom_sheet_fragment.xml.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/layout/date_and_time_bottom_sheet_fragment.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/mipmap-hdpi_ic_launcher_foreground.png.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/mipmap-hdpi/ic_launcher_foreground.png"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/mipmap-hdpi_ic_launcher.png.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/mipmap-hdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/mipmap-mdpi_ic_launcher_foreground.png.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/mipmap-mdpi/ic_launcher_foreground.png"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/drawable-anydpi-v24_ic_launcher_foreground.xml.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/generated/res/pngs/debug/drawable-anydpi-v24/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/xml_doctor_consult_result_bottom_sheet_fragment_scene.xml.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/xml/doctor_consult_result_bottom_sheet_fragment_scene.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/layout_naturalist_bottom_sheet_fragment.xml.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/layout/naturalist_bottom_sheet_fragment.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/drawable_line.xml.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/drawable/line.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/layout_doctor_consult_result_fragment.xml.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/layout/doctor_consult_result_fragment.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/layout_fragment_phone_code.xml.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/layout/fragment_phone_code.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/xml_home_fragment_scene.xml.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/xml/home_fragment_scene.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/mipmap-xhdpi_ic_launcher_round.png.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/navigation_home_user_nav.xml.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/navigation/home_user_nav.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/drawable_image_icon.xml.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/drawable/image_icon.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/layout_labs_bottom_sheet_fragment.xml.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/layout/labs_bottom_sheet_fragment.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/layout_insurance_fragment.xml.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/layout/insurance_fragment.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/drawable_logo.png.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/drawable/logo.png"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/mipmap-mdpi_ic_launcher_round.png.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/mipmap-mdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/layout_private_hospitals_fragment.xml.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/layout/private_hospitals_fragment.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/layout_external_lab_bottom_sheet_fragment.xml.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/layout/external_lab_bottom_sheet_fragment.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/drawable_ic_launcher_background.xml.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/mipmap-xxhdpi_ic_launcher_foreground.png.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/mipmap-xxhdpi/ic_launcher_foreground.png"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/layout_activity_main2.xml.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/layout/activity_main2.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/layout_activity_cancel_appointment.xml.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/layout/activity_cancel_appointment.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/layout_symptoms_bottom_sheet_fragment.xml.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/layout/symptoms_bottom_sheet_fragment.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/xml_fragment_phone_code_scene.xml.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/xml/fragment_phone_code_scene.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/mipmap-xxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/xml_medicine_order_fragment_scene.xml.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/xml/medicine_order_fragment_scene.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/layout_opertaion_bottom_sheet_fragment.xml.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/layout/opertaion_bottom_sheet_fragment.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/drawable_delete_icon.xml.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/drawable/delete_icon.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/layout_lab_list_item.xml.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/layout/lab_list_item.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/layout_doctor_profile_fragment.xml.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/layout/doctor_profile_fragment.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/layout_doctor_list_item.xml.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/layout/doctor_list_item.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/drawable_ic_temp.xml.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/drawable/ic_temp.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/drawable_circular_menu_item.xml.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/drawable/circular_menu_item.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/layout_fragment_login.xml.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/layout/fragment_login.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/drawable_sucess.gif.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/drawable/sucess.gif"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/drawable_filter_icon.xml.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/drawable/filter_icon.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/xml_doctor_list_fragment_scene.xml.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/xml/doctor_list_fragment_scene.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/xml_fragment_login_scene.xml.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/xml/fragment_login_scene.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/layout_doctor_major_item.xml.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/layout/doctor_major_item.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/layout_medicine_order_fragment.xml.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/layout/medicine_order_fragment.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/xml_request_doctor_nurse_bottom_sheet_fragment_scene.xml.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/xml/request_doctor_nurse_bottom_sheet_fragment_scene.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/mipmap-xxhdpi_ic_launcher_round.png.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/layout_government_hospitals_fragment.xml.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/layout/government_hospitals_fragment.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/layout_city_district_company_fragment.xml.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/layout/city_district_company_fragment.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi_ic_launcher_foreground.png.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/mipmap-xxxhdpi/ic_launcher_foreground.png"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/mipmap-hdpi_ic_launcher_round.png.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/mipmap-hdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/mipmap-xhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/layout_pharmacy_ricotta_bottom_sheet_fragment.xml.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/layout/pharmacy_ricotta_bottom_sheet_fragment.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/mipmap-xhdpi_ic_launcher_foreground.png.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/mipmap-xhdpi/ic_launcher_foreground.png"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/layout_home_screen_menu_item.xml.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/layout/home_screen_menu_item.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi_ic_launcher_round.png.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/res/merged/debug/layout_bottom_sheet_government_hospital_choose.xml.flat",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/layout/bottom_sheet_government_hospital_choose.xml"
+    }
+]

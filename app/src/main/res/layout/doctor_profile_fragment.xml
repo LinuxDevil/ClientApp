@@ -193,47 +193,47 @@
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/dateTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:labelFor="@id/dateEditText"
-            android:text="@string/select_date"
-            app:layout_constraintTop_toBottomOf="@id/reserveTitleBottom" />
+<!--        <TextView-->
+<!--            android:id="@+id/dateTextView"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="15dp"-->
+<!--            android:labelFor="@id/dateEditText"-->
+<!--            android:text="@string/select_date"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/reserveTitleBottom" />-->
 
-        <EditText
-            android:id="@+id/dateEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:drawableEnd="@drawable/date_icon"
-            android:inputType="none"
-            android:padding="10dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/dateTextView" />
+<!--        <EditText-->
+<!--            android:id="@+id/dateEditText"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="15dp"-->
+<!--            android:drawableEnd="@drawable/date_icon"-->
+<!--            android:inputType="none"-->
+<!--            android:padding="10dp"-->
+<!--            app:layout_constraintLeft_toLeftOf="parent"-->
+<!--            app:layout_constraintRight_toRightOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/dateTextView" />-->
 
-        <TextView
-            android:id="@+id/timeTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:labelFor="@id/timeEditText"
-            android:text="@string/select_time"
-            app:layout_constraintTop_toBottomOf="@id/dateEditText" />
+<!--        <TextView-->
+<!--            android:id="@+id/timeTextView"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="15dp"-->
+<!--            android:labelFor="@id/timeEditText"-->
+<!--            android:text="@string/select_time"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/dateEditText" />-->
 
-        <EditText
-            android:id="@+id/timeEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:drawableEnd="@drawable/time_icon"
-            android:inputType="none"
-            android:padding="10dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/timeTextView" />
+<!--        <EditText-->
+<!--            android:id="@+id/timeEditText"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="15dp"-->
+<!--            android:drawableEnd="@drawable/time_icon"-->
+<!--            android:inputType="none"-->
+<!--            android:padding="10dp"-->
+<!--            app:layout_constraintLeft_toLeftOf="parent"-->
+<!--            app:layout_constraintRight_toRightOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/timeTextView" />-->
 
         <Button
             android:id="@+id/confirm_button"
@@ -245,7 +245,7 @@
             android:textColor="@color/white"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/timeEditText" />
+            app:layout_constraintTop_toBottomOf="@id/reserveTitleBottom" />
 
 
     </androidx.constraintlayout.motion.widget.MotionLayout>

@@ -1,0 +1,14 @@
+[
+  {
+    "name": "main_nav",
+    "navigationXmlIds": [
+      "home_user_nav"
+    ],
+    "deepLinks": []
+  },
+  {
+    "name": "home_user_nav",
+    "navigationXmlIds": [],
+    "deepLinks": []
+  }
+]

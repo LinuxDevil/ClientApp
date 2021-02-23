@@ -1,14 +1,4 @@
-/*******************************************************************************
- *
- * Copyright RectiCode(c) 2020.
- * All Rights Reserved
- *
- * This product is protected by copyright and distributed under
- * licenses restricting copying, distribution and de-compilation.
- *
- * Created by Ali Mohammad
- *
- ******************************************************************************/
+
 
 package com.aligmohammad.doctorapp.ui.dialogs.appointmentmanagment
 
@@ -19,6 +9,9 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.aligmohammad.doctorapp.R
+import com.aligmohammad.doctorapp.data.model.Appointment
+import com.aligmohammad.doctorapp.data.model.firebasemodels.AppointmentFirebaseModel
+import com.aligmohammad.doctorapp.data.network.UserSingleton
 import com.aligmohammad.doctorapp.databinding.AppointmentManagmentBottomSheetFragmentBinding
 import com.aligmohammad.doctorapp.ui.dialogs.OnDialogInteract
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -42,6 +35,9 @@ class AppointmentManagementBottomSheetFragment : BottomSheetDialogFragment(), On
             ViewModelProvider(this).get(AppointmentManagmentBottomSheetViewModel::class.java)
         binding.viewModel = viewModel
         binding.listener = this
+
+
+
 
         return binding.root
     }

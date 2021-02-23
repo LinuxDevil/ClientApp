@@ -1,27 +1,3 @@
-/*******************************************************************************
- *
- * Copyright RectiCode(c) 2020.
- * All Rights Reserved
- *
- * This product is protected by copyright and distributed under
- * licenses restricting copying, distribution and de-compilation.
- *
- * Created by Ali Mohammad
- *
- ******************************************************************************/
-
-/*******************************************************************************
- *
- * Copyright RectiCode(c) 2020.
- * All Rights Reserved
- *
- * This product is protected by copyright and distributed under
- * licenses restricting copying, distribution and de-compilation.
- *
- * Created by Ali Mohammad
- *
- ******************************************************************************/
-
 /**
  * Copyright Recticode(c) 2020.
  * All Rights Reserved
@@ -47,7 +23,7 @@ import com.aligmohammad.doctorapp.ui.fragments.doctorlist.DoctorListFragmentDire
 
 class PlaceListRecyclerViewAdapter(
     private val places: List<Place>,
-    private val type: String = "labs"
+    private val type: String = "Labs"
 ) : RecyclerView.Adapter<PlaceListRecyclerViewAdapter.PlaceListViewHolder>(), OnMenuItemClick {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlaceListViewHolder {
@@ -76,11 +52,17 @@ class PlaceListRecyclerViewAdapter(
             it.name == v.tag.toString()
         }[0]
 
-        if (type == "pharmacies") {
+        if (type == "Pharmacy") {
             Navigation.findNavController(v)
-                .navigate(DoctorListFragmentDirections.listToPharmacies())
+                .navigate(DoctorListFragmentDirections.listToPharmacies().setType("Pharmacy").setDates(
+                    arrayOf(lab.date)
+                ).setTimes(arrayOf(lab.time)).setPlaceUuid(lab.locationName))
         } else {
-            Navigation.findNavController(v).navigate(DoctorListFragmentDirections.listToLabs())
+            Navigation.findNavController(v).navigate(
+                DoctorListFragmentDirections.listToLabs().setType(type).setDates(
+                    arrayOf(lab.date)
+                ).setTimes(arrayOf(lab.time)).setPlaceUuid(lab.locationName)
+            )
         }
     }
 

@@ -1,14 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  ~
-  ~ Copyright RectiCode(c) 2020.
-  ~ All Rights Reserved
-  ~
-  ~ This product is protected by copyright and distributed under
-  ~ licenses restricting copying, distribution and de-compilation.
-  ~
-  ~ Created by Ali Mohammad
-  ~
-  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<?xml version="1.0" encoding="utf-8"?>
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -90,7 +80,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:labelFor="@id/dateEditText"
+            android:labelFor="@id/cities_spinner"
             android:text="@string/select_date"
             app:layout_constraintTop_toBottomOf="@id/testSpinner" />
 

@@ -1,27 +1,3 @@
-/*******************************************************************************
- *
- * Copyright RectiCode(c) 2020.
- * All Rights Reserved
- *
- * This product is protected by copyright and distributed under
- * licenses restricting copying, distribution and de-compilation.
- *
- * Created by Ali Mohammad
- *
- ******************************************************************************/
-
-/*******************************************************************************
- *
- * Copyright RectiCode(c) 2020.
- * All Rights Reserved
- *
- * This product is protected by copyright and distributed under
- * licenses restricting copying, distribution and de-compilation.
- *
- * Created by Ali Mohammad
- *
- ******************************************************************************/
-
 package com.aligmohammad.doctorapp.ui.dialogs.governmentchoice
 
 import android.os.Bundle
@@ -37,7 +13,7 @@ import com.aligmohammad.doctorapp.ui.dialogs.OnDialogInteract
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.bottom_sheet_government_hospital_choose.view.*
 
-class GovernmentHospitalChoice: BottomSheetDialogFragment(), OnDialogInteract {
+class GovernmentHospitalChoice : BottomSheetDialogFragment(), OnDialogInteract {
 
     private lateinit var viewModel: GovernmentHospitalChoiceViewModel
 
@@ -47,19 +23,23 @@ class GovernmentHospitalChoice: BottomSheetDialogFragment(), OnDialogInteract {
         savedInstanceState: Bundle?
     ): View? {
         viewModel = ViewModelProvider(this).get(GovernmentHospitalChoiceViewModel::class.java)
-        val binding: BottomSheetGovernmentHospitalChooseBinding = DataBindingUtil.inflate(layoutInflater, R.layout.bottom_sheet_government_hospital_choose, container, false)
+        val binding: BottomSheetGovernmentHospitalChooseBinding = DataBindingUtil.inflate(
+            layoutInflater,
+            R.layout.bottom_sheet_government_hospital_choose,
+            container,
+            false
+        )
         binding.listener = this
         binding.viewModel = viewModel
         val title = arguments?.getString("type")
         binding.root.title.text = title
         binding.confirmButton.setOnClickListener {
-//            this.dismiss()
-            if (title === "Government Hospitals") {
-                Navigation.findNavController(activity!!, R.id.fragment).navigate(
+            if (title === "General hospitals") {
+                Navigation.findNavController(requireActivity(), R.id.fragment).navigate(
                     GovernmentHospitalChoiceDirections.govChoiceToGovHospitals()
                 )
             } else {
-                Navigation.findNavController(activity!!, R.id.fragment).navigate(
+                Navigation.findNavController(requireActivity(), R.id.fragment).navigate(
                     GovernmentHospitalChoiceDirections.govChoiceToPrivateHospitals()
                 )
             }

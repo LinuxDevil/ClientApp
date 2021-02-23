@@ -94,7 +94,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:minWidth="200dp"
-            android:onClick="@{viewModel::onConfirmClicked}"
             android:text="@string/confirm"
             android:textAllCaps="false"
             android:textColor="@color/white"

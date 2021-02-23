@@ -1,21 +1,11 @@
-/*******************************************************************************
- *
- * Copyright RectiCode(c) 2020.
- * All Rights Reserved
- *
- * This product is protected by copyright and distributed under
- * licenses restricting copying, distribution and de-compilation.
- *
- * Created by Ali Mohammad
- *
- ******************************************************************************/
+
 
 package com.aligmohammad.doctorapp.ui.fragments.appointment_list
 
 import androidx.lifecycle.ViewModel
 import com.aligmohammad.doctorapp.data.model.Appointment
 import com.aligmohammad.doctorapp.data.model.DateTime
-import com.aligmohammad.doctorapp.data.model.User
+import com.aligmohammad.doctorapp.data.model.UserLoginData
 
 class AppointmentListViewModel : ViewModel() {
 
@@ -38,7 +28,7 @@ class AppointmentListViewModel : ViewModel() {
                 "Amman",
                 4,
                 imageList[0],
-                User("Ali Mohammad"),
+                UserLoginData("Ali Mohammad"),
                 false
             )
         )
@@ -49,7 +39,7 @@ class AppointmentListViewModel : ViewModel() {
                 "Zarka",
                 5,
                 imageList[1],
-                User("Canaan Mohammad"),
+                UserLoginData("Canaan Mohammad"),
                 true
             )
         )
@@ -60,7 +50,7 @@ class AppointmentListViewModel : ViewModel() {
                 "Amman",
                 2,
                 imageList[2],
-                User("Ghassan Mohammad"),
+                UserLoginData("Ghassan Mohammad"),
                 false
             )
         )
@@ -71,7 +61,7 @@ class AppointmentListViewModel : ViewModel() {
                 "Ma'an",
                 3,
                 imageList[3],
-                User("Ahmad Mohammad"),
+                UserLoginData("Ahmad Mohammad"),
                 true
             )
         )
@@ -82,7 +72,7 @@ class AppointmentListViewModel : ViewModel() {
                 "Amman",
                 1,
                 imageList[4],
-                User("Osama Mohammad"),
+                UserLoginData("Osama Mohammad"),
                 false
             )
         )
@@ -93,7 +83,7 @@ class AppointmentListViewModel : ViewModel() {
                 "Irbid",
                 4,
                 imageList[5],
-                User("Tareq Mohammad"),
+                UserLoginData("Tareq Mohammad"),
                 true
             )
         )

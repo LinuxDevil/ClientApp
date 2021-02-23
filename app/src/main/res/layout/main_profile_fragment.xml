@@ -1,20 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?><!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  ~
-  ~ Copyright RectiCode(c) 2020.
-  ~ All Rights Reserved
-  ~
-  ~ This product is protected by copyright and distributed under
-  ~ licenses restricting copying, distribution and de-compilation.
-  ~
-  ~ Created by Ali Mohammad
-  ~
-  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<?xml version="1.0" encoding="utf-8"?>
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
+        <variable
+            name="userInfo"
+            type="com.aligmohammad.doctorapp.data.network.response.User" />
     </data>
 
     <androidx.constraintlayout.motion.widget.MotionLayout
@@ -28,7 +21,9 @@
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+        </com.google.android.material.appbar.MaterialToolbar>
 
         <ImageView
             android:id="@+id/backgroundImage"
@@ -62,6 +57,8 @@
             android:baselineAligned="false"
             android:orientation="horizontal"
             android:weightSum="100"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/backgroundImage">
 
             <LinearLayout
@@ -77,40 +74,32 @@
                     android:id="@+id/doctorName"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_gravity="center_vertical"
                     android:layout_margin="3dp"
                     android:layout_weight="30"
-                    android:gravity="center_vertical"
                     android:text="Profile Name" />
 
                 <TextView
                     android:id="@+id/doctorMajor"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_gravity="center_vertical"
                     android:layout_margin="3dp"
                     android:layout_weight="20"
-                    android:gravity="center_vertical"
                     android:text="Age" />
 
                 <TextView
                     android:id="@+id/doctorYearsOfExperience"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_gravity="center_vertical"
                     android:layout_margin="3dp"
                     android:layout_weight="20"
-                    android:gravity="center_vertical"
                     android:text="Mobile Number" />
 
                 <TextView
                     android:id="@+id/doctorRelatedInsurances"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_gravity="center_vertical"
                     android:layout_margin="3dp"
                     android:layout_weight="20"
-                    android:gravity="center_vertical"
                     android:text="Insurance" />
 
             </LinearLayout>
@@ -125,13 +114,36 @@
                 android:weightSum="3">
 
                 <TextView
-                    android:id="@+id/doctorLocation"
+                    android:id="@+id/bioTextView"
                     style="@style/TextAppearance.AppCompat.Body1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Location"
                     android:textStyle="italic" />
 
+                <TextView
+                    android:id="@+id/emailTextView"
+                    style="@style/TextAppearance.AppCompat.Body1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Location"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/nicknameTextView"
+                    style="@style/TextAppearance.AppCompat.Body1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Location"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/doctorLocation"
+                    style="@style/TextAppearance.AppCompat.Body1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Location"
+                    android:textStyle="italic" />
 
             </LinearLayout>
 

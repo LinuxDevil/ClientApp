@@ -1,27 +1,3 @@
-/*******************************************************************************
- *
- * Copyright RectiCode(c) 2020.
- * All Rights Reserved
- *
- * This product is protected by copyright and distributed under
- * licenses restricting copying, distribution and de-compilation.
- *
- * Created by Ali Mohammad
- *
- ******************************************************************************/
-
-/*******************************************************************************
- *
- * Copyright RectiCode(c) 2020.
- * All Rights Reserved
- *
- * This product is protected by copyright and distributed under
- * licenses restricting copying, distribution and de-compilation.
- *
- * Created by Ali Mohammad
- *
- ******************************************************************************/
-
 package com.aligmohammad.doctorapp.ui.dialogs.privatehospitals
 
 import android.os.Bundle
@@ -46,7 +22,8 @@ class PrivateHospitalsFragment : BottomSheetDialogFragment(), OnDialogInteract {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding: PrivateHospitalsFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.private_hospitals_fragment, container, false)
+        val binding: PrivateHospitalsFragmentBinding =
+            DataBindingUtil.inflate(inflater, R.layout.private_hospitals_fragment, container, false)
         viewModel = ViewModelProvider(this).get(PrivateHospitalsViewModel::class.java)
         binding.viewModel = viewModel
         binding.listener = this
@@ -59,11 +36,11 @@ class PrivateHospitalsFragment : BottomSheetDialogFragment(), OnDialogInteract {
 
     override fun onButtonClicked(view: View) {
         Log.v("MainActivity", "onButtonClicked")
-        val navController = Navigation.findNavController(activity!!, R.id.fragment)
+        val navController = Navigation.findNavController(requireActivity(), R.id.fragment)
         if (navController.currentDestination?.id == R.id.privateHospitalsFragment)
             when (view.id) {
                 R.id.operations -> this.navigateSafe(PrivateHospitalsFragmentDirections.privateToOperations())
-                R.id.external ->  this.navigateSafe(PrivateHospitalsFragmentDirections.privateToExternal())
+                R.id.external -> this.navigateSafe(PrivateHospitalsFragmentDirections.privateToExternal())
                 R.id.labs -> this.navigateSafe(PrivateHospitalsFragmentDirections.privateToLabs())
                 R.id.xray -> this.navigateSafe(PrivateHospitalsFragmentDirections.privateToXRay())
                 R.id.naturalist -> this.navigateSafe(PrivateHospitalsFragmentDirections.privateToNaturalist())

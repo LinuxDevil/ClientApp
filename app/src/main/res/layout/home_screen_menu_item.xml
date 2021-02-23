@@ -1,14 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  ~
-  ~ Copyright RectiCode(c) 2020.
-  ~ All Rights Reserved
-  ~
-  ~ This product is protected by copyright and distributed under
-  ~ licenses restricting copying, distribution and de-compilation.
-  ~
-  ~ Created by Ali Mohammad
-  ~
-  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<?xml version="1.0" encoding="utf-8"?>
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -16,7 +6,7 @@
     <data>
         <variable
             name="menuItem"
-            type="com.aligmohammad.doctorapp.data.model.RecyclerMenuItem" />
+            type="com.aligmohammad.doctorapp.data.network.response.MenuItemResponseItem" />
 
         <variable
             name="clickListener"
@@ -40,7 +30,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:contentDescription="@string/menu_item_image"
-                android:imageUrl="@{menuItem.imageUrl}"
+                android:imageUrl="@{menuItem.image_url}"
                 android:scaleType="centerCrop"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -50,7 +40,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:text="@{menuItem.name}"
+                android:text="@{menuItem.nameEn}"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"

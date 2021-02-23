@@ -1,27 +1,3 @@
-/*******************************************************************************
- *
- * Copyright RectiCode(c) 2020.
- * All Rights Reserved
- *
- * This product is protected by copyright and distributed under
- * licenses restricting copying, distribution and de-compilation.
- *
- * Created by Ali Mohammad
- *
- ******************************************************************************/
-
-/*******************************************************************************
- *
- * Copyright RectiCode(c) 2020.
- * All Rights Reserved
- *
- * This product is protected by copyright and distributed under
- * licenses restricting copying, distribution and de-compilation.
- *
- * Created by Ali Mohammad
- *
- ******************************************************************************/
-
 package com.aligmohammad.doctorapp.ui.dialogs.naturalistchoice
 
 import android.os.Bundle
@@ -40,7 +16,7 @@ import com.aligmohammad.doctorapp.ui.dialogs.datedialogfragment.DateAndTimeBotto
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog
-import kotlinx.android.synthetic.main.date_and_time_bottom_sheet_fragment.view.*
+import kotlinx.android.synthetic.main.naturalist_bottom_sheet_fragment.view.*
 import navigateSafe
 import java.util.*
 
@@ -54,7 +30,12 @@ class NaturalistBottomSheetFragment : BottomSheetDialogFragment(),
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.naturalist_bottom_sheet_fragment, container, false)
+        binding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.naturalist_bottom_sheet_fragment,
+            container,
+            false
+        )
         viewModel = ViewModelProvider(this).get(NaturalistBottomSheetViewModel::class.java)
         binding.viewModel = viewModel
         binding.listener = this
@@ -67,7 +48,7 @@ class NaturalistBottomSheetFragment : BottomSheetDialogFragment(),
                     calendar.get(Calendar.MONTH),
                     calendar.get(Calendar.DAY_OF_MONTH)
                 )
-                datePicker.show(fragmentManager!!, "DatePicker")
+                datePicker.show(requireFragmentManager(), "DatePicker")
             }
         }
         binding.root.timeEditText.setOnFocusChangeListener { view, isFocused ->
@@ -80,7 +61,7 @@ class NaturalistBottomSheetFragment : BottomSheetDialogFragment(),
                     calendar.get(Calendar.SECOND),
                     false
                 )
-                timePicker.show(fragmentManager!!, "TimePicker")
+                timePicker.show(requireFragmentManager(), "TimePicker")
             }
         }
         return binding.root

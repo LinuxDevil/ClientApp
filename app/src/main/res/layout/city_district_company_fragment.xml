@@ -70,12 +70,13 @@
             app:layout_constraintTop_toBottomOf="@id/header" />
 
         <Spinner
-            android:id="@+id/dateEditText"
+            android:id="@+id/cities_spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:entries="@array/spinner"
+            android:entries="@array/cities"
             android:padding="5dp"
+            android:textAlignment="center"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/dateTextView" />
@@ -87,15 +88,16 @@
             android:layout_margin="15dp"
             android:labelFor="@id/insuranceCompanySpinner"
             android:text="@string/district"
-            app:layout_constraintTop_toBottomOf="@id/dateEditText" />
+            app:layout_constraintTop_toBottomOf="@id/cities_spinner" />
 
         <Spinner
             android:id="@+id/districtSpinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:entries="@array/spinner"
+            android:entries="@array/amman_district"
             android:padding="5dp"
+            android:textAlignment="center"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/districtTextView" />

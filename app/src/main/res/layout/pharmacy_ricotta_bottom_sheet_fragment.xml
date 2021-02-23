@@ -70,7 +70,7 @@
             app:layout_constraintTop_toBottomOf="@id/header" />
 
         <Spinner
-            android:id="@+id/dateEditText"
+            android:id="@+id/medicineSpinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
@@ -85,9 +85,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
+            android:visibility="gone"
             android:labelFor="@id/ricottaImageButton"
             android:text="@string/select_ricotta_image"
-            app:layout_constraintTop_toBottomOf="@id/dateEditText" />
+            app:layout_constraintTop_toBottomOf="@id/medicineSpinner" />
 
         <Button
             android:id="@+id/ricottaImageButton"
@@ -97,6 +98,7 @@
             android:drawableEnd="@drawable/image_icon"
             android:entries="@array/spinner"
             android:padding="5dp"
+            android:visibility="gone"
             android:text="@string/browse_image"
             android:textAllCaps="false"
             android:textColor="@color/white"

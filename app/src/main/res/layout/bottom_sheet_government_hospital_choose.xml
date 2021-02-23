@@ -70,12 +70,14 @@
             app:layout_constraintTop_toBottomOf="@id/header" />
 
         <Spinner
-            android:id="@+id/dateEditText"
+            android:id="@+id/cities_spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:entries="@array/spinner"
+            android:layout_marginTop="12dp"
+            android:entries="@array/cities"
             android:padding="5dp"
+            app:layout_constraintHorizontal_bias="0.517"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/dateTextView" />
@@ -87,14 +89,13 @@
             android:layout_margin="15dp"
             android:labelFor="@id/insuranceCompanySpinner"
             android:text="@string/hospitals"
-            app:layout_constraintTop_toBottomOf="@id/dateEditText" />
+            app:layout_constraintTop_toBottomOf="@id/cities_spinner" />
 
         <Spinner
-            android:id="@+id/timeEditText"
+            android:id="@+id/hospitalsSpinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:entries="@array/spinner"
             android:padding="5dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -110,7 +111,7 @@
             android:textColor="@color/white"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/timeEditText" />
+            app:layout_constraintTop_toBottomOf="@id/hospitalsSpinner" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

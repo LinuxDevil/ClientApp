@@ -22,7 +22,8 @@
 
         <variable
             name="viewModel"
-            type="com.aligmohammad.doctorapp.ui.dialogs.datedialogfragment.DateAndTimeBottomSheetViewModel" />
+            type="com.aligmohammad.doctorapp.ui.dialogs.appointmentmanagment.singleappointment.SingleAppointmentViewModel" />
+
     </data>
 
 
@@ -30,6 +31,94 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:context=".ui.dialogs.datedialogfragment.DateAndTimeBottomSheetFragment">
+
+
+<!--        <LinearLayout-->
+<!--            android:id="@+id/header"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:orientation="horizontal"-->
+<!--            app:layout_constraintLeft_toLeftOf="parent"-->
+<!--            app:layout_constraintRight_toRightOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent">-->
+
+<!--            <Button-->
+<!--                android:id="@+id/backButton"-->
+<!--                android:layout_width="25dp"-->
+<!--                android:layout_height="25dp"-->
+<!--                android:layout_gravity="center_vertical"-->
+<!--                android:layout_marginStart="10dp"-->
+<!--                android:background="@drawable/back_black_icon"-->
+<!--                android:gravity="center_vertical"-->
+<!--                android:onClick="@{listener::onBackButtonClicked}" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/title"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center_vertical"-->
+<!--                android:layout_marginStart="10dp"-->
+<!--                android:gravity="start"-->
+<!--                android:text="Select Date And Time"-->
+<!--                android:textStyle="bold" />-->
+
+<!--        </LinearLayout>-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/dateTextView"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="15dp"-->
+<!--            android:labelFor="@id/dateEditText"-->
+<!--            android:text="@string/select_date"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/header" />-->
+
+<!--        <EditText-->
+<!--            android:id="@+id/dateEditText"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="15dp"-->
+<!--            android:drawableEnd="@drawable/date_icon"-->
+<!--            android:inputType="none"-->
+<!--            android:padding="10dp"-->
+<!--            app:layout_constraintLeft_toLeftOf="parent"-->
+<!--            app:layout_constraintRight_toRightOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/dateTextView" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/timeTextView"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="15dp"-->
+<!--            android:labelFor="@id/timeEditText"-->
+<!--            android:text="@string/select_time"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/dateEditText" />-->
+
+<!--        <EditText-->
+<!--            android:id="@+id/timeEditText"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="15dp"-->
+<!--            android:drawableEnd="@drawable/time_icon"-->
+<!--            android:inputType="none"-->
+<!--            android:padding="10dp"-->
+<!--            app:layout_constraintLeft_toLeftOf="parent"-->
+<!--            app:layout_constraintRight_toRightOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/timeTextView" />-->
+
+<!--        <Button-->
+<!--            android:id="@+id/confirm_button"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="10dp"-->
+<!--            android:onClick="@{listener::onButtonClicked}"-->
+<!--            android:text="@string/reserve"-->
+<!--            android:textAllCaps="false"-->
+<!--            android:textColor="@color/white"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintLeft_toLeftOf="parent"-->
+<!--            app:layout_constraintRight_toRightOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/timeEditText" />-->
 
 
         <LinearLayout
@@ -58,66 +147,100 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="10dp"
                 android:gravity="start"
-                android:text="Select Date And Time"
+                android:text="@string/new_appointment"
                 android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/topLinear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="100"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/header">
+
+            <TextView
+                android:id="@+id/periodTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="40"
+                android:gravity="center"
+                android:text="@string/period"
+                android:textColor="@color/black" />
+
+            <ImageButton
+                android:id="@+id/dayTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/day_time"
+                android:padding="5dp"
+                android:src="@drawable/sun" />
+
+            <ImageButton
+                android:id="@+id/nightTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/night_time"
+                android:padding="5dp"
+                android:src="@drawable/moon" />
 
         </LinearLayout>
 
         <TextView
             android:id="@+id/dateTextView"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:labelFor="@id/dateEditText"
+            android:layout_margin="10dp"
             android:text="@string/select_date"
-            app:layout_constraintTop_toBottomOf="@id/header" />
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/topLinear" />
 
-        <EditText
-            android:id="@+id/dateEditText"
-            android:layout_width="match_parent"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/dateRecyclerView"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:drawableEnd="@drawable/date_icon"
-            android:inputType="none"
-            android:padding="10dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
+            android:layout_margin="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/dateTextView" />
+
 
         <TextView
             android:id="@+id/timeTextView"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:labelFor="@id/timeEditText"
-            android:text="@string/select_time"
-            app:layout_constraintTop_toBottomOf="@id/dateEditText" />
+            android:layout_margin="10dp"
+            android:text="@string/select_date"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/dateRecyclerView" />
 
-        <EditText
-            android:id="@+id/timeEditText"
-            android:layout_width="match_parent"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/timeRecyclerView"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:drawableEnd="@drawable/time_icon"
-            android:inputType="none"
-            android:padding="10dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
+            android:layout_margin="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/timeTextView" />
 
         <Button
             android:id="@+id/confirm_button"
+            style="@style/Theme.DoctorApp.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:onClick="@{listener::onButtonClicked}"
+            android:drawableStart="@drawable/circular_menu_item"
             android:text="@string/reserve"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/timeEditText" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/timeRecyclerView" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

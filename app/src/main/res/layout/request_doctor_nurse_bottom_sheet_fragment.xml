@@ -76,11 +76,12 @@
             app:layout_constraintTop_toBottomOf="@id/header" />
 
         <Spinner
-            android:id="@+id/dateEditText"
+            android:textAlignment="center"
+            android:id="@+id/cities_spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:entries="@array/spinner"
+            android:entries="@array/cities"
             android:padding="5dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -93,14 +94,15 @@
             android:layout_margin="15dp"
             android:labelFor="@id/insuranceCompanySpinner"
             android:text="@string/select_district"
-            app:layout_constraintTop_toBottomOf="@id/dateEditText" />
+            app:layout_constraintTop_toBottomOf="@id/cities_spinner" />
 
         <Spinner
+            android:textAlignment="center"
             android:id="@+id/districtSpinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:entries="@array/spinner"
+            android:entries="@array/amman_district"
             android:padding="5dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -116,11 +118,12 @@
             app:layout_constraintTop_toBottomOf="@id/districtSpinner" />
 
         <Spinner
+            android:textAlignment="center"
             android:id="@+id/insuranceCompanyTextViewSpinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:entries="@array/spinner"
+            android:entries="@array/majors"
             android:padding="5dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -131,6 +134,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
+            android:visibility="gone"
             android:text="Total XXX JD"
             app:layout_constraintTop_toBottomOf="@id/insuranceCompanyTextViewSpinner" />
 

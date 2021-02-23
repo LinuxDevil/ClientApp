@@ -1,37 +1,31 @@
-/*******************************************************************************
- *
- * Copyright RectiCode(c) 2020.
- * All Rights Reserved
- *
- * This product is protected by copyright and distributed under
- * licenses restricting copying, distribution and de-compilation.
- *
- * Created by Ali Mohammad
- *
- ******************************************************************************/
-
-/*******************************************************************************
- *
- * Copyright RectiCode(c) 2020.
- * All Rights Reserved
- *
- * This product is protected by copyright and distributed under
- * licenses restricting copying, distribution and de-compilation.
- *
- * Created by Ali Mohammad
- *
- ******************************************************************************/
-
 package com.aligmohammad.doctorapp.ui.dialogs.governmentchoice
 
 import android.view.View
-import androidx.lifecycle.ViewModel
+import androidx.hilt.lifecycle.ViewModelInject
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.Navigation
+import com.aligmohammad.doctorapp.data.network.Resource
+import com.aligmohammad.doctorapp.data.network.repository.HospitalRepository
+import com.aligmohammad.doctorapp.data.network.response.HospitalResponse
+import com.aligmohammad.doctorapp.ui.base.BaseViewModel
+import kotlinx.coroutines.launch
 
-class GovernmentHospitalChoiceViewModel : ViewModel() {
+class GovernmentHospitalChoiceViewModel @ViewModelInject constructor(private val hospitalRepository: HospitalRepository) :
+    BaseViewModel(hospitalRepository) {
+
+    private val _hospitalResponse: MutableLiveData<Resource<HospitalResponse>> = MutableLiveData()
+    val hospitalResponse: LiveData<Resource<HospitalResponse>>
+        get() = _hospitalResponse
+
+    fun getHospitals() = viewModelScope.launch {
+        
+    }
 
     fun onConfirmClicked(view: View) {
-        Navigation.findNavController(view).navigate(GovernmentHospitalChoiceDirections.govChoiceToGovHospitals())
+        Navigation.findNavController(view)
+            .navigate(GovernmentHospitalChoiceDirections.govChoiceToGovHospitals())
     }
 
 }

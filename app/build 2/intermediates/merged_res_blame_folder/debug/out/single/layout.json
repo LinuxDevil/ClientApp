@@ -1,0 +1,114 @@
+[
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/doctor_profile_fragment.xml",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/layout/doctor_profile_fragment.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/symptoms_bottom_sheet_fragment.xml",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/layout/symptoms_bottom_sheet_fragment.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/fragment_phone_code.xml",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/layout/fragment_phone_code.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/external_lab_bottom_sheet_fragment.xml",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/layout/external_lab_bottom_sheet_fragment.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/doctor_major_fragment_item_list.xml",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/layout/doctor_major_fragment_item_list.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/naturalist_bottom_sheet_fragment.xml",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/layout/naturalist_bottom_sheet_fragment.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/city_district_company_fragment.xml",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/layout/city_district_company_fragment.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/doctor_major_item.xml",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/layout/doctor_major_item.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/doctor_consult_result_fragment.xml",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/layout/doctor_consult_result_fragment.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/home_screen_menu_item.xml",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/layout/home_screen_menu_item.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/x_ray_bottom_sheet_fragment.xml",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/layout/x_ray_bottom_sheet_fragment.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/insurance_fragment.xml",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/layout/insurance_fragment.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/private_hospitals_fragment.xml",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/layout/private_hospitals_fragment.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/medicine_order_fragment.xml",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/layout/medicine_order_fragment.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/medicine_item.xml",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/layout/medicine_item.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/opertaion_bottom_sheet_fragment.xml",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/layout/opertaion_bottom_sheet_fragment.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/lab_list_item.xml",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/layout/lab_list_item.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/doctor_consulting_bottom_sheet_fragment.xml",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/layout/doctor_consulting_bottom_sheet_fragment.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/doctor_list_fragment.xml",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/layout/doctor_list_fragment.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/doctor_list_item.xml",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/layout/doctor_list_item.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/request_doctor_nurse_bottom_sheet_fragment.xml",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/layout/request_doctor_nurse_bottom_sheet_fragment.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/home_fragment.xml",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/layout/home_fragment.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/fragment_login.xml",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/layout/fragment_login.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/government_hospitals_fragment.xml",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/layout/government_hospitals_fragment.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/date_and_time_bottom_sheet_fragment.xml",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/layout/date_and_time_bottom_sheet_fragment.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/pharmacy_ricotta_bottom_sheet_fragment.xml",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/layout/pharmacy_ricotta_bottom_sheet_fragment.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/labs_bottom_sheet_fragment.xml",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/layout/labs_bottom_sheet_fragment.xml"
+    },
+    {
+        "merged": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/bottom_sheet_government_hospital_choose.xml",
+        "source": "/Users/alimohammad/Desktop/_Development/Android/DoctorApp2/app/src/main/res/layout/bottom_sheet_government_hospital_choose.xml"
+    }
+]

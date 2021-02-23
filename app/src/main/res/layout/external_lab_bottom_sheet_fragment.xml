@@ -106,12 +106,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
-                android:labelFor="@id/dateEditText"
+                android:labelFor="@id/cities_spinner"
                 android:text="@string/major"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Spinner
-                android:id="@+id/dateEditText"
+                android:id="@+id/cities_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
@@ -130,7 +130,7 @@
                 android:layout_margin="15dp"
                 android:labelFor="@id/insuranceCompanySpinner"
                 android:text="@string/doctors"
-                app:layout_constraintTop_toBottomOf="@id/dateEditText" />
+                app:layout_constraintTop_toBottomOf="@id/cities_spinner" />
 
             <Spinner
                 android:id="@+id/timeEditText"

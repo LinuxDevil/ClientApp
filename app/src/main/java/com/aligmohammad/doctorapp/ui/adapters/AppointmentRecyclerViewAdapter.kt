@@ -1,14 +1,4 @@
-/*******************************************************************************
- *
- * Copyright RectiCode(c) 2020.
- * All Rights Reserved
- *
- * This product is protected by copyright and distributed under
- * licenses restricting copying, distribution and de-compilation.
- *
- * Created by Ali Mohammad
- *
- ******************************************************************************/
+
 
 package com.aligmohammad.doctorappclient.ui.adapters
 
@@ -20,12 +10,13 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.aligmohammad.doctorapp.R
 import com.aligmohammad.doctorapp.data.model.Appointment
+import com.aligmohammad.doctorapp.data.model.firebasemodels.AppointmentFirebaseModel
 import com.aligmohammad.doctorapp.databinding.AppointmentItemBinding
 import com.aligmohammad.doctorapp.ui.adapters.OnMenuItemClick
 import com.aligmohammad.doctorapp.ui.fragments.appointment_list.AppointmentListFragmentDirections
 
 class AppointmentRecyclerViewAdapter(
-    private val appointments: List<Appointment>,
+    private val appointments: List<AppointmentFirebaseModel>,
     val type: Int = 0
 ) : RecyclerView.Adapter<AppointmentRecyclerViewAdapter.AppointmentViewHolder>(), OnMenuItemClick {
 
@@ -55,7 +46,7 @@ class AppointmentRecyclerViewAdapter(
 
     override fun onClick(v: View) {
         val appointment = appointments.filter {
-            it.patient?.name == v.tag.toString()
+            it.userId == v.tag.toString()
         }[0]
 
         Navigation.findNavController(v)

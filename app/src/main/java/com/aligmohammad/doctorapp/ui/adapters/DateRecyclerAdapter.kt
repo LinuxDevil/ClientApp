@@ -1,14 +1,4 @@
-/*******************************************************************************
- *
- * Copyright RectiCode(c) 2020.
- * All Rights Reserved
- *
- * This product is protected by copyright and distributed under
- * licenses restricting copying, distribution and de-compilation.
- *
- * Created by Ali Mohammad
- *
- ******************************************************************************/
+
 
 package com.aligmohammad.doctorapp.ui.adapters
 
@@ -21,9 +11,11 @@ import com.aligmohammad.doctorapp.R
 import com.aligmohammad.doctorapp.data.model.DateTime
 import com.aligmohammad.doctorapp.databinding.DateSingleItemBinding
 
-class DateRecyclerAdapter(private val dates: List<DateTime>) :
+class DateRecyclerAdapter(private val dates: List<String>) :
     RecyclerView.Adapter<DateRecyclerAdapter.DateRecyclerViewHolder>() {
 
+    private var selection: String = ""
+    private var isSelected = false
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DateRecyclerViewHolder {
         val binding: DateSingleItemBinding = DataBindingUtil.inflate(
             LayoutInflater.from(parent.context),
@@ -36,7 +28,7 @@ class DateRecyclerAdapter(private val dates: List<DateTime>) :
 
     override fun onBindViewHolder(holder: DateRecyclerViewHolder, position: Int) {
         holder.dateItemBinding.cardView.apply {
-            if (dates[position].selected) {
+            if (isSelected) {
                 strokeColor = Color.BLUE
                 strokeWidth = 2
             } else {
@@ -47,23 +39,26 @@ class DateRecyclerAdapter(private val dates: List<DateTime>) :
         holder.dateItemBinding.cardView.setOnClickListener {
             resetAll()
             holder.dateItemBinding.cardView.apply {
-                if (!dates[position].selected) {
+                if (!isSelected) {
                     strokeColor = Color.BLUE
                     strokeWidth = 2
                 } else {
                     strokeWidth = 0
                 }
-                dates[position].selected = !dates[position].selected
+                selection = dates[position]
+                isSelected = !isSelected
             }
         }
     }
 
     private fun resetAll() {
         dates.map { dateTime ->
-            dateTime.selected = false
+            isSelected = false
         }
         notifyDataSetChanged()
     }
+
+    public fun getSelection(): String = selection
 
     override fun getItemCount(): Int = dates.size
 

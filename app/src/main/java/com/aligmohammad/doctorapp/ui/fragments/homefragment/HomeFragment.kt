@@ -1,62 +1,149 @@
-/*******************************************************************************
- *
- * Copyright RectiCode(c) 2020.
- * All Rights Reserved
- *
- * This product is protected by copyright and distributed under
- * licenses restricting copying, distribution and de-compilation.
- *
- * Created by Ali Mohammad
- *
- ******************************************************************************/
-
-/*******************************************************************************
- *
- * Copyright RectiCode(c) 2020.
- * All Rights Reserved
- *
- * This product is protected by copyright and distributed under
- * licenses restricting copying, distribution and de-compilation.
- *
- * Created by Ali Mohammad
- *
- ******************************************************************************/
-
 package com.aligmohammad.doctorapp.ui.fragments.homefragment
 
 import android.os.Bundle
-import android.view.*
+import android.util.Log
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.View
 import android.widget.TextView
-import android.widget.Toast
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.lifecycle.asLiveData
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.aligmohammad.doctorapp.R
+import com.aligmohammad.doctorapp.data.network.Resource
+import com.aligmohammad.doctorapp.data.network.UserSingleton
+import com.aligmohammad.doctorapp.data.network.response.MenuItemResponseItem
 import com.aligmohammad.doctorapp.databinding.HomeFragmentBinding
+import com.aligmohammad.doctorapp.helpers.PreferencesStore
 import com.aligmohammad.doctorapp.ui.adapters.HomeRecyclerAdapter
 import com.aligmohammad.doctorapp.ui.adapters.OnMenuItemClick
+import com.aligmohammad.doctorapp.ui.fragments.authframent.AuthViewModel
+import com.aligmohammad.doctorapp.ui.fragments.newappointmentfragment.NewAppointmentFragmentDirections.*
+import com.aligmohammad.doctorapp.util.getUser
+import com.aligmohammad.doctorapp.util.handleApiError
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.home_fragment.view.*
-import org.kodein.di.DI
-import org.kodein.di.DIAware
-import org.kodein.di.instance
+import java.util.logging.Logger
 
-class HomeFragment : Fragment(), DIAware, OnMenuItemClick {
+@AndroidEntryPoint
+class HomeFragment : Fragment(R.layout.home_fragment), OnMenuItemClick {
 
-    override val di: DI by lazy { (context?.applicationContext as DIAware).di }
-    private val factory: HomeFragmentViewModelFactory by instance()
-    private lateinit var viewModel: HomeViewModel
+    private val viewModel by viewModels<HomeViewModel>()
+    private val authViewModel by viewModels<AuthViewModel>()
+
+    private var menuItems = ArrayList<MenuItemResponseItem>()
+    private lateinit var userPreferencesStore: PreferencesStore
+
     private lateinit var binding: HomeFragmentBinding
+    private lateinit var adapter: HomeRecyclerAdapter
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        viewModel = ViewModelProvider(this, factory).get(HomeViewModel::class.java)
-        binding = DataBindingUtil.inflate(inflater, R.layout.home_fragment, container, false)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        userPreferencesStore = PreferencesStore(requireContext())
+
+        userPreferencesStore.accessToken.asLiveData().observe(viewLifecycleOwner, Observer {
+            if (it != null) {
+                getCurrentUser(it)
+            } else {
+                authViewModel.logoutUser()
+                redirectToLoginPage()
+            }
+        })
+
+        binding = HomeFragmentBinding.bind(view)
+        initializeUI()
+        initializeRecycler()
+
+        initAd()
+
+        viewModel.getMenuItems()
+
+        authViewModel.currentUserResponse.observe(viewLifecycleOwner, Observer {
+            when(it) {
+                is Resource.Success -> {
+                    UserSingleton.setUser(it.value)
+                    Log.v("Current User", "Success ${it.value.name}")
+                }
+                is Resource.Failure -> {
+                    Log.v("Current User", "Failed")
+                }
+                Resource.Loading -> {
+                    Log.v("Current User", "Loading")
+                }
+            }
+        })
+
+        viewModel.menuItemReponse.observe(viewLifecycleOwner, Observer {
+            when (it) {
+                is Resource.Success -> {
+                    Log.v("Success", it.value.menuItems[0].nameEn)
+                    adapter = HomeRecyclerAdapter(it.value.menuItems, this)
+                    binding.homeListRecycler.adapter = adapter
+                }
+                is Resource.Failure -> handleApiError(it) {
+                    Log.v("Failure", it.errorCode!!.toString())
+                }
+            }
+        })
+
+
+    }
+
+    private fun getCurrentUser(token: String) {
+        authViewModel.getCurrentUserDetails(token)
+    }
+
+    private fun initAd() {
+        MobileAds.initialize(requireContext()) {}
+        val adRequest = AdRequest.Builder().build()
+        binding.adView.loadAd(adRequest)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.home_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onClick(v: View) {
+        val navController = Navigation.findNavController(v)
+        when (v.findViewById<TextView>(R.id.itemName).text.toString()) {
+            "New Appointment" -> {
+                navController.navigate(HomeFragmentDirections.actionHomeToNewAppointment())
+            }
+            "Today's Appointment" -> {
+                navController.navigate(HomeFragmentDirections.homeToAppointemtnsUser())
+            }
+            "My Appointment" -> {
+                navController.navigate(
+                    HomeFragmentDirections.homeToAppointemtnsUser()
+                )
+            }
+            "Cancel Appointment" -> {
+                navController.navigate(
+                    HomeFragmentDirections.actionHomeToNewAppointment()
+                )
+            }
+            else -> {
+                navController.navigate(
+                    HomeFragmentDirections.actionHomeToNewAppointment()
+                )
+            }
+        }
+    }
+
+    private fun initializeRecycler() {
+        adapter = HomeRecyclerAdapter(menuItems, this)
+        binding.homeListRecycler.adapter = adapter
+    }
+
+    private fun initializeUI() {
         val appBarConfiguration =
             AppBarConfiguration(
                 setOf(R.id.homeFragment, R.id.governmentHospitalsFragment),
@@ -65,58 +152,32 @@ class HomeFragment : Fragment(), DIAware, OnMenuItemClick {
         binding.root.toolbar.setupWithNavController(findNavController(), appBarConfiguration)
         setHasOptionsMenu(true)
         binding.root.navigationView.setupWithNavController(findNavController())
-        binding.viewModel = viewModel
-        initializeRecycler()
-        return binding.root
-    }
+        binding.root.navigationView.setNavigationItemSelectedListener {
+            val id = it.itemId
+            when (id) {
+                R.id.logout -> {
+                    authViewModel.logoutUser()
+                    redirectToLoginPage()
+                }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.home_menu, menu)
-        super.onCreateOptionsMenu(menu, inflater)
-    }
+                R.id.mainProfileFragment -> {
+                    findNavController().navigate(HomeFragmentDirections.homeToProfile())
+                }
 
-    fun initializeRecycler() {
-        val adapter = HomeRecyclerAdapter(viewModel.dummyList(), this)
-        binding.homeListRecycler.adapter = adapter
-    }
+                R.id.offersListFragment -> {
+                    findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToOffersListFragment())
+                }
 
-    override fun onClick(v: View) {
-        val navController = Navigation.findNavController(v)
-        when (v.findViewById<TextView>(R.id.itemName).text.toString()) {
-            "Specialists Doctors" -> {
-                navController.navigate(HomeFragmentDirections.homeToDoctorMajor())
+                R.id.settingsFragment -> {
+                    findNavController().navigate(HomeFragmentDirections.homeToSettings())
+                }
             }
-            "General Doctors" -> {
-                navController.navigate(HomeFragmentDirections.homeToDoctorList())
-            }
-            "X-Rays" -> {
-                navController.navigate(
-                    HomeFragmentDirections.homeToCityDistrictCompany().setType("x-rays")
-                )
-            }
-            "Labs" -> {
-                navController.navigate(
-                    HomeFragmentDirections.homeToCityDistrictCompany().setType("labs")
-                )
-            }
-            "Pharmacies" -> {
-                navController.navigate(
-                    HomeFragmentDirections.homeToCityDistrictCompany().setType("pharmacies")
-                )
-            }
-            "Doctor consultation" -> {
-                navController.navigate(HomeFragmentDirections.homeToDoctorConsulting())
-            }
-            "Offers" -> {
-                Toast.makeText(context, "There's no offers now", Toast.LENGTH_LONG).show()
-            }
-            else -> {
-                navController.navigate(
-                    HomeFragmentDirections.actionHomeFragmentToBottomSheetGovernment()
-                        .setType(v.findViewById<TextView>(R.id.itemName).text.toString())
-                )
-            }
+            return@setNavigationItemSelectedListener true
         }
+    }
+
+    private fun redirectToLoginPage() {
+        findNavController().navigateUp()
     }
 
 }

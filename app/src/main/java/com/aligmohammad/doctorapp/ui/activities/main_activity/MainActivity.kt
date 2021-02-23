@@ -1,27 +1,3 @@
-/*******************************************************************************
- *
- * Copyright RectiCode(c) 2020.
- * All Rights Reserved
- *
- * This product is protected by copyright and distributed under
- * licenses restricting copying, distribution and de-compilation.
- *
- * Created by Ali Mohammad
- *
- ******************************************************************************/
-
-/*******************************************************************************
- *
- * Copyright RectiCode(c) 2020.
- * All Rights Reserved
- *
- * This product is protected by copyright and distributed under
- * licenses restricting copying, distribution and de-compilation.
- *
- * Created by Ali Mohammad
- *
- ******************************************************************************/
-
 package com.aligmohammad.doctorapp.ui.activities.main_activity
 
 import android.os.Bundle
@@ -30,7 +6,9 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import com.aligmohammad.doctorapp.R
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
@@ -38,7 +16,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        //TODO: Fix
 
+//        val userPreferences = PreferencesStore(this)
+//
+//        userPreferences.accessToken.asLiveData().observe(this, Observer {
+//            val activity = if (it == null) AuthActivity::class.java else HomeActivity::class.java
+//            startNewActivity(activity)
+//        })
         navController = Navigation.findNavController(this, R.id.fragment)
     }
 
@@ -48,5 +33,12 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         return NavigationUI.navigateUp(navController, null)
     }
+
+//TODO: Fix
+//    fun performLogout() = lifecycleScope.launch {
+//        viewModel.logout()
+//        userPreferences.clear()
+//        startNewActivity(AuthActivity::class.java)
+//    }
 
 }

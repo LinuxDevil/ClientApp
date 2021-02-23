@@ -1,27 +1,3 @@
-/*******************************************************************************
- *
- * Copyright RectiCode(c) 2020.
- * All Rights Reserved
- *
- * This product is protected by copyright and distributed under
- * licenses restricting copying, distribution and de-compilation.
- *
- * Created by Ali Mohammad
- *
- ******************************************************************************/
-
-/*******************************************************************************
- *
- * Copyright RectiCode(c) 2020.
- * All Rights Reserved
- *
- * This product is protected by copyright and distributed under
- * licenses restricting copying, distribution and de-compilation.
- *
- * Created by Ali Mohammad
- *
- ******************************************************************************/
-
 package com.aligmohammad.doctorapp.ui.dialogs.operationschoice
 
 import android.os.Bundle
@@ -68,7 +44,7 @@ class OpertaionBottomSheetFragment : BottomSheetDialogFragment(), OnDialogIntera
                     calendar.get(Calendar.MONTH),
                     calendar.get(Calendar.DAY_OF_MONTH)
                 )
-                datePicker.show(fragmentManager!!, "DatePicker")
+                datePicker.show(requireFragmentManager(), "DatePicker")
             }
         }
         binding.root.timeEditText.setOnFocusChangeListener { view, isFocused ->
@@ -81,7 +57,7 @@ class OpertaionBottomSheetFragment : BottomSheetDialogFragment(), OnDialogIntera
                     calendar.get(Calendar.SECOND),
                     false
                 )
-                timePicker.show(fragmentManager!!, "TimePicker")
+                timePicker.show(requireFragmentManager(), "TimePicker")
             }
         }
         return binding.root

@@ -17,7 +17,7 @@
 
         <variable
             name="data"
-            type="com.aligmohammad.doctorapp.data.model.Appointment" />
+            type="com.aligmohammad.doctorapp.data.model.firebasemodels.AppointmentFirebaseModel" />
 
         <variable
             name="listener"
@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:onClick="@{listener::onClick}"
-        android:tag="@{data.patient.name}">
+        android:tag="@{data.userId}">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -40,7 +40,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:contentDescription="@string/doctor_image"
-                android:imageUrl="@{data.imageUrl}"
+                android:imageUrl="@{data.placeId}"
                 android:scaleType="centerCrop"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -62,14 +62,14 @@
                     style="@style/TextAppearance.AppCompat.Small"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@{data.patient.name}" />
+                    android:text="@{data.userId}" />
 
                 <TextView
                     android:id="@+id/doctorLocation"
                     style="@style/TextAppearance.AppCompat.Body1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@{data.location}"
+                    android:text="@{data.date}"
                     android:textStyle="italic" />
 
                 <RatingBar
@@ -77,7 +77,7 @@
                     style="@style/Widget.AppCompat.RatingBar.Small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:rating="@{data.rate}" />
+                    android:rating="0" />
 
             </LinearLayout>
 
@@ -109,7 +109,7 @@
                         style="@style/TextAppearance.AppCompat.Body1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@{data.date.text}" />
+                        android:text="@{data.date}" />
 
                 </LinearLayout>
 
@@ -131,7 +131,7 @@
                         style="@style/TextAppearance.AppCompat.Body1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@{data.time.text}" />
+                        android:text="@{data.time}" />
 
                 </LinearLayout>
 

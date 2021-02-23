@@ -10,18 +10,6 @@
  *
  ******************************************************************************/
 
-/*******************************************************************************
- *
- * Copyright RectiCode(c) 2020.
- * All Rights Reserved
- *
- * This product is protected by copyright and distributed under
- * licenses restricting copying, distribution and de-compilation.
- *
- * Created by Ali Mohammad
- *
- ******************************************************************************/
-
 package com.aligmohammad.doctorapp.ui.fragments.authframent
 
 import android.os.Bundle
@@ -40,20 +28,17 @@ import org.kodein.di.DIAware
 import org.kodein.di.instance
 
 
-class PhoneCodeFragment : Fragment(), DIAware {
-
-    override val di: DI by lazy { (context?.applicationContext as DIAware).di }
+class PhoneCodeFragment : Fragment() {
 
     private lateinit var viewModel: AuthViewModel
-    private val factory: AuthViewModelFactory by instance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val binding: FragmentPhoneCodeBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_phone_code, container, false)
-        viewModel = ViewModelProvider(this, factory).get(AuthViewModel::class.java)
-        binding.viewModel = viewModel
+//        viewModel = ViewModelProvider(this, factory).get(AuthViewModel::class.java)
+//        binding.viewModel = viewModel
 
         binding.root.success.loadGif(R.drawable.sucess, "Loading")
 

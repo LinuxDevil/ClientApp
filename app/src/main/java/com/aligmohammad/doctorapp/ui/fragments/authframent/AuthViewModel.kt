@@ -1,72 +1,63 @@
-/*******************************************************************************
- *
- * Copyright RectiCode(c) 2020.
- * All Rights Reserved
- *
- * This product is protected by copyright and distributed under
- * licenses restricting copying, distribution and de-compilation.
- *
- * Created by Ali Mohammad
- *
- ******************************************************************************/
-
-/*******************************************************************************
- *
- * Copyright RectiCode(c) 2020.
- * All Rights Reserved
- *
- * This product is protected by copyright and distributed under
- * licenses restricting copying, distribution and de-compilation.
- *
- * Created by Ali Mohammad
- *
- ******************************************************************************/
-
 package com.aligmohammad.doctorapp.ui.fragments.authframent
 
-import android.app.Application
-import android.view.View
-import androidx.constraintlayout.motion.widget.MotionLayout
-import androidx.navigation.Navigation
-import com.aligmohammad.doctorapp.BaseViewModel
-import com.aligmohammad.doctorapp.R
-import com.aligmohammad.doctorapp.data.repository.AuthRepository
-import kotlinx.coroutines.delay
+import androidx.hilt.lifecycle.ViewModelInject
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
+import com.aligmohammad.doctorapp.data.network.Resource
+import com.aligmohammad.doctorapp.data.network.repository.AuthRepository
+import com.aligmohammad.doctorapp.data.network.response.AuthResponse
+import com.aligmohammad.doctorapp.data.network.response.User
+import com.aligmohammad.doctorapp.data.network.response.VerifyResponse
+import com.aligmohammad.doctorapp.ui.base.BaseViewModel
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.launch
 
-class AuthViewModel(private val repository: AuthRepository, application: Application) :
-    BaseViewModel(application) {
+class AuthViewModel @ViewModelInject constructor(private val repository: AuthRepository) :
+    BaseViewModel(repository) {
 
-    var username: String = ""
-    var phoneNumber: String = ""
-    var phoneCode: String = ""
-    var sentCode: String = ""
+    private val _authResponse: MutableLiveData<Resource<AuthResponse>> = MutableLiveData()
+    val authResponse: LiveData<Resource<AuthResponse>>
+        get() = _authResponse
 
-    fun onRegisterClicked(view: View) {
-//        Toast.makeText(view.context, view.parent.javaClass.toString(), Toast.LENGTH_LONG).show()
-        if ((view.parent as MotionLayout).progress == 0.0f) {
-            (view.parent as MotionLayout).transitionToEnd()
-        }
-        launch {
-            delay(2000L)
-            repository.registerUser(username, phoneNumber)
-            val navController = Navigation.findNavController(view)
-            if (navController.currentDestination?.id == R.id.loginFragment) {
-                navController.navigate(LoginFragmentDirections.loginToPhoneAction())
-            }
-        }
+    private val _verifyResponse: MutableLiveData<Resource<VerifyResponse>> = MutableLiveData()
+    val verifyResponse: LiveData<Resource<VerifyResponse>>
+        get() = _verifyResponse
+
+    private val _currentUserResponse: MutableLiveData<Resource<User>> = MutableLiveData()
+    val currentUserResponse: LiveData<Resource<User>>
+        get() = _currentUserResponse
+
+    fun register(
+        phoneNumber: String,
+    ) = viewModelScope.launch {
+        _authResponse.value = Resource.Loading
+        _authResponse.value = repository.registerUser(phoneNumber)
     }
 
-    fun onConfirmClicked(view: View) {
-        if ((view.parent as MotionLayout).progress == 0.0f) {
-            (view.parent as MotionLayout).transitionToEnd()
-        }
-        launch {
-            delay(4000L)
-            Navigation.findNavController(view)
-                .navigate(PhoneCodeFragmentDirections.phoneToInsurance())
-        }
+    fun login(
+        phoneNumber: String,
+    ) = viewModelScope.launch {
+        _authResponse.value = Resource.Loading
+        _authResponse.value = repository.login(phoneNumber)
     }
 
+    fun verify(phoneNumber: String, code: String) = viewModelScope.launch {
+        _verifyResponse.value = Resource.Loading
+        _verifyResponse.value = repository.verifyCode(phoneNumber, code)
+    }
+
+    fun getCurrentUserDetails(token: String) = viewModelScope.launch {
+        _currentUserResponse.value = Resource.Loading
+        _currentUserResponse.value = repository.getCurrentUser()
+    }
+
+    fun saveAccessTokens(accessToken: String, refreshToken: String) = viewModelScope.launch {
+        repository.saveAuthToken(accessToken, refreshToken)
+    }
+
+    fun logoutUser() = viewModelScope.launch {
+        repository.logoutUser();
+    }
 
 }

@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<?xml version="1.0" encoding="utf-8"?>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   ~
   ~ Copyright RectiCode(c) 2020.
   ~ All Rights Reserved
@@ -66,7 +67,6 @@
             android:importantForAutofill="no"
             android:inputType="phone"
             android:maxLength="5"
-            android:text="@={viewModel.phoneCode}"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/phoneCodeTextView" />
@@ -78,7 +78,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:minWidth="200dp"
-            android:onClick="@{viewModel::onConfirmClicked}"
             android:text="@string/confirm"
             android:textAllCaps="false"
             android:textColor="@color/white"

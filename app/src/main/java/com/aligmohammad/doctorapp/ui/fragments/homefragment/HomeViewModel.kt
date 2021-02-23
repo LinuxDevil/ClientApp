@@ -1,109 +1,35 @@
-/*******************************************************************************
- *
- * Copyright RectiCode(c) 2020.
- * All Rights Reserved
- *
- * This product is protected by copyright and distributed under
- * licenses restricting copying, distribution and de-compilation.
- *
- * Created by Ali Mohammad
- *
- ******************************************************************************/
-
-/*******************************************************************************
- *
- * Copyright RectiCode(c) 2020.
- * All Rights Reserved
- *
- * This product is protected by copyright and distributed under
- * licenses restricting copying, distribution and de-compilation.
- *
- * Created by Ali Mohammad
- *
- ******************************************************************************/
-
 package com.aligmohammad.doctorapp.ui.fragments.homefragment
 
-import android.app.Application
+import androidx.hilt.lifecycle.ViewModelInject
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.aligmohammad.doctorapp.BaseViewModel
+import androidx.lifecycle.viewModelScope
 import com.aligmohammad.doctorapp.data.model.RecyclerMenuItem
-import com.aligmohammad.doctorapp.ui.fragments.insurancefragment.InsuranceFragmentDirections
+import com.aligmohammad.doctorapp.data.network.Resource
+import com.aligmohammad.doctorapp.data.network.repository.HomeRepository
+import com.aligmohammad.doctorapp.data.network.response.MenuItemResponse
+import com.aligmohammad.doctorapp.ui.base.BaseViewModel
+import kotlinx.coroutines.launch
 
-class HomeViewModel(application: Application) : BaseViewModel(application) {
+class HomeViewModel @ViewModelInject constructor(private val repository: HomeRepository) :
+    BaseViewModel(repository) {
 
-    val menuItems by lazy { MutableLiveData<ArrayList<RecyclerMenuItem>>() }
-    val imageUrl = "https://images.pexels.com/photos/1591060/pexels-photo-1591060.jpeg"
-    fun setMenuItems(list: ArrayList<RecyclerMenuItem>) {
-        menuItems.value = list
+    private val _menuItems: MutableLiveData<Resource<MenuItemResponse>> = MutableLiveData()
+    val menuItemReponse: LiveData<Resource<MenuItemResponse>>
+        get() = _menuItems
+
+    private val _subMenuItems: MutableLiveData<Resource<MenuItemResponse>> = MutableLiveData()
+    val subMenuItemResponse: LiveData<Resource<MenuItemResponse>>
+        get() = _subMenuItems
+
+    fun getSubMenuItems() = viewModelScope.launch {
+        _subMenuItems.value = Resource.Loading
+        _subMenuItems.value = repository.getSubMenuItem()
     }
 
-    fun dummyList(): ArrayList<RecyclerMenuItem> {
-        val arrayList = arrayListOf<RecyclerMenuItem>()
-        arrayList.add(
-            RecyclerMenuItem(
-                "Government Hospitals",
-                "https://images.pexels.com/photos/4047184/pexels-photo-4047184.jpeg",
-                InsuranceFragmentDirections.insuracneToHome()
-            )
-        )
-        arrayList.add(
-            RecyclerMenuItem(
-                "Private Hospitals",
-                "https://images.pexels.com/photos/4386467/pexels-photo-4386467.jpeg",
-                InsuranceFragmentDirections.insuracneToHome()
-            )
-        )
-        arrayList.add(
-            RecyclerMenuItem(
-                "Specialists Doctors",
-                "https://images.pexels.com/photos/3957986/pexels-photo-3957986.jpeg",
-                InsuranceFragmentDirections.insuracneToHome()
-            )
-        )
-        arrayList.add(
-            RecyclerMenuItem(
-                "General Doctors",
-                "https://images.pexels.com/photos/3825586/pexels-photo-3825586.jpeg",
-                InsuranceFragmentDirections.insuracneToHome()
-            )
-        )
-        arrayList.add(
-            RecyclerMenuItem(
-                "X-Rays",
-                "https://images.pexels.com/photos/4225923/pexels-photo-4225923.jpeg",
-                InsuranceFragmentDirections.insuracneToHome()
-            )
-        )
-        arrayList.add(
-            RecyclerMenuItem(
-                "Labs",
-                "https://images.pexels.com/photos/356040/pexels-photo-356040.jpeg",
-                InsuranceFragmentDirections.insuracneToHome()
-            )
-        )
-        arrayList.add(
-            RecyclerMenuItem(
-                "Pharmacies",
-                "https://images.pexels.com/photos/4210617/pexels-photo-4210617.jpeg",
-                InsuranceFragmentDirections.insuracneToHome()
-            )
-        )
-        arrayList.add(
-            RecyclerMenuItem(
-                "Doctor consultation",
-                "https://images.pexels.com/photos/4167541/pexels-photo-4167541.jpeg",
-                InsuranceFragmentDirections.insuracneToHome()
-            )
-        )
-        arrayList.add(
-            RecyclerMenuItem(
-                "Offers",
-                "https://images.pexels.com/photos/1591060/pexels-photo-1591060.jpeg",
-                InsuranceFragmentDirections.insuracneToHome()
-            )
-        )
-        return arrayList
+    fun getMenuItems() = viewModelScope.launch {
+        _menuItems.value = Resource.Loading
+        _menuItems.value = repository.getMenuItem()
     }
 
 }

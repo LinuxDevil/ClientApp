@@ -18,9 +18,9 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="primary">#DE2799</color>
-    <color name="colorPrimaryVariant">#B51F7C</color>
-    <color name="colorOnPrimary">#88175E</color>
+    <color name="primary">#3E4097</color>
+    <color name="colorPrimaryVariant">#4E51BD</color>
+    <color name="colorOnPrimary">#2C2E73</color>
     <color name="secondary">#3AAAE1</color>
     <color name="colorSecondaryVariant">#297CA5</color>
     <color name="colorOnSecondary">#1C5875</color>

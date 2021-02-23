@@ -1,42 +1,19 @@
-/*******************************************************************************
- *
- * Copyright RectiCode(c) 2020.
- * All Rights Reserved
- *
- * This product is protected by copyright and distributed under
- * licenses restricting copying, distribution and de-compilation.
- *
- * Created by Ali Mohammad
- *
- ******************************************************************************/
-
-/*******************************************************************************
- *
- * Copyright RectiCode(c) 2020.
- * All Rights Reserved
- *
- * This product is protected by copyright and distributed under
- * licenses restricting copying, distribution and de-compilation.
- *
- * Created by Ali Mohammad
- *
- ******************************************************************************/
-
 package com.aligmohammad.doctorapp.ui.adapters
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.aligmohammad.doctorapp.R
-import com.aligmohammad.doctorapp.data.model.RecyclerMenuItem
+import com.aligmohammad.doctorapp.data.model.firebasemodels.MajorsFirebaseModel
 import com.aligmohammad.doctorapp.databinding.DoctorMajorItemBinding
 
 
 class MyDoctorMajorRecyclerViewAdapter(
-    private val values: List<RecyclerMenuItem>,
+    private val values: List<MajorsFirebaseModel>,
     private val onMenuItemClick: OnMenuItemClick
-) : RecyclerView.Adapter<MyDoctorMajorRecyclerViewAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<MyDoctorMajorRecyclerViewAdapter.ViewHolder>(), OnMenuItemClick {
 
     private lateinit var binding: DoctorMajorItemBinding
 
@@ -47,7 +24,7 @@ class MyDoctorMajorRecyclerViewAdapter(
             parent,
             false
         )
-        binding.listener = onMenuItemClick
+        binding.listener = this
         return ViewHolder(binding)
     }
 
@@ -58,5 +35,12 @@ class MyDoctorMajorRecyclerViewAdapter(
 
     override fun getItemCount(): Int = values.size
 
+    fun getClickedElement() {
+    }
+
     inner class ViewHolder(view: DoctorMajorItemBinding) : RecyclerView.ViewHolder(view.root)
+
+    override fun onClick(v: View) {
+        this.onMenuItemClick.onClickMenu(v, binding.menuItem!!)
+    }
 }
