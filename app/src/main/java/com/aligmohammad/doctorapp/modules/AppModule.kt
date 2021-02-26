@@ -2,12 +2,10 @@ package com.aligmohammad.doctorapp.modules
 
 import android.content.Context
 import com.aligmohammad.doctorapp.data.network.RemoteDataSource
-import com.aligmohammad.doctorapp.data.network.api.AuthApi
-import com.aligmohammad.doctorapp.data.network.api.InsuranceCompanyApi
-import com.aligmohammad.doctorapp.data.network.api.MenuApi
-import com.aligmohammad.doctorapp.data.network.api.UserApi
+import com.aligmohammad.doctorapp.data.network.api.*
 import com.aligmohammad.doctorapp.data.network.repository.AuthRepository
 import com.aligmohammad.doctorapp.data.network.repository.HomeRepository
+import com.aligmohammad.doctorapp.data.network.repository.HospitalRepository
 import com.aligmohammad.doctorapp.data.network.repository.UserRepository
 import com.aligmohammad.doctorapp.helpers.PreferencesStore
 import dagger.Module
@@ -45,6 +43,15 @@ object AppModule {
 
     @Singleton
     @Provides
+    fun provideHospitalApi(
+        remoteDataSource: RemoteDataSource,
+        @ApplicationContext context: Context
+    ): HospitalApi {
+        return remoteDataSource.buildApi(HospitalApi::class.java, context)
+    }
+
+    @Singleton
+    @Provides
     fun provideUserApi(
         remoteDataSource: RemoteDataSource,
         @ApplicationContext context: Context
@@ -58,6 +65,13 @@ object AppModule {
         userPreferences: PreferencesStore
     ): AuthRepository {
         return AuthRepository(authApi, userPreferences)
+    }
+
+    @Provides
+    fun provideHospitalRepository(
+        hospitalApi: HospitalApi
+    ): HospitalRepository {
+        return HospitalRepository(hospitalApi)
     }
 
     @Singleton

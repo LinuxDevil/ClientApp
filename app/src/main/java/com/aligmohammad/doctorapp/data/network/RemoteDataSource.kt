@@ -17,8 +17,8 @@ class RemoteDataSource @Inject constructor(private val preferences: PreferencesS
 
     companion object {
 //        private const val BASE_URL = "http://192.168.15.241:4000/api/"
-//        private const val BASE_URL = "http://192.168.1.12:4000/api/"
-        private const val BASE_URL = "http://10.151.72.20:4000/api/"
+        private const val BASE_URL = "http://192.168.1.12:4000/api/"
+//        private const val BASE_URL = "http://10.234.15.43:4000/api/"
     }
     /*
     * This function will build the API

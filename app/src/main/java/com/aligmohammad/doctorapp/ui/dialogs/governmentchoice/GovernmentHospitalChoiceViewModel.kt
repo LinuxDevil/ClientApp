@@ -20,7 +20,13 @@ class GovernmentHospitalChoiceViewModel @ViewModelInject constructor(private val
         get() = _hospitalResponse
 
     fun getHospitals() = viewModelScope.launch {
-        
+        _hospitalResponse.value = Resource.Loading
+        _hospitalResponse.value = hospitalRepository.getPrivateHospitals()
+    }
+
+    fun getFilteredHospitals(cityId: String) = viewModelScope.launch {
+        _hospitalResponse.value = Resource.Loading
+        _hospitalResponse.value = hospitalRepository.getFilteredPrivateHospitals(cityId)
     }
 
     fun onConfirmClicked(view: View) {

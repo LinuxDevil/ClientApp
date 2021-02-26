@@ -94,6 +94,16 @@
     <string name="language">Language</string>
     <string name="default_notification_channel_id">chaneeeel</string>
     <string name="fcm_message">title</string>
+    <string name="edit">Edit</string>
+    <string name="cancel">Cancel</string>
+    <string name="offers">Offers</string>
+    <string name="nickname">Nickname</string>
+    <string name="city">City</string>
+    <string name="bio">Bio</string>
+    <string name="email">Email</string>
+    <string name="name">Name</string>
+    <string name="edit_profile">Edit Profile</string>
+
     <array name="spinner">
         <item>NatHealth</item>
     </array>
@@ -556,14 +566,5 @@
         <item>قضاء أذرح</item>
     </array>
 
-    <string name="edit">Edit</string>
-    <string name="cancel">Cancel</string>
-    <string name="offers">Offers</string>
-    <string name="nickname">Nickname</string>
-    <string name="city">City</string>
-    <string name="bio">Bio</string>
-    <string name="email">Email</string>
-    <string name="name">Name</string>
-    <string name="edit_profile">Edit Profile</string>
 
 </resources>
