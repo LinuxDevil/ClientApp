@@ -1,11 +1,11 @@
 package com.aligmohammad.doctorapp.data.network.api
 
-import com.aligmohammad.doctorapp.data.network.responses.*
+import com.aligmohammad.doctorapp.data.network.responses.InsuranceCompanyResponse
 import retrofit2.http.GET
 
 interface InsuranceCompanyApi: BaseApi {
 
-    @GET("/insurances")
+    @GET("/api/insurance")
     suspend fun getInsurances(): InsuranceCompanyResponse
 
 }

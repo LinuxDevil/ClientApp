@@ -44,7 +44,48 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:entries="@array/languages"
-            android:layout_margin="10dp"/>
+            android:layout_margin="10dp" />
+
+        <TextView
+            android:id="@+id/notificationTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="@string/notifications"
+            android:textSize="22sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/languageSpinner" />
+
+        <Spinner
+            android:id="@+id/notificationSpinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:entries="@array/notificationSettings"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/notificationTextView" />
+
+        <TextView
+            android:id="@+id/ThemeTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Theme"
+            android:textSize="22sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/notificationSpinner" />
+
+        <Spinner
+            android:id="@+id/ThemeSpinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:entries="@array/theme"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ThemeTextView" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

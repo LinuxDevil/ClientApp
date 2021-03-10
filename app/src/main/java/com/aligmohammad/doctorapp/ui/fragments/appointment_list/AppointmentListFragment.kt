@@ -4,23 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.aligmohammad.doctorapp.R
 import com.aligmohammad.doctorapp.data.model.firebasemodels.AppointmentFirebaseModel
-import com.aligmohammad.doctorapp.data.network.UserSingleton
 import com.aligmohammad.doctorapp.databinding.AppointmentListFragmentBinding
-import com.aligmohammad.doctorapp.ui.adapters.DateRecyclerAdapter
 import com.aligmohammad.doctorapp.ui.adapters.InProgressAppointmentRecyclerViewAdapter
-import com.aligmohammad.doctorapp.ui.adapters.TimeRecyclerAdapter
-import com.aligmohammad.doctorapp.ui.dialogs.appointmentmanagment.singleappointment.SingleAppointmentArgs
 import com.aligmohammad.doctorapp.util.snackbar
 import com.aligmohammad.doctorappclient.ui.adapters.AppointmentRecyclerViewAdapter
 import com.google.firebase.database.DataSnapshot
@@ -28,7 +22,6 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.appointment_list_fragment.view.*
 import kotlinx.android.synthetic.main.appointment_list_fragment.view.toolbar
 import kotlinx.android.synthetic.main.home_fragment.view.*
 
@@ -85,10 +78,8 @@ class AppointmentListFragment : Fragment() {
 
 
     private fun getAllAppointments() {
-        val userId = UserSingleton.getCurrentUser().username!!.substring(1, UserSingleton.getCurrentUser().username!!.length)
-        Toast.makeText(requireContext(), userId, Toast.LENGTH_LONG).show()
         val db = Firebase.database.reference
-        db.child("Users").child(userId!!).child("Appointments")
+        db.child("Users").child("962776122035").child("Appointments")
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     inProgressAppointments.clear()

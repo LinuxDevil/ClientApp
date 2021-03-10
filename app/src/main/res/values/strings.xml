@@ -46,11 +46,11 @@
     <string name="doctor_image">Doctor Image</string>
     <string name="backgroundImage">background image</string>
     <string name="qualifications">Qualifications</string>
-    <string name="lineImage">line image</string>
+    <string name="lineImage" translatable="false">line image</string>
     <string name="reserve_an_appointment">Reserve an appointment</string>
-    <string name="ads_banner">Ads Banner</string>
+    <string name="ads_banner" translatable="false">Ads Banner</string>
     <string name="medical">Medical</string>
-    <string name="ad_banner">Ad banner</string>
+    <string name="ad_banner" translatable="false">Ad banner</string>
     <string name="district">District</string>
     <string name="ricotta_image">ricotta image</string>
     <string name="select_ricotta_image">Select Ricotta Image</string>
@@ -92,7 +92,7 @@
     <string name="night_time">Night Time</string>
     <string name="id_number">ID Number</string>
     <string name="language">Language</string>
-    <string name="default_notification_channel_id">chaneeeel</string>
+    <string name="default_notification_channel_id" translatable="false">chaneeeel</string>
     <string name="fcm_message">title</string>
     <string name="edit">Edit</string>
     <string name="cancel">Cancel</string>
@@ -103,105 +103,50 @@
     <string name="email">Email</string>
     <string name="name">Name</string>
     <string name="edit_profile">Edit Profile</string>
+    <string name="notifications">Notifications</string>
 
     <array name="spinner">
         <item>NatHealth</item>
     </array>
     <array name="majors">
-        <item>أمراض الأطفال
-        </item>
-        <item>أمراض الأعصاب
-        </item>
-        <item>أمراض الأورام السريري
-        </item>
-        <item>أمراض الجهاز الهضمي
-        </item>
-        <item>أمراض الحساسية والمناعة
-        </item>
-        <item>أمراض الدم والأورام
-        </item>
-        <item>أمراض القلب
-        </item>
-        <item>أمراض الكلى
-        </item>
-        <item>أمراض النسائية والتوليد
-        </item>
-        <item>أمراض وجراحة العيون
-        </item>
-        <item>الأذن والأنف والحنجرة
-        </item>
-        <item>الأمراض الإنتانية
-        </item>
-        <item>الأمراض الجلدية والتناسلية
-        </item>
-        <item>الأمراض الداخلية العامة
-        </item>
-        <item>الأمراض الرثوية
-        </item>
-        <item>الأمراض الصدرية
-        </item>
-        <item>الأمراض النفسية
-        </item>
-        <item>الجراحة العامة
-        </item>
-        <item>الطب الطبيعي والتأهيل
-        </item>
-        <item>الطب النووي
-        </item>
-        <item>امراض الدم و السرطان
-        </item>
-        <item>امراض الغدد الصم والسكري
-        </item>
-        <item>طب الاسنان
-        </item>
-        <item>تقويم الأسنان والفكين
-        </item>
-        <item>جراحة الأوعية الدموية
-        </item>
-        <item>جراحة الاطفال
-        </item>
-        <item>جراحة الترميم والتجميل
-        </item>
-        <item>جراحة الدماغ والأعصاب
-        </item>
-        <item>
-            جراحة الصدر
-
-        </item>
-        <item>
-            جراحة العظام والمفاصل
-
-        </item>
-        <item>
-            جراحة القلب
-
-        </item>
-        <item>
-            جراحة القولون والشرج والمستقيم
-
-        </item>
-        <item>
-            جراحة الكبد والبنكرياس
-
-        </item>
-        <item>
-            جراحة الكلى والمسالك البولية
-
-        </item>
-        <item>
-            جراحة الوجه والفم والفكين
-
-        </item>
-        <item>
-            طب اسنان الاطفال
-
-        </item>
-        <item>
-            طب الاسرة
-        </item>
+        <item>Pediatrics</item>
+        <item>Neurology</item>
+        <item>Gastroenterology</item>
+        <item>Allergy and immunology</item>
+        <item>Hematology and oncology</item>
+        <item>Cardiology</item>
+        <item>Nephrology</item>
+        <item>Obstetrics and gynecology</item>
+        <item>Ophthalmology</item>
+        <item>Otolaryngology (ENT)</item>
+        <item>Dermatology</item>
+        <item>Internal medicine</item>
+        <item>Rheumatology</item>
+        <item>Pulmonology</item>
+        <item>Psychiatry</item>
+        <item>General surgery</item>
+        <item>Physical therapy and rehabilitation</item>
+        <item>Nuclear medicine</item>
+        <item>Endocrinology</item>
+        <item>Dentistry</item>
+        <item>Vascular surgery</item>
+        <item>Pediatric surgery</item>
+        <item>Plastic surgery</item>
+        <item>Neurosurgery</item>
+        <item>Thoracic surgery</item>
+        <item>Orthopedics</item>
+        <item>Cardiac surgery</item>
+        <item>Colon and rectal surgery</item>
+        <item>Hepatobiliary and pancreatic surgery</item>
+        <item>Urology</item>
+        <item>Oral and maxillofacial surgery</item>
+        <item>Family medicine</item>
+        <item>Infectious diseases</item>
+        <item>Neonatology</item>
+        <item>General practitioner</item>
     </array>
     <array name="cities">
-        <item>عمان</item>
+        <item>Amman</item>
         <item>اربد</item>
         <item>الزرقاء</item>
         <item>عجلون</item>
@@ -215,8 +160,27 @@
         <item>معان</item>
     </array>
 
+    <string-array name="testsarray">
+        <item>Eye Test</item>
+        <item>COVID Test</item>
+        <item>Blood Pressure</item>
+    </string-array>
+
+    <string-array name="sympotoms">
+        <item>High blood pressure</item>
+    </string-array>
+
+    <string-array name="medicineav">
+        <item>Panadol Night</item>
+    </string-array>
+
+    <string-array name="xrays">
+        <item>Chest Image</item>
+        <item>Brain Scan</item>
+    </string-array>
+
     <array name="amman_district">
-        <item>ابو علندا
+        <item>Abu Elanda
         </item>
         <item>ابو نصير
         </item>

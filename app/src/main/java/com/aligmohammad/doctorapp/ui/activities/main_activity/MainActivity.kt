@@ -16,14 +16,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        //TODO: Fix
-
-//        val userPreferences = PreferencesStore(this)
-//
-//        userPreferences.accessToken.asLiveData().observe(this, Observer {
-//            val activity = if (it == null) AuthActivity::class.java else HomeActivity::class.java
-//            startNewActivity(activity)
-//        })
         navController = Navigation.findNavController(this, R.id.fragment)
     }
 
@@ -34,11 +26,5 @@ class MainActivity : AppCompatActivity() {
         return NavigationUI.navigateUp(navController, null)
     }
 
-//TODO: Fix
-//    fun performLogout() = lifecycleScope.launch {
-//        viewModel.logout()
-//        userPreferences.clear()
-//        startNewActivity(AuthActivity::class.java)
-//    }
 
 }

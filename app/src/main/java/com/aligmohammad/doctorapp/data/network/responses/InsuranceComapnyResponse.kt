@@ -1,16 +1,14 @@
 package com.aligmohammad.doctorapp.data.network.responses
 
-class InsuranceCompanyResponse : ArrayList<InsuranceCompanyResponseItem>()
+data class InsuranceCompanyResponse(
+    val insurances: List<Insurance>
+)
 
-data class InsuranceCompanyResponseItem(
-    val doctors: List<DoctorResponse>,
-    val firebase_users: List<FirebaseUserResponse>,
-    val hospitals: List<HospitalResponse>,
-    val id: String,
-    val image_url: String,
-    val isAvailable: Boolean,
-    val name_ar: String,
-    val name_en: String,
-    val places: List<PlaceResponse>,
-    val published_at: String
+data class Insurance(
+    val created: String,
+    val id: Int,
+    val nameAr: String,
+    val nameEn: String,
+    val type: String,
+    val updated: String
 )

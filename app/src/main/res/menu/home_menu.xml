@@ -8,12 +8,15 @@
         android:title="@string/profile" />
 
     <item
+        android:id="@+id/addNewSibling"
+        android:title="Add New Member" />
+    <item
         android:id="@+id/offersListFragment"
         android:title="@string/offers" />
 
     <item
         android:id="@+id/settingsFragment"
-        android:title="@string/settings"/>
+        android:title="@string/settings" />
 
     <item
         android:id="@+id/logout"

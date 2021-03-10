@@ -1,41 +1,45 @@
-
-
-
-
 package com.aligmohammad.doctorapp.ui.dialogs.labschoice
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.aligmohammad.doctorapp.R
-import com.aligmohammad.doctorapp.data.model.firebasemodels.AppointmentFirebaseModel
+import com.aligmohammad.doctorapp.data.model.nest.AddAppointment
+import com.aligmohammad.doctorapp.data.network.Resource
 import com.aligmohammad.doctorapp.data.network.UserSingleton
 import com.aligmohammad.doctorapp.databinding.LabsBottomSheetFragmentBinding
+import com.aligmohammad.doctorapp.ui.adapters.DateRecyclerAdapter
+import com.aligmohammad.doctorapp.ui.adapters.TimeRecyclerAdapter
 import com.aligmohammad.doctorapp.ui.dialogs.OnDialogInteract
-import com.aligmohammad.doctorapp.util.hideKeyboard
-import com.aligmohammad.doctorapp.util.snackbar
+import com.aligmohammad.doctorapp.util.ProgressDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
-import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
-import com.wdullaer.materialdatetimepicker.time.TimePickerDialog
-import kotlinx.android.synthetic.main.labs_bottom_sheet_fragment.view.*
-import java.util.*
+import dagger.hilt.android.AndroidEntryPoint
 
-class LabsBottomSheetFragment : BottomSheetDialogFragment(), OnDialogInteract,
-    TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener {
+@AndroidEntryPoint
+class LabsBottomSheetFragment : BottomSheetDialogFragment(), OnDialogInteract {
 
-    private lateinit var viewModel: LabsBottomSheetViewModel
+    private lateinit var dateAdapter: DateRecyclerAdapter
+    private lateinit var timeAdapter: TimeRecyclerAdapter
+    private val viewModel: LabsBottomSheetViewModel by viewModels<LabsBottomSheetViewModel>()
+
     private lateinit var binding: LabsBottomSheetFragmentBinding
 
-    private var dateSelected = ""
-    private var timeSelected = ""
+    private lateinit var dateSelected: String
+    private lateinit var timeSelected: String
+
+    private var shiftSelected: String? = "Morning"
+    private var arrayOfDates = listOf<String>()
+    private var arrayOfTimes = listOf<String>()
     private var testSelectedd = ""
 
     override fun onCreateView(
@@ -44,11 +48,10 @@ class LabsBottomSheetFragment : BottomSheetDialogFragment(), OnDialogInteract,
     ): View? {
         binding =
             DataBindingUtil.inflate(inflater, R.layout.labs_bottom_sheet_fragment, container, false)
-        viewModel = ViewModelProvider(this).get(LabsBottomSheetViewModel::class.java)
-        binding.listener = this
-        binding.viewModel = viewModel
 
-        binding.testSpinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
+        binding.listener = this
+
+        binding.testSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                 val tests = resources.getStringArray(R.array.spinner)
                 testSelectedd = tests[p2]
@@ -59,63 +62,74 @@ class LabsBottomSheetFragment : BottomSheetDialogFragment(), OnDialogInteract,
             }
         }
 
-        binding.root.dateEditText.setOnFocusChangeListener { view, b ->
-            if (b) {
-                val calendar = Calendar.getInstance()
-                val datePicker = DatePickerDialog.newInstance(
-                    this,
-                    calendar.get(Calendar.YEAR),
-                    calendar.get(Calendar.MONTH),
-                    calendar.get(Calendar.DAY_OF_MONTH)
-                )
-                datePicker.show(fragmentManager!!, "DatePicker")
+        var dialog = ProgressDialog.progressDialog(requireContext())
+
+        initializeRecycler()
+
+        binding.dayTime.visibility = View.GONE
+        binding.nightTime.visibility = View.GONE
+
+        if (navArgs<LabsBottomSheetFragmentArgs>().value.doctorShifts != null) {
+            navArgs<LabsBottomSheetFragmentArgs>().value.doctorShifts!!.forEach { shift ->
+                if (shift == "Morning") {
+                    binding.dayTime.visibility = View.VISIBLE
+                }
+                if (shift == "After noon") {
+                    binding.nightTime.visibility = View.VISIBLE
+                }
             }
-        }
-        binding.root.timeEditText.setOnFocusChangeListener { view, isFocused ->
-            if (isFocused) {
-                val calendar = Calendar.getInstance()
-                val timePicker = TimePickerDialog.newInstance(
-                    this,
-                    calendar.get(Calendar.HOUR),
-                    calendar.get(Calendar.MINUTE),
-                    calendar.get(Calendar.SECOND),
-                    false
-                )
-                timePicker.show(fragmentManager!!, "TimePicker")
+
+            navArgs<LabsBottomSheetFragmentArgs>().value.let {
+                arrayOfDates = it.dates!!.toList()
+                arrayOfTimes = it.times!!.toList()
+                initializeRecycler()
             }
         }
 
-        binding.root.dateEditText.setOnClickListener {
-            hideKeyboard()
-            val calendar = Calendar.getInstance()
-            val datePicker = DatePickerDialog.newInstance(
-                this,
-                calendar.get(Calendar.YEAR),
-                calendar.get(Calendar.MONTH),
-                calendar.get(Calendar.DAY_OF_MONTH)
-            )
-            datePicker.show(fragmentManager!!, "DatePicker")
+        viewModel.addAppointmentResponse.observe(viewLifecycleOwner, Observer {
+            when (it) {
+                is Resource.Success -> {
+                    if (it.value.hospital != null) {
+                        Toast.makeText(
+                            requireContext(),
+                            "Success ${it.value.hospital.nameEn}",
+                            Toast.LENGTH_LONG
+                        ).show()
+                        dialog.dismiss()
+                    } else {
+                        Toast.makeText(requireContext(), "Failed", Toast.LENGTH_LONG).show()
+                    }
+                }
+                is Resource.Failure -> {
+                    Log.v("TAG", it.errorResponse!!.string())
+                    dialog.dismiss()
+                }
+                is Resource.Loading -> {
+                    dialog.show()
+                }
+            }
+        })
+
+        binding.dayTime.setOnClickListener {
+            binding.nightTime.background = null
+            binding.dayTime.background =
+                ContextCompat.getDrawable(requireContext(), R.drawable.active_drawable)
+            shiftSelected = "Morning"
         }
 
-        binding.root.timeEditText.setOnClickListener {
-            hideKeyboard()
-            val calendar = Calendar.getInstance()
-            val timePicker = TimePickerDialog.newInstance(
-                this,
-                calendar.get(Calendar.HOUR),
-                calendar.get(Calendar.MINUTE),
-                calendar.get(Calendar.SECOND),
-                false
-            )
-            timePicker.show(fragmentManager!!, "TimePicker")
+        binding.nightTime.setOnClickListener {
+            binding.dayTime.background = null
+            binding.nightTime.background =
+                ContextCompat.getDrawable(requireContext(), R.drawable.active_drawable)
+            shiftSelected = "After Noon"
         }
+
 
         return binding.root
     }
 
 
     override fun onBackButtonClicked(view: View) {
-        Toast.makeText(requireContext(), "Reserved!", Toast.LENGTH_LONG).show()
         this.dismiss()
     }
 
@@ -123,53 +137,39 @@ class LabsBottomSheetFragment : BottomSheetDialogFragment(), OnDialogInteract,
         addUserAppointment()
     }
 
-    override fun onDateSet(view: DatePickerDialog?, year: Int, monthOfYear: Int, dayOfMonth: Int) {
-        view!!.dismiss()
-        binding.root.dateEditText.setText("${year}/${monthOfYear}/$dayOfMonth")
-        dateSelected = "${year}/${monthOfYear+1}/$dayOfMonth"
-    }
-
-    override fun onTimeSet(view: TimePickerDialog?, hourOfDay: Int, minute: Int, second: Int) {
-        var hourCalculation = hourOfDay
-        var timing = "AM"
-        if (hourCalculation >= 13) {
-            hourCalculation -= 12
-            timing = "PM"
-        }
-        timeSelected = "${hourCalculation}:${minute} ${timing}"
-        binding.root.timeEditText.setText("${hourCalculation}:${minute} ${timing}")
-    }
-
     private fun addUserAppointment() {
-        // 1- Get user id
-        val userId = UserSingleton.getCurrentUser().username
-        // 2- Create appointment
+        // Get the selections
+        val appointment = AddAppointment(
+            dateAdapter.getSelection().split(" ")[0],
+            timeAdapter.getSelection(),
+            navArgs<LabsBottomSheetFragmentArgs>().value.location + " - Labs",
+            shiftSelected,
+            UserSingleton.getCurrentUser().username,
+            "",
+            null,
+            navArgs<LabsBottomSheetFragmentArgs>().value.hospitalId,
+            "Operation",
+            "Test A"
+        )
 
-        // 3- Push Appointment to db
-        val database = Firebase.database.reference
-        val appointmentUuid = database.push().key
-
-        val appointment = AppointmentFirebaseModel(dateSelected, timeSelected, "Morning", userId, null, navArgs<LabsBottomSheetFragmentArgs>().value.placeUuid, testSelectedd, true, appointmentUuid)
-        if (appointmentUuid != null) {
-            hideKeyboard()
-            database.child("Appointments").child(appointmentUuid).setValue(appointment).addOnCompleteListener {
-                // 4- Add appointment id to user
-                // 5- Push user changes
-                database.child("Users").child(userId!!.substring(1, userId!!.length)).child("Appointments").child(appointmentUuid).setValue(appointmentUuid).addOnCompleteListener {
-                    database.child("Places").child(navArgs<LabsBottomSheetFragmentArgs>().value.type!!).child(navArgs<LabsBottomSheetFragmentArgs>().value.placeUuid!!).child("Appointments").child(appointmentUuid).setValue(appointmentUuid)
-                    dismiss()
-                }.addOnFailureListener {
-                    binding.dateEditText.snackbar(it.localizedMessage)
-                    dismiss()
-                }
-            }.addOnFailureListener {
-                binding.dateEditText.snackbar(it.localizedMessage)
-                dismiss()
-            }
-        }
+        viewModel.addGeneralHospitalDoctorAppointment(appointment)
 
     }
 
+    private fun initializeRecycler() {
+        dateAdapter = DateRecyclerAdapter(arrayOfDates)
+        binding.dateRecyclerView.apply {
+            adapter = dateAdapter
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        }
+        timeAdapter = TimeRecyclerAdapter(arrayOfTimes)
+        binding.timeRecyclerView.apply {
+            adapter = timeAdapter
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        }
+    }
 
 
 }

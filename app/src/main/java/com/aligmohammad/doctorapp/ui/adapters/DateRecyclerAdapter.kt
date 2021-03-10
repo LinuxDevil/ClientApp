@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.aligmohammad.doctorapp.R
-import com.aligmohammad.doctorapp.data.model.DateTime
 import com.aligmohammad.doctorapp.databinding.DateSingleItemBinding
 
 class DateRecyclerAdapter(private val dates: List<String>) :
@@ -58,7 +57,7 @@ class DateRecyclerAdapter(private val dates: List<String>) :
         notifyDataSetChanged()
     }
 
-    public fun getSelection(): String = selection
+    fun getSelection(): String = selection
 
     override fun getItemCount(): Int = dates.size
 

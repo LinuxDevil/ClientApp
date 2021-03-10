@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
@@ -12,8 +13,6 @@ import androidx.navigation.fragment.navArgs
 import com.aligmohammad.doctorapp.R
 import com.aligmohammad.doctorapp.databinding.PrivateHospitalsFragmentBinding
 import com.aligmohammad.doctorapp.ui.dialogs.OnDialogInteract
-import com.aligmohammad.doctorapp.util.hideKeyboard
-import com.aligmohammad.doctorapp.util.snackbar
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import navigateSafe
 
@@ -40,11 +39,12 @@ class PrivateHospitalsFragment : BottomSheetDialogFragment(), OnDialogInteract {
 
     override fun onButtonClicked(view: View) {
         Log.v("MainActivity", "onButtonClicked")
-        val navController = Navigation.findNavController(requireActivity(), R.id.fragment)
-        if (navController.currentDestination?.id == R.id.privateHospitalsFragment)
-            when (view.id) {
-                R.id.operations -> {
-                    if (navArgs<PrivateHospitalsFragmentArgs>().value.hospital!!.doctors?.size!! > 0) {
+        if (navArgs<PrivateHospitalsFragmentArgs>().value.hospital!!.doctors?.size!! > 0) {
+
+            val navController = Navigation.findNavController(requireActivity(), R.id.fragment)
+            if (navController.currentDestination?.id == R.id.privateHospitalsFragment && navArgs<PrivateHospitalsFragmentArgs>().value.hospital!!.appointmentDates!!.size > 1)
+                when (view.id) {
+                    R.id.operations -> {
                         navigateSafe(
                             PrivateHospitalsFragmentDirections.privateToOperations(
                                 navArgs<PrivateHospitalsFragmentArgs>().value.hospital!!.doctors?.get(
@@ -54,20 +54,57 @@ class PrivateHospitalsFragment : BottomSheetDialogFragment(), OnDialogInteract {
                                 .setDates(navArgs<PrivateHospitalsFragmentArgs>().value.hospital!!.appointmentDates!!.toTypedArray())
                                 .setTimes(navArgs<PrivateHospitalsFragmentArgs>().value.hospital!!.appointmentTimes!!.toTypedArray())
                                 .setDoctorShifts(arrayOf("Morning", "After noon"))
+                                .setLocation(navArgs<PrivateHospitalsFragmentArgs>().value.hospital!!.nameEn)
                         )
-                    } else {
-                        hideKeyboard()
-                        view.snackbar("There is no available doctor in the hospital")
                     }
+                    R.id.external -> this.navigateSafe(
+                        PrivateHospitalsFragmentDirections.privateToExternal(
+                            navArgs<PrivateHospitalsFragmentArgs>().value.hospital!!.doctors?.get(
+                                0
+                            )!!
+                        )
+                            .setDates(navArgs<PrivateHospitalsFragmentArgs>().value.hospital!!.appointmentDates!!.toTypedArray())
+                            .setTimes(navArgs<PrivateHospitalsFragmentArgs>().value.hospital!!.appointmentTimes!!.toTypedArray())
+                            .setDoctorShifts(arrayOf("Morning", "After noon"))
+                            .setLocation(navArgs<PrivateHospitalsFragmentArgs>().value.hospital!!.nameEn)
+                    )
+                    R.id.labs -> {
+                        this.navigateSafe(
+                            PrivateHospitalsFragmentDirections.privateToLabs()
+                                .setDates(navArgs<PrivateHospitalsFragmentArgs>().value.hospital!!.appointmentDates!!.toTypedArray())
+                                .setTimes(navArgs<PrivateHospitalsFragmentArgs>().value.hospital!!.appointmentTimes!!.toTypedArray())
+                                .setDoctorShifts(arrayOf("Morning", "After noon"))
+                                .setLocation(navArgs<PrivateHospitalsFragmentArgs>().value.hospital!!.nameEn)
+                                .setHospitalId(navArgs<PrivateHospitalsFragmentArgs>().value.hospital!!.id.toString())
+                        )
+                    }
+                    R.id.xray -> this.navigateSafe(
+                        PrivateHospitalsFragmentDirections.privateToXRay()
+                            .setDates(navArgs<PrivateHospitalsFragmentArgs>().value.hospital!!.appointmentDates!!.toTypedArray())
+                            .setTimes(navArgs<PrivateHospitalsFragmentArgs>().value.hospital!!.appointmentTimes!!.toTypedArray())
+                            .setDoctorShifts(arrayOf("Morning", "After noon"))
+                            .setLocation(navArgs<PrivateHospitalsFragmentArgs>().value.hospital!!.nameEn)
+                            .setHospitalId(navArgs<PrivateHospitalsFragmentArgs>().value.hospital!!.id.toString())
+                    )
+                    R.id.naturalist -> this.navigateSafe(
+                        PrivateHospitalsFragmentDirections.privateToNaturalist()
+                            .setDates(navArgs<PrivateHospitalsFragmentArgs>().value.hospital!!.appointmentDates!!.toTypedArray())
+                            .setTimes(navArgs<PrivateHospitalsFragmentArgs>().value.hospital!!.appointmentTimes!!.toTypedArray())
+                            .setDoctorShifts(arrayOf("Morning", "After noon"))
+                            .setLocation(navArgs<PrivateHospitalsFragmentArgs>().value.hospital!!.nameEn)
+                            .setHospitalId(navArgs<PrivateHospitalsFragmentArgs>().value.hospital!!.id.toString())
+                    )
+                    else -> return
                 }
-                R.id.external -> this.navigateSafe(PrivateHospitalsFragmentDirections.privateToExternal())
-                R.id.labs -> this.navigateSafe(PrivateHospitalsFragmentDirections.privateToLabs())
-                R.id.xray -> this.navigateSafe(PrivateHospitalsFragmentDirections.privateToXRay())
-                R.id.naturalist -> this.navigateSafe(PrivateHospitalsFragmentDirections.privateToNaturalist())
-                else -> return
+            else {
+                Log.v("MainActivity", navController.currentDestination?.label.toString())
             }
-        else {
-            Log.v("MainActivity", navController.currentDestination?.label.toString())
+        } else {
+            Toast.makeText(
+                requireContext(),
+                "Please select a hospital that got doctors",
+                Toast.LENGTH_LONG
+            ).show()
         }
 
     }

@@ -4,4 +4,13 @@
         <item>English</item>
         <item>Arabic</item>
     </string-array>
+    <string-array name="notificationSettings">
+        <item>Before 1 Day</item>
+        <item>Same Day Before 12 AM</item>
+        <item>Same Day Before Appointment in 30 minutes</item>
+    </string-array>
+    <string-array name="theme">
+        <item>Light</item>
+        <item>Dark</item>
+    </string-array>
 </resources>

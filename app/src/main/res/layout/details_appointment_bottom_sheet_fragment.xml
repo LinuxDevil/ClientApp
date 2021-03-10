@@ -75,12 +75,64 @@
             android:layout_margin="10dp"
             android:background="@drawable/active_drawable"
             android:padding="5dp"
-            android:text="@{appointment.userId}"
+            android:text="Yazan Hospital - Labs"
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/image" />
 
+        <TextView
+            android:id="@+id/location"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/active_drawable"
+            android:padding="5dp"
+            android:text="Amman, Abu Elanda (click to navigate)"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/clientTextView" />
+
+        <TextView
+            android:id="@+id/test"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/active_drawable"
+            android:padding="5dp"
+            android:text="Blood Pressure Test"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/location" />
+
+        <TextView
+            android:id="@+id/forWho"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/active_drawable"
+            android:padding="5dp"
+            android:text="Appointment for: (Ali Mohammad)"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/test" />
+
+
+        <TextView
+            android:id="@+id/phone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/active_drawable"
+            android:padding="5dp"
+            android:text="@{appointment.userId}"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/forWho" />
 
         <TextView
             android:id="@+id/dateTextView"
@@ -94,7 +146,7 @@
             app:drawableEndCompat="@drawable/date_icon"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/clientTextView" />
+            app:layout_constraintTop_toBottomOf="@id/phone" />
 
 
         <TextView

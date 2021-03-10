@@ -4,8 +4,6 @@ import android.content.Context
 import com.aligmohammad.doctorapp.BuildConfig
 import com.aligmohammad.doctorapp.data.network.api.TokenRefreshApi
 import com.aligmohammad.doctorapp.helpers.PreferencesStore
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.runBlocking
 import okhttp3.Authenticator
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -16,14 +14,14 @@ import javax.inject.Inject
 class RemoteDataSource @Inject constructor(private val preferences: PreferencesStore) {
 
     companion object {
-//        private const val BASE_URL = "http://192.168.15.241:4000/api/"
         private const val BASE_URL = "http://192.168.1.12:4000/api/"
-//        private const val BASE_URL = "http://10.234.15.43:4000/api/"
+//        private const val BASE_URL = "http://192.168.1.116:4000/api/"
     }
-    /*
-    * This function will build the API
-    * inside this function we are creating our TokenAuthenticator instance
-    * */
+
+    /**
+     * This function will build the API
+     * inside this function we are creating our TokenAuthenticator instance
+     * */
     fun <Api> buildApi(
         api: Class<Api>,
         context: Context
@@ -37,7 +35,7 @@ class RemoteDataSource @Inject constructor(private val preferences: PreferencesS
             .create(api)
     }
 
-    /*
+    /**
     * This function will build the TokenRefreshApi
     * I have a separate interface that contains only the
     * TokenRefresh endpoint and this function will build that api
@@ -51,7 +49,7 @@ class RemoteDataSource @Inject constructor(private val preferences: PreferencesS
             .create(TokenRefreshApi::class.java)
     }
 
-    /*
+    /**
     * This function will build our OkHttpClient
     * As we need it to intercept the request and add
     * required parameters

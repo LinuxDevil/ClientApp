@@ -1,24 +1,36 @@
 package com.aligmohammad.doctorapp.ui.dialogs.operationschoice
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.aligmohammad.doctorapp.R
+import com.aligmohammad.doctorapp.data.model.nest.AddAppointment
+import com.aligmohammad.doctorapp.data.network.Resource
+import com.aligmohammad.doctorapp.data.network.UserSingleton
 import com.aligmohammad.doctorapp.databinding.OpertaionBottomSheetFragmentBinding
 import com.aligmohammad.doctorapp.ui.adapters.DateRecyclerAdapter
 import com.aligmohammad.doctorapp.ui.adapters.TimeRecyclerAdapter
 import com.aligmohammad.doctorapp.ui.dialogs.OnDialogInteract
+import com.aligmohammad.doctorapp.util.ProgressDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class OperationBottomSheetFragment : BottomSheetDialogFragment(), OnDialogInteract {
+
+    private lateinit var dateAdapter: DateRecyclerAdapter
+    private lateinit var timeAdapter: TimeRecyclerAdapter
 
     private lateinit var binding: OpertaionBottomSheetFragmentBinding
     private val viewModel: OpertaionBottomSheetViewModel by viewModels<OpertaionBottomSheetViewModel>()
@@ -42,6 +54,8 @@ class OperationBottomSheetFragment : BottomSheetDialogFragment(), OnDialogIntera
             false
         )
         binding.listener = this
+
+        var dialog = ProgressDialog.progressDialog(requireContext())
 
         initializeRecycler()
 
@@ -75,6 +89,37 @@ class OperationBottomSheetFragment : BottomSheetDialogFragment(), OnDialogIntera
             )
         }
 
+        viewModel.addAppointmentResponse.observe(viewLifecycleOwner, Observer {
+            when (it) {
+                is Resource.Success -> {
+                    Toast.makeText(requireContext(), "Success", Toast.LENGTH_LONG).show()
+                    dialog.dismiss()
+                }
+                is Resource.Failure -> {
+                    Log.v("TAG", it.errorResponse!!.string())
+                    dialog.dismiss()
+                }
+                is Resource.Loading -> {
+                    dialog.show()
+                }
+            }
+        })
+
+        binding.doctorsSpinner.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                    arrayOfDates =
+                        navArgs<OperationBottomSheetFragmentArgs>().value.doctor?.appointmentDates!!
+                    arrayOfTimes =
+                        navArgs<OperationBottomSheetFragmentArgs>().value.doctor?.appointmentTimes!!
+                    initializeRecycler()
+                }
+
+                override fun onNothingSelected(p0: AdapterView<*>?) {
+                }
+
+            }
+
         binding.dayTime.setOnClickListener {
             binding.nightTime.background = null
             binding.dayTime.background =
@@ -90,21 +135,40 @@ class OperationBottomSheetFragment : BottomSheetDialogFragment(), OnDialogIntera
         }
 
         binding.confirmButton.setOnClickListener {
-//            addUserAppointment()
+            addUserAppointment()
         }
 
         return binding.root
     }
 
+    private fun addUserAppointment() {
+        // Get the selections
+        val appointment = AddAppointment(
+            dateAdapter.getSelection().split(" ")[0],
+            timeAdapter.getSelection(),
+            navArgs<OperationBottomSheetFragmentArgs>().value.location,
+            shiftSelected,
+            UserSingleton.getCurrentUser().username,
+            navArgs<OperationBottomSheetFragmentArgs>().value.doctor?.username,
+            null,
+            null,
+            "Operation"
+        )
+
+        viewModel.addHospitalDoctorAppointment(appointment)
+
+    }
+
     private fun initializeRecycler() {
+        dateAdapter = DateRecyclerAdapter(arrayOfDates)
         binding.dateRecyclerView.apply {
-            adapter = DateRecyclerAdapter(arrayOfDates)
+            adapter = dateAdapter
             layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         }
-
+        timeAdapter = TimeRecyclerAdapter(arrayOfTimes)
         binding.timeRecyclerView.apply {
-            adapter = TimeRecyclerAdapter(arrayOfTimes)
+            adapter = timeAdapter
             layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         }

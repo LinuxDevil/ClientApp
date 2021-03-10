@@ -24,13 +24,11 @@ import com.aligmohammad.doctorapp.ui.adapters.HomeRecyclerAdapter
 import com.aligmohammad.doctorapp.ui.adapters.OnMenuItemClick
 import com.aligmohammad.doctorapp.ui.fragments.authframent.AuthViewModel
 import com.aligmohammad.doctorapp.ui.fragments.newappointmentfragment.NewAppointmentFragmentDirections.*
-import com.aligmohammad.doctorapp.util.getUser
 import com.aligmohammad.doctorapp.util.handleApiError
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.home_fragment.view.*
-import java.util.logging.Logger
 
 @AndroidEntryPoint
 class HomeFragment : Fragment(R.layout.home_fragment), OnMenuItemClick {
@@ -66,7 +64,7 @@ class HomeFragment : Fragment(R.layout.home_fragment), OnMenuItemClick {
         viewModel.getMenuItems()
 
         authViewModel.currentUserResponse.observe(viewLifecycleOwner, Observer {
-            when(it) {
+            when (it) {
                 is Resource.Success -> {
                     UserSingleton.setUser(it.value)
                     Log.v("Current User", "Success ${it.value.name}")
@@ -83,9 +81,11 @@ class HomeFragment : Fragment(R.layout.home_fragment), OnMenuItemClick {
         viewModel.menuItemReponse.observe(viewLifecycleOwner, Observer {
             when (it) {
                 is Resource.Success -> {
-                    Log.v("Success", it.value.menuItems[0].nameEn)
-                    adapter = HomeRecyclerAdapter(it.value.menuItems, this)
-                    binding.homeListRecycler.adapter = adapter
+                    if (it.value.menuItems.size > 0) {
+                        Log.v("Success", it.value.menuItems[0].nameEn)
+                        adapter = HomeRecyclerAdapter(it.value.menuItems, this)
+                        binding.homeListRecycler.adapter = adapter
+                    }
                 }
                 is Resource.Failure -> handleApiError(it) {
                     Log.v("Failure", it.errorCode!!.toString())
@@ -117,17 +117,22 @@ class HomeFragment : Fragment(R.layout.home_fragment), OnMenuItemClick {
             "New Appointment" -> {
                 navController.navigate(HomeFragmentDirections.actionHomeToNewAppointment())
             }
-            "Today's Appointment" -> {
+            "Today's Appointments" -> {
                 navController.navigate(HomeFragmentDirections.homeToAppointemtnsUser())
             }
-            "My Appointment" -> {
+            "My Appointments" -> {
                 navController.navigate(
                     HomeFragmentDirections.homeToAppointemtnsUser()
                 )
             }
-            "Cancel Appointment" -> {
+            "Cancel Appointments" -> {
                 navController.navigate(
                     HomeFragmentDirections.actionHomeToNewAppointment()
+                )
+            }
+            "Add New Sibling" -> {
+                navController.navigate(
+                    HomeFragmentDirections.homeToAddNewMember()
                 )
             }
             else -> {
@@ -170,6 +175,9 @@ class HomeFragment : Fragment(R.layout.home_fragment), OnMenuItemClick {
 
                 R.id.settingsFragment -> {
                     findNavController().navigate(HomeFragmentDirections.homeToSettings())
+                }
+                R.id.addNewSibling -> {
+                    findNavController().navigate(HomeFragmentDirections.homeToAddNewMember())
                 }
             }
             return@setNavigationItemSelectedListener true

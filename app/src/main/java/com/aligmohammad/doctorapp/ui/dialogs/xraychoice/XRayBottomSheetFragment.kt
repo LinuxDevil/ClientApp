@@ -1,26 +1,46 @@
 package com.aligmohammad.doctorapp.ui.dialogs.xraychoice
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.aligmohammad.doctorapp.R
+import com.aligmohammad.doctorapp.data.model.nest.AddAppointment
+import com.aligmohammad.doctorapp.data.network.Resource
+import com.aligmohammad.doctorapp.data.network.UserSingleton
 import com.aligmohammad.doctorapp.databinding.XRayBottomSheetFragmentBinding
+import com.aligmohammad.doctorapp.ui.adapters.DateRecyclerAdapter
+import com.aligmohammad.doctorapp.ui.adapters.TimeRecyclerAdapter
 import com.aligmohammad.doctorapp.ui.dialogs.OnDialogInteract
+import com.aligmohammad.doctorapp.util.ProgressDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
-import com.wdullaer.materialdatetimepicker.time.TimePickerDialog
-import kotlinx.android.synthetic.main.x_ray_bottom_sheet_fragment.view.*
-import java.util.*
+import dagger.hilt.android.AndroidEntryPoint
 
-class XRayBottomSheetFragment : BottomSheetDialogFragment(), OnDialogInteract,
-    TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener {
+@AndroidEntryPoint
+class XRayBottomSheetFragment : BottomSheetDialogFragment(), OnDialogInteract {
+
+    private lateinit var dateAdapter: DateRecyclerAdapter
+    private lateinit var timeAdapter: TimeRecyclerAdapter
 
     private lateinit var binding: XRayBottomSheetFragmentBinding
-    private lateinit var viewModel: XRayBottomSheetViewModel
+    private val viewModel by viewModels<XRayBottomSheetViewModel>()
+
+    private lateinit var dateSelected: String
+    private lateinit var timeSelected: String
+
+    private var shiftSelected: String? = "Morning"
+    private var arrayOfDates = listOf<String>()
+    private var arrayOfTimes = listOf<String>()
+    private var testSelectedd = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,34 +52,82 @@ class XRayBottomSheetFragment : BottomSheetDialogFragment(), OnDialogInteract,
             container,
             false
         )
-        viewModel = ViewModelProvider(this).get(XRayBottomSheetViewModel::class.java)
-        binding.viewModel = viewModel
         binding.listener = this
-        binding.root.dateEditText.setOnFocusChangeListener { view, b ->
-            if (b) {
-                val calendar = Calendar.getInstance()
-                val datePicker = DatePickerDialog.newInstance(
-                    this,
-                    calendar.get(Calendar.YEAR),
-                    calendar.get(Calendar.MONTH),
-                    calendar.get(Calendar.DAY_OF_MONTH)
-                )
-                datePicker.show(requireFragmentManager(), "DatePicker")
+
+        binding.testSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                val tests = resources.getStringArray(R.array.spinner)
+                testSelectedd = tests[p2]
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+
             }
         }
-        binding.root.timeEditText.setOnFocusChangeListener { view, isFocused ->
-            if (isFocused) {
-                val calendar = Calendar.getInstance()
-                val timePicker = TimePickerDialog.newInstance(
-                    this,
-                    calendar.get(Calendar.HOUR),
-                    calendar.get(Calendar.MINUTE),
-                    calendar.get(Calendar.SECOND),
-                    false
-                )
-                timePicker.show(requireFragmentManager(), "TimePicker")
+
+        var dialog = ProgressDialog.progressDialog(requireContext())
+
+        initializeRecycler()
+
+        binding.dayTime.visibility = View.GONE
+        binding.nightTime.visibility = View.GONE
+
+        if (navArgs<XRayBottomSheetFragmentArgs>().value.doctorShifts != null) {
+            navArgs<XRayBottomSheetFragmentArgs>().value.doctorShifts!!.forEach { shift ->
+                if (shift == "Morning") {
+                    binding.dayTime.visibility = View.VISIBLE
+                }
+                if (shift == "After noon") {
+                    binding.nightTime.visibility = View.VISIBLE
+                }
+            }
+
+            navArgs<XRayBottomSheetFragmentArgs>().value.let {
+                arrayOfDates = it.dates!!.toList()
+                arrayOfTimes = it.times!!.toList()
+                initializeRecycler()
             }
         }
+
+        viewModel.addAppointmentResponse.observe(viewLifecycleOwner, Observer {
+            when (it) {
+                is Resource.Success -> {
+                    if (it.value.hospital != null) {
+                        Toast.makeText(
+                            requireContext(),
+                            "Success ${it.value.hospital.nameEn}",
+                            Toast.LENGTH_LONG
+                        ).show()
+                        dialog.dismiss()
+                    } else {
+                        Toast.makeText(requireContext(), "Failed", Toast.LENGTH_LONG).show()
+                    }
+                }
+                is Resource.Failure -> {
+                    Log.v("TAG", it.errorResponse!!.string())
+                    dialog.dismiss()
+                }
+                is Resource.Loading -> {
+                    dialog.show()
+                }
+            }
+        })
+
+        binding.dayTime.setOnClickListener {
+            binding.nightTime.background = null
+            binding.dayTime.background =
+                ContextCompat.getDrawable(requireContext(), R.drawable.active_drawable)
+            shiftSelected = "Morning"
+        }
+
+        binding.nightTime.setOnClickListener {
+            binding.dayTime.background = null
+            binding.nightTime.background =
+                ContextCompat.getDrawable(requireContext(), R.drawable.active_drawable)
+            shiftSelected = "After Noon"
+        }
+
+
         return binding.root
     }
 
@@ -70,22 +138,42 @@ class XRayBottomSheetFragment : BottomSheetDialogFragment(), OnDialogInteract,
     }
 
     override fun onButtonClicked(view: View) {
-        this.dismiss()
+        addUserAppointment()
     }
 
-    override fun onDateSet(view: DatePickerDialog?, year: Int, monthOfYear: Int, dayOfMonth: Int) {
-        view!!.dismiss()
-        binding.root.dateEditText.setText("${year}/${monthOfYear}/$dayOfMonth")
+    private fun addUserAppointment() {
+        // Get the selections
+        val appointment = AddAppointment(
+            dateAdapter.getSelection().split(" ")[0],
+            timeAdapter.getSelection(),
+            navArgs<XRayBottomSheetFragmentArgs>().value.location + " - X-Rays",
+            shiftSelected,
+            UserSingleton.getCurrentUser().username,
+            "",
+            null,
+            navArgs<XRayBottomSheetFragmentArgs>().value.hospitalId,
+            "Operation",
+            "Test A"
+        )
+
+        viewModel.addGeneralHospitalDoctorAppointment(appointment)
+
     }
 
-    override fun onTimeSet(view: TimePickerDialog?, hourOfDay: Int, minute: Int, second: Int) {
-        var hourCalculation = hourOfDay
-        var timing = "AM"
-        if (hourCalculation >= 13) {
-            hourCalculation -= 12
-            timing = "PM"
+    private fun initializeRecycler() {
+        dateAdapter = DateRecyclerAdapter(arrayOfDates)
+        binding.dateRecyclerView.apply {
+            adapter = dateAdapter
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         }
-        binding.root.timeEditText.setText("${hourCalculation}:${minute} ${timing}")
+        timeAdapter = TimeRecyclerAdapter(arrayOfTimes)
+        binding.timeRecyclerView.apply {
+            adapter = timeAdapter
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        }
     }
+
 
 }

@@ -24,14 +24,24 @@ class GovernmentHospitalChoiceViewModel @ViewModelInject constructor(private val
         _hospitalResponse.value = hospitalRepository.getPrivateHospitals()
     }
 
+    fun getGovernmentHospitals() = viewModelScope.launch {
+        _hospitalResponse.value = Resource.Loading
+        _hospitalResponse.value = hospitalRepository.getGeneralHospitals()
+    }
+
     fun getFilteredHospitals(cityId: String) = viewModelScope.launch {
         _hospitalResponse.value = Resource.Loading
         _hospitalResponse.value = hospitalRepository.getFilteredPrivateHospitals(cityId)
     }
 
+    fun getFilteredGeneralHospitals(cityId: String) = viewModelScope.launch {
+        _hospitalResponse.value = Resource.Loading
+        _hospitalResponse.value = hospitalRepository.getFilteredGeneralHospitals(cityId)
+    }
+
     fun onConfirmClicked(view: View) {
         Navigation.findNavController(view)
-            .navigate(GovernmentHospitalChoiceDirections.govChoiceToGovHospitals())
+            .navigate(GovernmentHospitalChoiceDirections.govChoiceToGovHospitals(null))
     }
 
 }

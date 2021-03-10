@@ -3,9 +3,6 @@ package com.aligmohammad.doctorapp.ui.fragments.doctorlist
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.text.method.KeyListener
-import android.util.Log
-import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -59,7 +56,7 @@ class DoctorListFragment : Fragment() {
         val appBarConfiguration = AppBarConfiguration(findNavController().graph)
         binding.root.toolbar.setupWithNavController(findNavController(), appBarConfiguration)
 
-        binding.searchBar.addTextChangedListener(object: TextWatcher {
+        binding.searchBar.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
 

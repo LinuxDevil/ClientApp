@@ -79,7 +79,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
             android:drawableEnd="@drawable/date_icon"
-            android:entries="@array/spinner"
+            android:entries="@array/sympotoms"
             android:inputType="date"
             android:padding="10dp"
             app:layout_constraintLeft_toLeftOf="parent"

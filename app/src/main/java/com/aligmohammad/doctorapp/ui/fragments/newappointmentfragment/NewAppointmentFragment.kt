@@ -112,13 +112,13 @@ class NewAppointmentFragment : Fragment(R.layout.fragment_new_appointment), OnMe
             }
             "General hospitals" -> {
                 navController.navigate(
-                    NewAppointmentFragmentDirections.actionHomeFragmentToBottomSheetGovernment()
+                    NewAppointmentFragmentDirections.actionHomeFragmentToBottomSheetGovernment(null)
                         .setType("General hospitals")
                 )
             }
             "Private hospitals" -> {
                 navController.navigate(
-                    NewAppointmentFragmentDirections.actionHomeFragmentToBottomSheetGovernment()
+                    NewAppointmentFragmentDirections.actionHomeFragmentToBottomSheetGovernment(null)
                         .setType(v.findViewById<TextView>(R.id.itemName).text.toString())
                 )
             }
@@ -129,7 +129,7 @@ class NewAppointmentFragment : Fragment(R.layout.fragment_new_appointment), OnMe
             }
             else -> {
                 navController.navigate(
-                    NewAppointmentFragmentDirections.actionHomeFragmentToBottomSheetGovernment()
+                    NewAppointmentFragmentDirections.actionHomeFragmentToBottomSheetGovernment(null)
                         .setType(v.findViewById<TextView>(R.id.itemName).text.toString())
                 )
             }

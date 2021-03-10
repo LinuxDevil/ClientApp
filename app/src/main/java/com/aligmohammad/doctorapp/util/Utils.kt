@@ -3,22 +3,13 @@ package com.aligmohammad.doctorapp.util
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.aligmohammad.doctorapp.data.network.Resource
-import com.aligmohammad.doctorapp.data.network.UserSingleton
-import com.aligmohammad.doctorapp.data.network.responses.FirebaseUserResponse
-import com.aligmohammad.doctorapp.ui.activities.main_activity.MainActivity
 import com.aligmohammad.doctorapp.ui.fragments.authframent.LoginFragment
 import com.google.android.material.snackbar.Snackbar
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.launch
 
 fun <A : Activity> Activity.startNewActivity(activity: Class<A>) {
@@ -64,6 +55,7 @@ fun View.snackbar(message: String, action: (() -> Unit)? = null) {
     }
     snackbar.show()
 }
+
 
 //TODO: Fix
 fun Fragment.logout() = lifecycleScope.launch {

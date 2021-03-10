@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -40,12 +41,21 @@ class GovernmentHospitalChoice : BottomSheetDialogFragment(), OnDialogInteract {
         binding.listener = this
         binding.viewModel = viewModel
 
-        viewModel.getHospitals()
+        if (arguments?.getString("type") === "General hospitals") {
+            viewModel.getGovernmentHospitals()
+        } else {
+            viewModel.getHospitals()
+        }
 
         binding.citiesSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                val cityId = p2 + 4;
-                viewModel.getFilteredHospitals(cityId.toString())
+                val cityId = p2 + 1
+                if (arguments?.getString("type") === "General hospitals") {
+                    viewModel.getFilteredGeneralHospitals(cityId.toString())
+                } else {
+                    viewModel.getFilteredHospitals(cityId.toString())
+                }
+
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -54,27 +64,37 @@ class GovernmentHospitalChoice : BottomSheetDialogFragment(), OnDialogInteract {
         }
 
 
-        binding.hospitalsSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                selectedIndex = p2
-            }
+        binding.hospitalsSpinner.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                    selectedIndex = p2
+                }
 
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-            }
+                override fun onNothingSelected(p0: AdapterView<*>?) {
+                }
 
-        }
+            }
 
         viewModel.hospitalResponse.observe(viewLifecycleOwner, Observer {
-            when  (it) {
+            when (it) {
                 is Resource.Success -> {
                     hospitalNames = it.value
-                    val hospitalNameStrings = ArrayList<String>()
-                    hospitalNames.forEach { hospital ->
-                        hospitalNameStrings.add(hospital.nameEn!!)
+                    if (it.value.size >= 1) {
+                        val hospitalNameStrings = ArrayList<String>()
+                        hospitalNames.forEach { hospital ->
+                            hospitalNameStrings.add(hospital.nameEn!!)
+                        }
+                        binding.hospitalsSpinner.adapter = ArrayAdapter(
+                            requireContext(),
+                            android.R.layout.simple_dropdown_item_1line,
+                            hospitalNameStrings
+                        )
+                    } else {
+                        Toast.makeText(requireContext(), "There is no hospitals", Toast.LENGTH_LONG)
+                            .show()
                     }
-                    binding.hospitalsSpinner.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, hospitalNameStrings)
                 }
-                is Resource.Failure ->  {
+                is Resource.Failure -> {
 
                 }
                 is Resource.Loading -> {
@@ -88,7 +108,7 @@ class GovernmentHospitalChoice : BottomSheetDialogFragment(), OnDialogInteract {
         binding.confirmButton.setOnClickListener {
             if (title === "General hospitals") {
                 Navigation.findNavController(requireActivity(), R.id.fragment).navigate(
-                    GovernmentHospitalChoiceDirections.govChoiceToGovHospitals()
+                    GovernmentHospitalChoiceDirections.govChoiceToGovHospitals(hospitalNames[selectedIndex])
                 )
             } else {
                 Navigation.findNavController(requireActivity(), R.id.fragment).navigate(
