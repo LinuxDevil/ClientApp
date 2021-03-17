@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -62,6 +61,29 @@
                 android:name="type"
                 android:defaultValue="doctor" />
         </action>
+        <action
+            android:id="@+id/homeToDoctorPlacesList"
+            app:destination="@id/doctorPlaces"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim">
+            <argument
+                android:name="type"
+                android:defaultValue="doctor" />
+        </action>
+        <action
+            android:id="@+id/homeToArmyPlacesList"
+            app:destination="@id/armyListFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim">
+            <argument
+                android:name="type"
+                android:defaultValue="doctor" />
+        </action>
+
         <action
             android:id="@+id/homeToXRay"
             app:destination="@id/cityDistrictCompanyFragment"
@@ -707,6 +729,7 @@
     </dialog>
     <dialog
         android:id="@+id/singleAppointment"
+        tools:layout="@layout/single_appointment_fragment"
         android:name="com.aligmohammad.doctorapp.ui.dialogs.appointmentmanagment.singleappointment.SingleAppointment"
         android:label="@string/reserve_an_appointment">
         <argument
@@ -759,4 +782,160 @@
         android:id="@+id/addNewSibling"
         android:name="com.aligmohammad.doctorapp.ui.fragments.addnewsibiling.AddNewSibling"
         android:label="AddNewSibling" />
+    <fragment
+        android:id="@+id/doctorPlaces"
+        android:name="com.aligmohammad.doctorapp.ui.fragments.doctorplaces.DoctorPlaces"
+        android:label="DoctorPlaces">
+        <action
+            android:id="@+id/doctorToAppointment"
+            app:destination="@id/singleAppointment" />
+        <action
+            android:id="@+id/actionHomeToNewAppointment"
+            app:destination="@id/newAppointmentFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <argument
+            android:name="major"
+            android:defaultValue="Specalists"
+            app:argType="string" />
+        <action
+            android:id="@+id/doctorListToDoctorProfile"
+            app:destination="@id/doctorProfileFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <argument
+            android:name="type"
+            android:defaultValue="doctor"
+            app:argType="string" />
+        <action
+            android:id="@+id/listToLabs"
+            app:destination="@id/labsBottomSheetFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/listToPharmacies"
+            app:destination="@id/pharmacyRicottaBottomSheetFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim">
+            <argument
+                android:name="type"
+                android:defaultValue="Labs"
+                app:argType="string"
+                app:nullable="true" />
+            <argument
+                android:name="times"
+                android:defaultValue="@null"
+                app:argType="string[]"
+                app:nullable="true" />
+            <argument
+                android:name="dates"
+                android:defaultValue="@null"
+                app:argType="string[]"
+                app:nullable="true" />
+            <argument
+                android:name="placeUuid"
+                android:defaultValue="0"
+                app:argType="string"
+                app:nullable="true" />
+        </action>
+        <argument
+            android:name="doctorArray"
+            android:defaultValue="@null"
+            app:argType="string[]"
+            app:nullable="true" />
+        <argument
+            android:name="city"
+            android:defaultValue="عمان"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="district"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="insuranceName"
+            android:defaultValue="NatHealth"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/armyListFragment"
+        android:name="com.aligmohammad.doctorapp.ui.fragments.armyplaces.ArmyListFragment"
+        android:label="ArmyListFragment"
+        tools:layout="@layout/army_list_fragment">
+        <action
+            android:id="@+id/doctorToAppointment"
+            app:destination="@id/singleAppointment" />
+        <argument
+            android:name="major"
+            android:defaultValue="Specalists"
+            app:argType="string" />
+        <action
+            android:id="@+id/doctorListToDoctorProfile"
+            app:destination="@id/doctorProfileFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+        <argument
+            android:name="type"
+            android:defaultValue="doctor"
+            app:argType="string" />
+        <action
+            android:id="@+id/listToLabs"
+            app:destination="@id/labsBottomSheetFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/listToPharmacies"
+            app:destination="@id/pharmacyRicottaBottomSheetFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim">
+            <argument
+                android:name="type"
+                android:defaultValue="Labs"
+                app:argType="string"
+                app:nullable="true" />
+            <argument
+                android:name="times"
+                android:defaultValue="@null"
+                app:argType="string[]"
+                app:nullable="true" />
+            <argument
+                android:name="dates"
+                android:defaultValue="@null"
+                app:argType="string[]"
+                app:nullable="true" />
+            <argument
+                android:name="placeUuid"
+                android:defaultValue="0"
+                app:argType="string"
+                app:nullable="true" />
+        </action>
+        <argument
+            android:name="doctorArray"
+            android:defaultValue="@null"
+            app:argType="string[]"
+            app:nullable="true" />
+        <argument
+            android:name="city"
+            android:defaultValue="عمان"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="district"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="insuranceName"
+            android:defaultValue="NatHealth"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
 </navigation>

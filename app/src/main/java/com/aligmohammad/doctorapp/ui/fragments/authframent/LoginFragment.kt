@@ -11,18 +11,11 @@ import androidx.lifecycle.asLiveData
 import com.aligmohammad.doctorapp.R
 import com.aligmohammad.doctorapp.data.network.Resource
 import com.aligmohammad.doctorapp.data.network.UserSingleton
-import com.aligmohammad.doctorapp.data.network.responses.FirebaseUserResponse
 import com.aligmohammad.doctorapp.databinding.FragmentLoginBinding
 import com.aligmohammad.doctorapp.helpers.PreferencesStore
 import com.aligmohammad.doctorapp.util.hideKeyboard
 import com.aligmohammad.doctorapp.util.snackbar
-import com.google.firebase.FirebaseException
-import com.google.firebase.auth.PhoneAuthCredential
-import com.google.firebase.auth.PhoneAuthProvider
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.AndroidEntryPoint
@@ -45,10 +38,8 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
         databaseReference = Firebase.database.reference
 
-        binding.phoneEditText.setText("+962777733330")
-
         viewModel.verifyResponse.observe(viewLifecycleOwner, Observer {
-            when(it) {
+            when (it) {
                 is Resource.Success -> {
                     if (it.value != null) {
                         if (it.value.status == 1) {
@@ -69,18 +60,16 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         })
 
         viewModel.authResponse.observe(viewLifecycleOwner, Observer {
-            when(it) {
+            when (it) {
                 is Resource.Success -> {
-                    if (it.value != null && it.value.user != null) {
-                        viewModel.saveAccessTokens(it.value.user.token!!, it.value.user.token)
-                        UserSingleton.setUser(it.value.user)
-                        initializeVerify()
-                    }
+                    viewModel.saveAccessTokens(it.value.user.token!!, it.value.user.token)
+                    UserSingleton.setUser(it.value.user)
+                    initializeVerify()
                 }
                 is Resource.Failure -> {
                     Log.v("Failure", it.errorCode.toString())
                     if (it.errorCode.toString() == "409") {
-                        viewModel.login(binding.phoneEditText.text.toString())
+                        viewModel.login("+962" + binding.phoneEditText.text.toString())
                     }
                 }
                 else -> {
@@ -95,7 +84,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                 confirmCode()
             } else {
                 if (binding.phoneEditText.text.toString()
-                        .matches("^(00962|962|\\+962)(77|7|79|78)([0-9]{7})$".toRegex())
+                        .matches("^(77|7|79|78)([0-9]{7})\$".toRegex())
                 ) {
                     registerUser()
                 } else {
@@ -136,7 +125,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     }
 
     private fun registerUser() {
-        val phoneNumber = binding.phoneEditText.text.toString()
+        val phoneNumber = "+962" + binding.phoneEditText.text.toString()
         this.phoneNumberString = phoneNumber
         viewModel.register(phoneNumber)
     }

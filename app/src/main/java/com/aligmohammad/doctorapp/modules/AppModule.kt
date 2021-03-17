@@ -3,10 +3,7 @@ package com.aligmohammad.doctorapp.modules
 import android.content.Context
 import com.aligmohammad.doctorapp.data.network.RemoteDataSource
 import com.aligmohammad.doctorapp.data.network.api.*
-import com.aligmohammad.doctorapp.data.network.repository.AuthRepository
-import com.aligmohammad.doctorapp.data.network.repository.HomeRepository
-import com.aligmohammad.doctorapp.data.network.repository.HospitalRepository
-import com.aligmohammad.doctorapp.data.network.repository.UserRepository
+import com.aligmohammad.doctorapp.data.network.repository.*
 import com.aligmohammad.doctorapp.helpers.PreferencesStore
 import dagger.Module
 import dagger.Provides
@@ -32,6 +29,7 @@ object AppModule {
     ): RemoteDataSource {
         return RemoteDataSource(userPreferences)
     }
+
     @Singleton
     @Provides
     fun provideAuthApi(
@@ -85,6 +83,15 @@ object AppModule {
 
     @Singleton
     @Provides
+    fun provideDoctorPlaceApi(
+        remoteDataSource: RemoteDataSource,
+        @ApplicationContext context: Context
+    ): DoctorPlaceApi {
+        return remoteDataSource.buildApi(DoctorPlaceApi::class.java, context)
+    }
+
+    @Singleton
+    @Provides
     fun provideInsuranceCompanyApi(
         remoteDataSource: RemoteDataSource,
         @ApplicationContext context: Context
@@ -100,6 +107,31 @@ object AppModule {
         userApi: UserApi
     ): HomeRepository {
         return HomeRepository(menuApi, insuranceApi, userApi)
+    }
+
+    @Provides
+    fun provideDoctorPlaceRepository(
+        doctorPlaceApi: DoctorPlaceApi
+    ): DoctorPlaceRepository {
+        return DoctorPlaceRepository(doctorPlaceApi)
+    }
+
+
+    @Singleton
+    @Provides
+    fun provideInsuranceArmyPlacesApi(
+        remoteDataSource: RemoteDataSource,
+        @ApplicationContext context: Context
+    ): ArmyPlacesApi {
+        return remoteDataSource.buildApi(ArmyPlacesApi::class.java, context)
+    }
+
+
+    @Provides
+    fun provideArmyPlacesRepository(
+        armyPlacesApi: ArmyPlacesApi,
+    ): ArmyPlaceRepository {
+        return ArmyPlaceRepository(armyPlacesApi)
     }
 
 

@@ -108,7 +108,9 @@ class NewAppointmentFragment : Fragment(R.layout.fragment_new_appointment), OnMe
                 navController.navigate(NewAppointmentFragmentDirections.homeToDoctorConsulting())
             }
             "Army Places" -> {
-                navController.navigate(NewAppointmentFragmentDirections.actionHomeFragmentToOffersListFragment())
+                navController.navigate(
+                    NewAppointmentFragmentDirections.homeToArmyPlacesList("").setType("Army Places")
+                )
             }
             "General hospitals" -> {
                 navController.navigate(
@@ -124,7 +126,8 @@ class NewAppointmentFragment : Fragment(R.layout.fragment_new_appointment), OnMe
             }
             "Doctor Places" -> {
                 navController.navigate(
-                    NewAppointmentFragmentDirections.homeToCityDistrictCompany().setType("x-rays")
+                    NewAppointmentFragmentDirections.homeToDoctorPlacesList("")
+                        .setType("Doctor Places")
                 )
             }
             else -> {

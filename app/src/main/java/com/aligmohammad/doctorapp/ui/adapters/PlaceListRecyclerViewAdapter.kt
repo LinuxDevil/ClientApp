@@ -19,7 +19,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.aligmohammad.doctorapp.R
 import com.aligmohammad.doctorapp.data.model.Place
 import com.aligmohammad.doctorapp.databinding.LabListItemBinding
-import com.aligmohammad.doctorapp.ui.fragments.doctorlist.DoctorListFragmentDirections
+import com.aligmohammad.doctorapp.ui.fragments.doctorplaces.DoctorPlacesDirections
 
 class PlaceListRecyclerViewAdapter(
     private val places: List<Place>,
@@ -52,18 +52,11 @@ class PlaceListRecyclerViewAdapter(
             it.name == v.tag.toString()
         }[0]
 
-        if (type == "Pharmacy") {
-            Navigation.findNavController(v)
-                .navigate(DoctorListFragmentDirections.listToPharmacies().setType("Pharmacy").setDates(
-                    arrayOf(lab.date)
-                ).setTimes(arrayOf(lab.time)).setPlaceUuid(lab.locationName))
-        } else {
-            Navigation.findNavController(v).navigate(
-                DoctorListFragmentDirections.listToLabs().setType(type).setDates(
-                    arrayOf(lab.date)
-                ).setTimes(arrayOf(lab.time)).setPlaceUuid(lab.locationName)
+        Navigation.findNavController(v)
+            .navigate(
+                DoctorPlacesDirections.actionHomeToNewAppointment()
             )
-        }
+
     }
 
 }

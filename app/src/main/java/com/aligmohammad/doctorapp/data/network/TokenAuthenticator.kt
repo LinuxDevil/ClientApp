@@ -33,10 +33,13 @@ class TokenAuthenticator @Inject constructor(
 
         return when (val tokenResponse = getToken()) {
             is Resource.Success -> {
-                saveToken(tokenResponse.value.token!!)
-                response.request.newBuilder()
-                    .header("Authorization", "Token ${tokenResponse.value.token}")
-                    .build()
+                if (tokenResponse.value.token != null) {
+                    saveToken(tokenResponse.value.token)
+                    return response.request.newBuilder()
+                        .header("Authorization", "Token ${tokenResponse.value.token}")
+                        .build()
+                }
+                return null
             }
             else -> null
         }
