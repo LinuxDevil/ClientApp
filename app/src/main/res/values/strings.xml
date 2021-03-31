@@ -11,7 +11,7 @@
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
 <resources>
-    <string name="app_name">عيادتي</string>
+    <string name="app_name">My Clinic</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="app_logo">App Logo</string>
     <string name="username">Username</string>

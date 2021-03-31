@@ -4,12 +4,16 @@ import com.aligmohammad.doctorapp.data.model.nest.AddAppointment
 import com.aligmohammad.doctorapp.data.network.response.AppointmentResponse
 import com.aligmohammad.doctorapp.data.network.response.GeneralHospitalAppointmentResponse
 import com.aligmohammad.doctorapp.data.network.response.PlaceResponse
+import com.aligmohammad.doctorapp.data.network.responses.DoctorResponse
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Query
 
 interface PlaceApi : BaseApi {
+
+    @GET("/api/doctors/all")
+    suspend fun getAllDoctors(): DoctorResponse
 
     @GET("/api/places/private/filter")
     suspend fun getFilteredGeneralPlaces(

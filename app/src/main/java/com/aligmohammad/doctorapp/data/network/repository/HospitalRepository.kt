@@ -8,20 +8,20 @@ class HospitalRepository @Inject constructor(
     private val api: HospitalApi
 ) : BaseRepository(api) {
 
-    suspend fun getPrivateHospitals() = safeApiCall {
-        api.getPrivateHospitals()
+    suspend fun getPrivateHospitals(langId: String) = safeApiCall {
+        api.getPrivateHospitals(langId)
     }
 
-    suspend fun getGeneralHospitals() = safeApiCall {
-        api.getGeneralHospitals()
+    suspend fun getGeneralHospitals(langId: String) = safeApiCall {
+        api.getGeneralHospitals(langId)
     }
 
-    suspend fun getFilteredPrivateHospitals(city: String) = safeApiCall {
-        api.getFilteredPrivateHospitals(city)
+    suspend fun getFilteredPrivateHospitals(city: String, langId: String) = safeApiCall {
+        api.getFilteredPrivateHospitals(city, langId)
     }
 
-    suspend fun getFilteredGeneralHospitals(city: String) = safeApiCall {
-        api.getFilteredGenernalHospitals(city)
+    suspend fun getFilteredGeneralHospitals(city: String, langId: String) = safeApiCall {
+        api.getFilteredGenernalHospitals(city, langId)
     }
 
     suspend fun addHospitalDoctorAppointment(addAppointment: AddAppointment) = safeApiCall {

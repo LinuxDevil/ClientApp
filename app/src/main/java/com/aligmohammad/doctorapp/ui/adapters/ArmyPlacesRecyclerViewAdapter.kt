@@ -41,14 +41,21 @@ class ArmyPlacesRecyclerViewAdapter(
         val lab = places.filter {
             it.nameEn == v.tag.toString()
         }[0]
-//
+
         if (type == "Pharmacy") {
             Navigation.findNavController(v)
                 .navigate(
-                    ArmyListFragmentDirections.listToLabs().setType("Pharmacy").setDates(
-                        arrayOf("26/02/2021", "14/3/2021", "16/03/2021")
-                    ).setTimes(arrayOf("10:00")).setPlaceUuid("lab.location.nameEn")
+                    ArmyListFragmentDirections.doctorToAppointment("").setDates(
+                        lab.appointmentDates.toTypedArray()
+                    ).setTimes(lab.appointmentDurations.toTypedArray())
+                        .setDoctorShifts(arrayOf("After noon", "Morning"))
                 )
+        } else {
+            Navigation.findNavController(v).navigate(
+                ArmyListFragmentDirections.listToLabs().setType(type).setDates(
+                    lab.appointmentDates.toTypedArray()
+                ).setTimes(lab.appointmentTimes.toTypedArray()).setPlaceUuid("lab.location.nameEn")
+            )
         }
     }
 

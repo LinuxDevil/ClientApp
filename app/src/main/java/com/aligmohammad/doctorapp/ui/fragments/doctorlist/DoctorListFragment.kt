@@ -3,12 +3,10 @@ package com.aligmohammad.doctorapp.ui.fragments.doctorlist
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.LayoutInflater
+import android.util.Log
 import android.view.View
-import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.ui.AppBarConfiguration
@@ -16,29 +14,26 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.aligmohammad.doctorapp.R
 import com.aligmohammad.doctorapp.data.model.Doctor
-import com.aligmohammad.doctorapp.data.model.Place
+import com.aligmohammad.doctorapp.data.network.Resource
+import com.aligmohammad.doctorapp.data.network.response.PlaceListResponseItem
 import com.aligmohammad.doctorapp.databinding.DoctorListFragmentBinding
 import com.aligmohammad.doctorapp.ui.adapters.DoctorListRecyclerViewAdapter
 import com.aligmohammad.doctorapp.ui.adapters.PlaceListRecyclerViewAdapter
-import com.aligmohammad.doctorapp.util.snackbar
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.doctor_list_fragment.view.*
 import java.util.*
 
-class DoctorListFragment : Fragment() {
+@AndroidEntryPoint
+class DoctorListFragment : Fragment(R.layout.doctor_list_fragment) {
 
-    private lateinit var viewModel: DoctorListViewModel
+    private val viewModel by viewModels<DoctorListViewModel>()
     private lateinit var binding: DoctorListFragmentBinding
 
     private lateinit var adapter: DoctorListRecyclerViewAdapter
     private lateinit var placeAdapter: PlaceListRecyclerViewAdapter
 
     private val doctors = arrayListOf<Doctor>()
-    private var places = arrayListOf<Place>()
+    private var places = arrayListOf<PlaceListResponseItem>()
 
     private var selectedCity = ""
     private var selectedDistrict = ""
@@ -46,13 +41,9 @@ class DoctorListFragment : Fragment() {
 
     private var searchText = ""
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.doctor_list_fragment, container, false)
-        viewModel = ViewModelProvider(this).get(DoctorListViewModel::class.java)
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding = DoctorListFragmentBinding.bind(view)
         val appBarConfiguration = AppBarConfiguration(findNavController().graph)
         binding.root.toolbar.setupWithNavController(findNavController(), appBarConfiguration)
 
@@ -67,13 +58,13 @@ class DoctorListFragment : Fragment() {
                         val filteredDoctors = doctors.filter { doc ->
                             doc.name!!.toLowerCase(Locale.ROOT).indexOf(searchText) > -1
                         }
-                        adapter = DoctorListRecyclerViewAdapter(filteredDoctors)
+                        adapter = DoctorListRecyclerViewAdapter(emptyList())
                         adapter.notifyDataSetChanged()
                         binding.root.list.adapter = adapter
                     }
                     "x-rays" -> {
                         val filteredDoctors = places.filter { doc ->
-                            doc.name!!.toLowerCase(Locale.ROOT).indexOf(searchText) > -1
+                            doc.name.toLowerCase(Locale.ROOT).indexOf(searchText) > -1
                         }
                         placeAdapter = PlaceListRecyclerViewAdapter(filteredDoctors)
                         placeAdapter.notifyDataSetChanged()
@@ -81,7 +72,7 @@ class DoctorListFragment : Fragment() {
                     }
                     "labs" -> {
                         val filteredDoctors = places.filter { doc ->
-                            doc.name!!.toLowerCase(Locale.ROOT).indexOf(searchText) > -1
+                            doc.name.toLowerCase(Locale.ROOT).indexOf(searchText) > -1
                         }
                         placeAdapter = PlaceListRecyclerViewAdapter(filteredDoctors)
                         placeAdapter.notifyDataSetChanged()
@@ -89,7 +80,7 @@ class DoctorListFragment : Fragment() {
                     }
                     "pharmacies" -> {
                         val filteredDoctors = places.filter { doc ->
-                            doc.name!!.toLowerCase(Locale.ROOT).indexOf(searchText) > -1
+                            doc.name.toLowerCase(Locale.ROOT).indexOf(searchText) > -1
                         }
                         placeAdapter = PlaceListRecyclerViewAdapter(filteredDoctors)
                         placeAdapter.notifyDataSetChanged()
@@ -104,6 +95,8 @@ class DoctorListFragment : Fragment() {
 
         })
 
+
+
         binding.root.toolbar.title =
             navArgs<DoctorListFragmentArgs>().value.type.capitalize(Locale.ROOT)[0] + navArgs<DoctorListFragmentArgs>().value.type.substring(
                 1,
@@ -116,147 +109,66 @@ class DoctorListFragment : Fragment() {
             selectedInsurance = it.insuranceName!!
         }
 
-        when (navArgs<DoctorListFragmentArgs>().value.type) {
-            "doctor" -> {
-                if (navArgs<DoctorListFragmentArgs>().value.doctorArray != null && navArgs<DoctorListFragmentArgs>().value.doctorArray!!.isNotEmpty()) {
-                    getFirebaseDoctorList(navArgs<DoctorListFragmentArgs>().value.doctorArray!!)
-                } else {
-                    getAllDoctors()
+        viewModel.doctorListResponse.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+            when (it) {
+                is Resource.Loading -> {
+                    Log.v("ViewModel", "Loading")
+                }
+                is Resource.Success -> {
+                    Log.v("ViewModel", "Success ${it.value.doctors.size} size")
+
+                    adapter = DoctorListRecyclerViewAdapter(it.value.doctors)
+                    adapter.notifyDataSetChanged()
+                    binding.root.list.adapter = adapter
+
+                }
+                is Resource.Failure -> {
+                    Log.v("ViewModel", "Failure ${it.errorCode}")
+
                 }
             }
+        })
+
+        viewModel.placeListResponse.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+            when (it) {
+                is Resource.Loading -> {
+                    Log.v("ViewModel", "Loading")
+                }
+                is Resource.Success -> {
+                    Log.v("ViewModel", "Success ${it.value.size} size")
+
+                }
+                is Resource.Failure -> {
+                    Log.v("ViewModel", "Failure ${it.errorCode}")
+
+                }
+            }
+        })
+
+        when (navArgs<DoctorListFragmentArgs>().value.type) {
+            "doctor" -> {
+                viewModel.getDoctorListFilter()
+            }
             "x-rays" -> {
-                getAllXRays()
+                viewModel.getPlaceList("1", "X-Rays")
             }
             "labs" -> {
-                getAllLabs()
+                viewModel.getPlaceList("1", "Labs")
             }
             "pharmacies" -> {
-                getAllPharmacies()
+                viewModel.getPlaceList("1", "Pharmacies")
             }
         }
         initRecycler()
-        return binding.root
-    }
-
-    private fun getAllPharmacies() {
-        val db = Firebase.database.reference
-        db.child("Places/Pharmacy").addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                places.clear()
-                snapshot.children.forEach { snap ->
-                    val place: Place = snap.getValue(Place::class.java)!!
-                    if (selectedCity.isNotEmpty() && selectedDistrict.isNotEmpty() && selectedInsurance.isNotEmpty()) {
-                        if (place.city!!.indexOf(selectedCity) != -1) {
-                            if (place.district!!.indexOf(selectedDistrict) != -1) {
-
-                                places.add(place)
-                            }
-                        }
-                    }
-                }
-                initRecycler()
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                binding.searchBar.snackbar(error.message)
-            }
-        })
-    }
-
-    private fun getAllLabs() {
-        val db = Firebase.database.reference
-        db.child("Places/Labs").addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                places.clear()
-                snapshot.children.forEach { snap ->
-                    val place: Place = snap.getValue(Place::class.java)!!
-                    if (selectedCity.isNotEmpty() && selectedDistrict.isNotEmpty() && selectedInsurance.isNotEmpty()) {
-                        if (place.city!!.indexOf(selectedCity) != -1) {
-                            if (place.district!!.indexOf(selectedDistrict) != -1) {
-
-                                places.add(place)
-                            }
-                        }
-                    }
-                }
-                initRecycler()
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                binding.searchBar.snackbar(error.message)
-            }
-        })
-    }
-
-    private fun getAllDoctors() {
-        val db = Firebase.database.reference
-        db.child("Doctors").addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                doctors.clear()
-                snapshot.children.forEach { snap ->
-                    val doctor: Doctor = snap.getValue(Doctor::class.java)!!
-                    doctors.add(doctor)
-                }
-                initRecycler()
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                binding.searchBar.snackbar(error.message)
-            }
-        })
-
-    }
-
-    private fun getAllXRays() {
-        val db = Firebase.database.reference
-        db.child("Places/X-Rays").addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                places.clear()
-                snapshot.children.forEach { snap ->
-                    val place: Place = snap.getValue(Place::class.java)!!
-                    if (selectedCity.isNotEmpty() && selectedDistrict.isNotEmpty() && selectedInsurance.isNotEmpty()) {
-                        if (place.city!!.indexOf(selectedCity) != -1) {
-                            if (place.district!!.indexOf(selectedDistrict) != -1) {
-                                if (place.insuranceCompany!!.indexOf(selectedInsurance) != -1) {
-                                    places.add(place)
-                                }
-                            }
-                        }
-                    }
-                }
-                initRecycler()
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                binding.searchBar.snackbar(error.message)
-            }
-        })
-    }
-
-    private fun getFirebaseDoctorList(doctorArray: Array<String>) {
-        val db = Firebase.database.reference
-        db.child("Doctors").addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                doctors.clear()
-                snapshot.children.forEach { snap ->
-                    val doctor: Doctor = snap.getValue(Doctor::class.java)!!
-                    if (doctorArray.indexOf(doctor.uuid) != -1)
-                        doctors.add(doctor)
-                }
-                initRecycler()
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                binding.searchBar.snackbar(error.message)
-            }
-        })
     }
 
     private fun initRecycler() {
 
         when (navArgs<DoctorListFragmentArgs>().value.type) {
             "doctor" -> {
-                adapter = DoctorListRecyclerViewAdapter(doctors)
+                adapter = DoctorListRecyclerViewAdapter(
+                    emptyList()
+                )
                 adapter.notifyDataSetChanged()
                 binding.root.list.adapter = adapter
             }

@@ -12,16 +12,22 @@ import retrofit2.http.Query
 interface HospitalApi : BaseApi {
 
     @GET("/api/hospitals/private")
-    suspend fun getPrivateHospitals(): HospitalResponse
+    suspend fun getPrivateHospitals(@Query("langId") langId: String): HospitalResponse
 
     @GET("/api/hospitals/private/filter")
-    suspend fun getFilteredPrivateHospitals(@Query("city") city: String): HospitalResponse
+    suspend fun getFilteredPrivateHospitals(
+        @Query("city") city: String,
+        @Query("langId") langId: String
+    ): HospitalResponse
 
     @GET("/api/hospitals/general/filter")
-    suspend fun getFilteredGenernalHospitals(@Query("city") city: String): HospitalResponse
+    suspend fun getFilteredGenernalHospitals(
+        @Query("city") city: String,
+        @Query("langId") langId: String
+    ): HospitalResponse
 
     @GET("/api/hospitals/general")
-    suspend fun getGeneralHospitals(): HospitalResponse
+    suspend fun getGeneralHospitals(@Query("langId") langId: String): HospitalResponse
 
     @POST("/api/appointment")
     suspend fun addHospitalDoctorAppointment(@Body() appointment: AddAppointment): AppointmentResponse

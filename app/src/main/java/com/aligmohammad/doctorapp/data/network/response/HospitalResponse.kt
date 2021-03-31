@@ -3,7 +3,11 @@ package com.aligmohammad.doctorapp.data.network.response
 import android.os.Parcel
 import android.os.Parcelable
 
-class HospitalResponse : ArrayList<HospitalResponseItem>()
+data class HospitalResponse(
+    val hospitals: ArrayList<HospitalResponseItem>,
+    val length: Int?,
+    val hospitalNames: ArrayList<String>
+)
 
 data class HospitalResponseItem(
     val appointmentDates: List<String>?,
@@ -50,8 +54,7 @@ data class HospitalResponseItem(
         parcel.readString(),
         parcel.readString(),
         parcel.readString()
-    ) {
-    }
+    )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeStringList(appointmentDates)
@@ -106,8 +109,7 @@ data class Location(
         parcel.readString(),
         parcel.readString(),
         parcel.readString()
-    ) {
-    }
+    )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(created)

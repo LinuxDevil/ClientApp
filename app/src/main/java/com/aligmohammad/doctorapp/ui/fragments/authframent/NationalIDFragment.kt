@@ -1,7 +1,6 @@
 package com.aligmohammad.doctorapp.ui.fragments.authframent
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -11,15 +10,11 @@ import com.aligmohammad.doctorapp.R
 import com.aligmohammad.doctorapp.data.model.UserDTO
 import com.aligmohammad.doctorapp.data.network.Resource
 import com.aligmohammad.doctorapp.data.network.UserSingleton
-import com.aligmohammad.doctorapp.data.network.response.User
-import com.aligmohammad.doctorapp.data.network.responses.FirebaseUserResponse
 import com.aligmohammad.doctorapp.databinding.FragmentNationalIdBinding
-import com.aligmohammad.doctorapp.util.*
-import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
+import com.aligmohammad.doctorapp.util.handleApiError
+import com.aligmohammad.doctorapp.util.hideKeyboard
+import com.aligmohammad.doctorapp.util.snackbar
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_national_id.view.*
 import navigateSafe
 
 @AndroidEntryPoint

@@ -42,9 +42,9 @@ class GovernmentHospitalChoice : BottomSheetDialogFragment(), OnDialogInteract {
         binding.viewModel = viewModel
 
         if (arguments?.getString("type") === "General hospitals") {
-            viewModel.getGovernmentHospitals()
+            viewModel.getFilteredGeneralHospitals("1")
         } else {
-            viewModel.getHospitals()
+            viewModel.getFilteredHospitals("1")
         }
 
         binding.citiesSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -78,12 +78,9 @@ class GovernmentHospitalChoice : BottomSheetDialogFragment(), OnDialogInteract {
         viewModel.hospitalResponse.observe(viewLifecycleOwner, Observer {
             when (it) {
                 is Resource.Success -> {
-                    hospitalNames = it.value
-                    if (it.value.size >= 1) {
-                        val hospitalNameStrings = ArrayList<String>()
-                        hospitalNames.forEach { hospital ->
-                            hospitalNameStrings.add(hospital.nameEn!!)
-                        }
+                    hospitalNames = it.value.hospitals
+                    if (it.value.length!! >= 1) {
+                        val hospitalNameStrings = it.value.hospitalNames
                         binding.hospitalsSpinner.adapter = ArrayAdapter(
                             requireContext(),
                             android.R.layout.simple_dropdown_item_1line,

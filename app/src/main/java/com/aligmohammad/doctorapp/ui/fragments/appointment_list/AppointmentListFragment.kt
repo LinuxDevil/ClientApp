@@ -22,9 +22,11 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.appointment_list_fragment.view.toolbar
 import kotlinx.android.synthetic.main.home_fragment.view.*
 
+@AndroidEntryPoint
 class AppointmentListFragment : Fragment() {
 
     private lateinit var viewModel: AppointmentListViewModel
@@ -75,7 +77,6 @@ class AppointmentListFragment : Fragment() {
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         }
     }
-
 
     private fun getAllAppointments() {
         val db = Firebase.database.reference

@@ -1,28 +1,30 @@
 package com.aligmohammad.doctorapp.data.network.responses
 
 data class DoctorResponse(
-    val appointment_duration: Int,
-    val appointments: List<String>,
-    val city: String,
-    val consults: List<String>,
-    val created_by: String,
-    val district: String,
-    val id: String,
-    val image_url: String,
-    val insurances: List<String>,
-    val lat: Int,
-    val lng: Int,
-    val location_name: String,
-    val major: String,
-    val menu_items: String,
+    val doctors: List<DoctorResponseItem>
+)
+
+data class DoctorResponseItem(
+    val appointmentDates: Any,
+    val appointmentDurations: Any,
+    val appointmentTimes: Any,
+    val appointments: List<Any>,
+    val bio: String,
+    val created: String,
+    val duration: String,
+    val email: String,
+    val hospital: Any,
+    val id: Int,
+    val image: String?,
+    val insuranceCompany: Any,
+    val insuranceNumber: String,
+    val isVerified: Boolean,
     val name: String,
-    val password: String,
+    val nationalityId: String,
+    val patients: List<Any>,
     val phone: String,
-    val published_at: String,
-    val qualifications: String,
-    val rate: Int,
-    val specialization: String,
-    val updated_by: String,
-    val users_permissions_roles: List<String>,
-    val years_of_experience: Int
+    val qalifications: List<Any>,
+    val shiftDuration: Int,
+    val updated: String,
+    val username: String
 )

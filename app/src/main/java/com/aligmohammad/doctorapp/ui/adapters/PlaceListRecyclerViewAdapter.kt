@@ -17,12 +17,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.aligmohammad.doctorapp.R
-import com.aligmohammad.doctorapp.data.model.Place
+import com.aligmohammad.doctorapp.data.network.response.PlaceListResponseItem
 import com.aligmohammad.doctorapp.databinding.LabListItemBinding
-import com.aligmohammad.doctorapp.ui.fragments.doctorplaces.DoctorPlacesDirections
+import com.aligmohammad.doctorapp.ui.fragments.doctorlist.DoctorListFragmentDirections
 
 class PlaceListRecyclerViewAdapter(
-    private val places: List<Place>,
+    private val places: List<PlaceListResponseItem>,
     private val type: String = "Labs"
 ) : RecyclerView.Adapter<PlaceListRecyclerViewAdapter.PlaceListViewHolder>(), OnMenuItemClick {
 
@@ -54,7 +54,7 @@ class PlaceListRecyclerViewAdapter(
 
         Navigation.findNavController(v)
             .navigate(
-                DoctorPlacesDirections.actionHomeToNewAppointment()
+                DoctorListFragmentDirections.listToPharmacies()
             )
 
     }

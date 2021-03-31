@@ -1,22 +1,16 @@
-
-
-
-
 package com.aligmohammad.doctorapp.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.aligmohammad.doctorapp.R
-import com.aligmohammad.doctorapp.data.model.Doctor
+import com.aligmohammad.doctorapp.data.network.responses.DoctorResponseItem
 import com.aligmohammad.doctorapp.databinding.DoctorListItemBinding
-import com.aligmohammad.doctorapp.ui.fragments.doctorlist.DoctorListFragmentDirections
 
 class DoctorListRecyclerViewAdapter(
-    private val doctors: List<Doctor>,
+    private val doctors: List<DoctorResponseItem>,
     private val type: String = "doctor"
 ) : RecyclerView.Adapter<DoctorListRecyclerViewAdapter.DoctorListViewHolder>(), OnMenuItemClick {
 
@@ -48,8 +42,8 @@ class DoctorListRecyclerViewAdapter(
             it.name == v.tag.toString()
         }[0]
 
-        Navigation.findNavController(v)
-            .navigate(DoctorListFragmentDirections.doctorListToDoctorProfile(doctor))
+//        Navigation.findNavController(v)
+//            .navigate(DoctorListFragmentDirections.doctorListToDoctorProfile(doctor))
     }
 
 }

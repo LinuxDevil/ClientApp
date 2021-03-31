@@ -127,6 +127,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     private fun registerUser() {
         val phoneNumber = "+962" + binding.phoneEditText.text.toString()
         this.phoneNumberString = phoneNumber
+        binding.plusNumber.visibility = View.INVISIBLE
         viewModel.register(phoneNumber)
     }
 

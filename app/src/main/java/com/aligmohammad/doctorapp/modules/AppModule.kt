@@ -92,6 +92,15 @@ object AppModule {
 
     @Singleton
     @Provides
+    fun providePlaceApi(
+        remoteDataSource: RemoteDataSource,
+        @ApplicationContext context: Context
+    ): PlaceApi {
+        return remoteDataSource.buildApi(PlaceApi::class.java, context)
+    }
+
+    @Singleton
+    @Provides
     fun provideInsuranceCompanyApi(
         remoteDataSource: RemoteDataSource,
         @ApplicationContext context: Context
@@ -132,6 +141,13 @@ object AppModule {
         armyPlacesApi: ArmyPlacesApi,
     ): ArmyPlaceRepository {
         return ArmyPlaceRepository(armyPlacesApi)
+    }
+
+    @Provides
+    fun providePlaceRepository(
+        placeApi: PlaceApi
+    ): PlaceRepository {
+        return PlaceRepository(placeApi)
     }
 
 

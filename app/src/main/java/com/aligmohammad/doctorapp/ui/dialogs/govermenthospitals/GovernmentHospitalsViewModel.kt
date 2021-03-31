@@ -1,7 +1,3 @@
-
-
-
-
 package com.aligmohammad.doctorapp.ui.dialogs.govermenthospitals
 
 import android.view.View

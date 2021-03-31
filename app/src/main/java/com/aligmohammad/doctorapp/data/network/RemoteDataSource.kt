@@ -15,14 +15,13 @@ class RemoteDataSource @Inject constructor(private val preferences: PreferencesS
 
     companion object {
 //        private const val BASE_URL = "https://myclinicbedev.herokuapp.com/api/"
-private const val BASE_URL = "http://192.168.1.12:4000/api/"
-//        private const val BASE_URL = "http://192.168.0.179:4000/api/"
+private const val BASE_URL = "http://192.168.1.8:4000/api/"
     }
 
     /**
      * This function will build the API
      * inside this function we are creating our TokenAuthenticator instance
-     * */
+     **/
     fun <Api> buildApi(
         api: Class<Api>,
         context: Context

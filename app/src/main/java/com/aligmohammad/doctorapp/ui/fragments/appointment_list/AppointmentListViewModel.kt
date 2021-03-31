@@ -2,12 +2,19 @@
 
 package com.aligmohammad.doctorapp.ui.fragments.appointment_list
 
-import androidx.lifecycle.ViewModel
+import androidx.hilt.lifecycle.ViewModelInject
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.aligmohammad.doctorapp.data.model.Appointment
 import com.aligmohammad.doctorapp.data.model.DateTime
 import com.aligmohammad.doctorapp.data.model.UserLoginData
+import com.aligmohammad.doctorapp.data.network.Resource
+import com.aligmohammad.doctorapp.data.network.repository.UserRepository
+import com.aligmohammad.doctorapp.data.network.response.UserAppointments
+import com.aligmohammad.doctorapp.ui.base.BaseViewModel
 
-class AppointmentListViewModel : ViewModel() {
+class AppointmentListViewModel @ViewModelInject constructor(private val userRepository: UserRepository) :
+    BaseViewModel(userRepository) {
 
     val imageList = arrayListOf<String>(
         "https://medicalentitystorageprod.blob.core.windows.net/157544/Profile/passport_df603e88-10a4-455b-a0dc-0db8b68c6d2d.jpeg",
@@ -90,5 +97,14 @@ class AppointmentListViewModel : ViewModel() {
 
         return list
     }
+
+    private val _appointmentsLiveDataResponse: MutableLiveData<Resource<UserAppointments>> =
+        MutableLiveData()
+    val appointmentsLiveData: LiveData<Resource<UserAppointments>> get() = _appointmentsLiveDataResponse
+
+    suspend fun getUserAppointments(username: String) {
+        userRepository.getUserCurrentAppointments(username)
+    }
+
 
 }

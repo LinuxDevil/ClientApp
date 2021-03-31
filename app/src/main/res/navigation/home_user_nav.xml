@@ -729,9 +729,9 @@
     </dialog>
     <dialog
         android:id="@+id/singleAppointment"
-        tools:layout="@layout/single_appointment_fragment"
         android:name="com.aligmohammad.doctorapp.ui.dialogs.appointmentmanagment.singleappointment.SingleAppointment"
-        android:label="@string/reserve_an_appointment">
+        android:label="@string/reserve_an_appointment"
+        tools:layout="@layout/single_appointment_fragment">
         <argument
             android:name="dates"
             android:defaultValue="@null"
