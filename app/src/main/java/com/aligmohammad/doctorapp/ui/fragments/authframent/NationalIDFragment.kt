@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.aligmohammad.doctorapp.R
-import com.aligmohammad.doctorapp.data.model.UserDTO
+import com.aligmohammad.doctorapp.data.model.dto.UserDTO
 import com.aligmohammad.doctorapp.data.network.Resource
 import com.aligmohammad.doctorapp.data.network.UserSingleton
 import com.aligmohammad.doctorapp.databinding.FragmentNationalIdBinding

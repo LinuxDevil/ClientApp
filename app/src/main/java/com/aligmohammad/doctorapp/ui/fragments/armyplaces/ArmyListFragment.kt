@@ -12,11 +12,10 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.aligmohammad.doctorapp.R
 import com.aligmohammad.doctorapp.data.network.Resource
-import com.aligmohammad.doctorapp.data.network.response.ArmyPlaceResponseItem
+import com.aligmohammad.doctorapp.data.network.responses.ArmyPlaceResponseItem
 import com.aligmohammad.doctorapp.databinding.ArmyListFragmentBinding
 import com.aligmohammad.doctorapp.ui.adapters.ArmyPlacesRecyclerViewAdapter
 import com.aligmohammad.doctorapp.ui.fragments.doctorlist.DoctorListFragmentArgs

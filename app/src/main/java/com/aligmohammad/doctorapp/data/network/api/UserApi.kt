@@ -1,9 +1,9 @@
 package com.aligmohammad.doctorapp.data.network.api
 
-import com.aligmohammad.doctorapp.data.model.UserDTO
-import com.aligmohammad.doctorapp.data.model.UserInfoModel
+import com.aligmohammad.doctorapp.data.model.dto.UserDTO
+import com.aligmohammad.doctorapp.data.model.dto.UserInfoModel
 import com.aligmohammad.doctorapp.data.network.response.User
-import com.aligmohammad.doctorapp.data.network.response.UserAppointments
+import com.aligmohammad.doctorapp.data.network.responses.UserAppointments
 import com.aligmohammad.doctorapp.data.network.responses.UserInfoResponse
 import retrofit2.http.Body
 import retrofit2.http.Headers

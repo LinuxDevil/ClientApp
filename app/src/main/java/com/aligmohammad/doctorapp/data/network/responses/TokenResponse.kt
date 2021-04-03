@@ -1,6 +1,8 @@
 package com.aligmohammad.doctorapp.data.network.responses
 
-data class TokenResponse (
-    val token: String?,
-    val status: Int?
+import com.aligmohammad.doctorapp.data.model.Status
+
+data class TokenResponse(
+    val status: Status,
+    val token: String
 )

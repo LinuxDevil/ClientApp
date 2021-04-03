@@ -2,7 +2,6 @@ package com.aligmohammad.doctorapp.ui.fragments.authframent
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -11,9 +10,8 @@ import androidx.navigation.fragment.navArgs
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.aligmohammad.doctorapp.R
-import com.aligmohammad.doctorapp.data.model.UserDTO
+import com.aligmohammad.doctorapp.data.model.dto.UserDTO
 import com.aligmohammad.doctorapp.data.network.Resource
-import com.aligmohammad.doctorapp.data.network.UserSingleton
 import com.aligmohammad.doctorapp.databinding.FragmentEditProfileBinding
 import com.aligmohammad.doctorapp.util.handleApiError
 import com.aligmohammad.doctorapp.util.hideKeyboard

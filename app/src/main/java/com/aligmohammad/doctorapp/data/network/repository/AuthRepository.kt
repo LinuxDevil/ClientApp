@@ -1,7 +1,7 @@
 package com.aligmohammad.doctorapp.data.network.repository
 
-import com.aligmohammad.doctorapp.data.model.RegisterLoginData
-import com.aligmohammad.doctorapp.data.model.UserLoginData
+import com.aligmohammad.doctorapp.data.model.dto.RegisterLoginData
+import com.aligmohammad.doctorapp.data.model.dto.UserLoginData
 import com.aligmohammad.doctorapp.data.model.nest.VerifyOTP
 import com.aligmohammad.doctorapp.data.network.api.AuthApi
 import com.aligmohammad.doctorapp.helpers.PreferencesStore

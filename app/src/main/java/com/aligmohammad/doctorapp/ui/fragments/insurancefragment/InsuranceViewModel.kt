@@ -1,18 +1,15 @@
 package com.aligmohammad.doctorapp.ui.fragments.insurancefragment
 
-import android.view.View
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import androidx.navigation.Navigation
-import com.aligmohammad.doctorapp.data.model.UserInfoModel
+import com.aligmohammad.doctorapp.data.model.dto.UserInfoModel
 import com.aligmohammad.doctorapp.data.network.Resource
 import com.aligmohammad.doctorapp.data.network.repository.HomeRepository
 import com.aligmohammad.doctorapp.data.network.responses.InsuranceCompanyResponse
 import com.aligmohammad.doctorapp.data.network.responses.UserInfoResponse
 import com.aligmohammad.doctorapp.ui.base.BaseViewModel
-import com.google.firebase.auth.UserInfo
 import kotlinx.coroutines.launch
 
 class InsuranceViewModel @ViewModelInject constructor(private val repository: HomeRepository) :

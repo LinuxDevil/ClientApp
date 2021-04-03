@@ -14,7 +14,7 @@ import javax.inject.Inject
 class RemoteDataSource @Inject constructor(private val preferences: PreferencesStore) {
 
     companion object {
-//        private const val BASE_URL = "https://myclinicbedev.herokuapp.com/api/"
+//        private const val BASE_URL = "https://munchpayment.herokuapp.com/api/"
 private const val BASE_URL = "http://192.168.1.8:4000/api/"
     }
 

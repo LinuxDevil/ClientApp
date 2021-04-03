@@ -7,7 +7,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.aligmohammad.doctorapp.R
-import com.aligmohammad.doctorapp.data.network.response.ArmyPlaceResponseItem
+import com.aligmohammad.doctorapp.data.network.responses.ArmyPlaceResponseItem
 import com.aligmohammad.doctorapp.databinding.ArmyplaceListItemBinding
 import com.aligmohammad.doctorapp.ui.fragments.armyplaces.ArmyListFragmentDirections
 

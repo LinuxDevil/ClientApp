@@ -1,30 +1,29 @@
-/*******************************************************************************
- *
- * Copyright RectiCode(c) 2020.
- * All Rights Reserved
- *
- * This product is protected by copyright and distributed under
- * licenses restricting copying, distribution and de-compilation.
- *
- * Created by Ali Mohammad
- *
- ******************************************************************************/
-
 package com.aligmohammad.doctorapp.data.model
 
 import android.os.Parcel
 import android.os.Parcelable
 
-data class UserDTO(
-    var name: String?,
-    var email: String?,
-    var imageUrl: String?,
-    var insuranceNumber: String?,
-    var insuranceCompanyId: String?,
-    var city: String?,
-    var district: String?,
-    var nickname: String?,
-    var nationalityId: String?
+
+data class User(
+    val appointments: String?,
+    val bio: String?,
+    val city: String?,
+    val created: String?,
+    val district: String?,
+    val email: String?,
+    val followee: List<String>?,
+    val followers: List<String>?,
+    val id: Int,
+    val image: String?,
+    val insuranceCompany: Int,
+    val insuranceNumber: String?,
+    val name: String?,
+    val nationalityId: String?,
+    val nickname: String?,
+    val subUsers: List<String>?,
+    val token: String?,
+    val updated: String?,
+    val username: String?
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString(),
@@ -33,37 +32,54 @@ data class UserDTO(
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
+        parcel.createStringArrayList(),
+        parcel.createStringArrayList(),
+        parcel.readInt(),
+        parcel.readString(),
+        parcel.readInt(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.createStringArrayList(),
         parcel.readString(),
         parcel.readString(),
         parcel.readString()
-    ) {
-    }
-
-    constructor() : this("", "", "", "", "", "", "", "", "")
+    )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeString(name)
-        parcel.writeString(email)
-        parcel.writeString(imageUrl)
-        parcel.writeString(insuranceNumber)
-        parcel.writeString(insuranceCompanyId)
+        parcel.writeString(bio)
         parcel.writeString(city)
+        parcel.writeString(created)
         parcel.writeString(district)
-        parcel.writeString(nickname)
+        parcel.writeString(email)
+        parcel.writeStringList(followee)
+        parcel.writeStringList(followers)
+        parcel.writeInt(id)
+        parcel.writeString(image)
+        parcel.writeInt(insuranceCompany)
+        parcel.writeString(insuranceNumber)
+        parcel.writeString(name)
         parcel.writeString(nationalityId)
+        parcel.writeString(nickname)
+        parcel.writeStringList(subUsers)
+        parcel.writeString(token)
+        parcel.writeString(updated)
+        parcel.writeString(username)
     }
 
     override fun describeContents(): Int {
         return 0
     }
 
-    companion object CREATOR : Parcelable.Creator<UserDTO> {
-        override fun createFromParcel(parcel: Parcel): UserDTO {
-            return UserDTO(parcel)
+    companion object CREATOR : Parcelable.Creator<User> {
+        override fun createFromParcel(parcel: Parcel): User {
+            return User(parcel)
         }
 
-        override fun newArray(size: Int): Array<UserDTO?> {
+        override fun newArray(size: Int): Array<User?> {
             return arrayOfNulls(size)
         }
     }
+
 }

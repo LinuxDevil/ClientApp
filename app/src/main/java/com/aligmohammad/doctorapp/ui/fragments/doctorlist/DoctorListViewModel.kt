@@ -6,8 +6,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.aligmohammad.doctorapp.data.network.Resource
 import com.aligmohammad.doctorapp.data.network.repository.PlaceRepository
-import com.aligmohammad.doctorapp.data.network.response.PlaceResponse
 import com.aligmohammad.doctorapp.data.network.responses.DoctorResponse
+import com.aligmohammad.doctorapp.data.network.responses.PlaceResponse
 import com.aligmohammad.doctorapp.ui.base.BaseViewModel
 import kotlinx.coroutines.launch
 

@@ -8,7 +8,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.navigation.Navigation
 import com.aligmohammad.doctorapp.data.network.Resource
 import com.aligmohammad.doctorapp.data.network.repository.HospitalRepository
-import com.aligmohammad.doctorapp.data.network.response.HospitalResponse
+import com.aligmohammad.doctorapp.data.network.responses.HospitalResponse
 import com.aligmohammad.doctorapp.ui.base.BaseViewModel
 import kotlinx.coroutines.launch
 

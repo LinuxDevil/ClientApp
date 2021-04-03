@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.aligmohammad.doctorapp.R
-import com.aligmohammad.doctorapp.data.network.response.MenuItemResponseItem
+import com.aligmohammad.doctorapp.data.network.responses.MenuItemResponseItem
 import com.aligmohammad.doctorapp.databinding.HomeScreenMenuItemBinding
 
 class HomeRecyclerAdapter(

@@ -1,7 +1,7 @@
 package com.aligmohammad.doctorapp.data.network.repository
 
-import com.aligmohammad.doctorapp.data.model.UserDTO
-import com.aligmohammad.doctorapp.data.model.UserInfoModel
+import com.aligmohammad.doctorapp.data.model.dto.UserDTO
+import com.aligmohammad.doctorapp.data.model.dto.UserInfoModel
 import com.aligmohammad.doctorapp.data.network.api.UserApi
 import javax.inject.Inject
 

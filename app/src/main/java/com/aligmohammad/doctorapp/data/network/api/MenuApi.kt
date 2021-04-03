@@ -1,6 +1,6 @@
 package com.aligmohammad.doctorapp.data.network.api
 
-import com.aligmohammad.doctorapp.data.network.response.MenuItemResponse
+import com.aligmohammad.doctorapp.data.network.responses.MenuItemResponse
 import retrofit2.http.GET
 
 

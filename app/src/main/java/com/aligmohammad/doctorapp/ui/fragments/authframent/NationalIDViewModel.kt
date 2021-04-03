@@ -4,7 +4,7 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.aligmohammad.doctorapp.data.model.UserDTO
+import com.aligmohammad.doctorapp.data.model.dto.UserDTO
 import com.aligmohammad.doctorapp.data.network.Resource
 import com.aligmohammad.doctorapp.data.network.repository.UserRepository
 import com.aligmohammad.doctorapp.data.network.response.User

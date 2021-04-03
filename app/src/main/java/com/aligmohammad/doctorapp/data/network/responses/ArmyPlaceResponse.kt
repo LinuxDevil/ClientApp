@@ -1,18 +1,17 @@
 package com.aligmohammad.doctorapp.data.network.responses
 
-data class PlaceResponse(
+data class ArmyPlaceResponse(
+    val armyPlaces: List<ArmyPlace>,
     val length: Int,
-    val places: List<Place>,
-    val status: Status,
-    val type: String
+    val status: Status
 )
 
-data class Place(
+data class ArmyPlace(
     val appointmentDates: List<String>,
     val appointmentDurations: List<String>,
     val appointmentTimes: List<String>,
     val created: String,
-    val doctors: List<Any>,
+    val doctors: List<Doctor>,
     val duration: String,
     val email: String,
     val endTime: String,

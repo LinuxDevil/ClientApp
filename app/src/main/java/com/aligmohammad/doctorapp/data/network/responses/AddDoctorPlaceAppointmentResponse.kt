@@ -1,18 +1,31 @@
 package com.aligmohammad.doctorapp.data.network.responses
 
-data class PlaceResponse(
-    val length: Int,
-    val places: List<Place>,
-    val status: Status,
-    val type: String
+data class AddDoctorPlaceAppointmentResponse(
+    val appointmentEntity: AppointmentEntityDoctorPlace,
+    val status: Status
 )
 
-data class Place(
+data class AppointmentEntityDoctorPlace(
+    val created: String,
+    val date: String,
+    val doctorPlaces: DoctorPlaces,
+    val id: Int,
+    val imageUrl: Any,
+    val inProgress: Boolean,
+    val location: String,
+    val rate: Int,
+    val shift: String,
+    val tests: String,
+    val time: String,
+    val updated: String,
+    val user: User
+)
+
+data class DoctorPlaces(
     val appointmentDates: List<String>,
     val appointmentDurations: List<String>,
     val appointmentTimes: List<String>,
     val created: String,
-    val doctors: List<Any>,
     val duration: String,
     val email: String,
     val endTime: String,
@@ -21,7 +34,6 @@ data class Place(
     val imageUrl: String,
     val insurances: List<String>,
     val isAvialable: Boolean,
-    val location: Location,
     val nameAr: String,
     val nameEn: String,
     val phone: String,

@@ -13,11 +13,10 @@ import androidx.lifecycle.asLiveData
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupWithNavController
 import com.aligmohammad.doctorapp.R
 import com.aligmohammad.doctorapp.data.network.Resource
 import com.aligmohammad.doctorapp.data.network.UserSingleton
-import com.aligmohammad.doctorapp.data.network.response.MenuItemResponseItem
+import com.aligmohammad.doctorapp.data.network.responses.MenuItemResponseItem
 import com.aligmohammad.doctorapp.databinding.HomeFragmentBinding
 import com.aligmohammad.doctorapp.helpers.PreferencesStore
 import com.aligmohammad.doctorapp.ui.adapters.HomeRecyclerAdapter

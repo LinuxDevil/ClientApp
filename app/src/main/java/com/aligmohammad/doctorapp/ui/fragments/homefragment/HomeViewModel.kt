@@ -4,10 +4,9 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.aligmohammad.doctorapp.data.model.RecyclerMenuItem
 import com.aligmohammad.doctorapp.data.network.Resource
 import com.aligmohammad.doctorapp.data.network.repository.HomeRepository
-import com.aligmohammad.doctorapp.data.network.response.MenuItemResponse
+import com.aligmohammad.doctorapp.data.network.responses.MenuItemResponse
 import com.aligmohammad.doctorapp.ui.base.BaseViewModel
 import kotlinx.coroutines.launch
 

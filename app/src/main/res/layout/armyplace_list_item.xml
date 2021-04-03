@@ -17,7 +17,7 @@
 
         <variable
             name="data"
-            type="com.aligmohammad.doctorapp.data.network.response.ArmyPlaceResponseItem" />
+            type="com.aligmohammad.doctorapp.data.network.responses.ArmyPlaceResponseItem" />
 
         <variable
             name="listener"

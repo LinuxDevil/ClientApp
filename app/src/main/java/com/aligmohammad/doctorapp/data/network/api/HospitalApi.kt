@@ -1,9 +1,8 @@
 package com.aligmohammad.doctorapp.data.network.api
 
 import com.aligmohammad.doctorapp.data.model.nest.AddAppointment
-import com.aligmohammad.doctorapp.data.network.response.AppointmentResponse
-import com.aligmohammad.doctorapp.data.network.response.GeneralHospitalAppointmentResponse
-import com.aligmohammad.doctorapp.data.network.response.HospitalResponse
+import com.aligmohammad.doctorapp.data.network.responses.AppointmentResponse
+import com.aligmohammad.doctorapp.data.network.responses.HospitalResponse
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST

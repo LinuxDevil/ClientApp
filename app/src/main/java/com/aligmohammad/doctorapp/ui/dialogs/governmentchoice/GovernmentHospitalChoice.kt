@@ -13,7 +13,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import com.aligmohammad.doctorapp.R
 import com.aligmohammad.doctorapp.data.network.Resource
-import com.aligmohammad.doctorapp.data.network.response.HospitalResponseItem
+import com.aligmohammad.doctorapp.data.network.responses.HospitalResponseItem
 import com.aligmohammad.doctorapp.databinding.BottomSheetGovernmentHospitalChooseBinding
 import com.aligmohammad.doctorapp.ui.dialogs.OnDialogInteract
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment

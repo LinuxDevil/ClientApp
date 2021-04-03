@@ -6,7 +6,7 @@
     <data>
         <variable
             name="menuItem"
-            type="com.aligmohammad.doctorapp.data.network.response.MenuItemResponseItem" />
+            type="com.aligmohammad.doctorapp.data.network.responses.MenuItemResponseItem" />
 
         <variable
             name="clickListener"

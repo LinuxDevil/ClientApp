@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.aligmohammad.doctorapp.data.model.nest.AddAppointment
 import com.aligmohammad.doctorapp.data.network.Resource
 import com.aligmohammad.doctorapp.data.network.repository.HospitalRepository
-import com.aligmohammad.doctorapp.data.network.response.AppointmentResponse
+import com.aligmohammad.doctorapp.data.network.responses.AppointmentResponse
 import com.aligmohammad.doctorapp.ui.base.BaseViewModel
 import kotlinx.coroutines.launch
 
