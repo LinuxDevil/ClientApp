@@ -1,7 +1,9 @@
 package com.aligmohammad.doctorapp.data.network.api
 
-import com.aligmohammad.doctorapp.data.model.nest.AddAppointment
+import com.aligmohammad.doctorapp.data.model.dto.AppointmentDTO
 import com.aligmohammad.doctorapp.data.network.responses.AppointmentResponse
+import com.aligmohammad.doctorapp.data.network.responses.DoctorAppointment
+import com.aligmohammad.doctorapp.data.network.responses.HospitalAppointment
 import com.aligmohammad.doctorapp.data.network.responses.HospitalResponse
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -29,9 +31,9 @@ interface HospitalApi : BaseApi {
     suspend fun getGeneralHospitals(@Query("langId") langId: String): HospitalResponse
 
     @POST("/api/appointment")
-    suspend fun addHospitalDoctorAppointment(@Body() appointment: AddAppointment): AppointmentResponse
+    suspend fun addHospitalDoctorAppointment(@Body() appointment: AppointmentDTO): DoctorAppointment
 
     @POST("/api/appointment/hospital")
-    suspend fun addGeneralHospitalAppointment(@Body() appointment: AddAppointment): GeneralHospitalAppointmentResponse
+    suspend fun addHospitalAppointment(@Body() appointment: AppointmentDTO): HospitalAppointment
 
 }

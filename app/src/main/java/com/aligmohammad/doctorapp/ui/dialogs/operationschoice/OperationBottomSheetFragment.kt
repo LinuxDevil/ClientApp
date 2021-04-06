@@ -15,7 +15,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.aligmohammad.doctorapp.R
-import com.aligmohammad.doctorapp.data.model.nest.AddAppointment
+import com.aligmohammad.doctorapp.data.model.dto.AppointmentDTO
 import com.aligmohammad.doctorapp.data.network.Resource
 import com.aligmohammad.doctorapp.data.network.UserSingleton
 import com.aligmohammad.doctorapp.databinding.OpertaionBottomSheetFragmentBinding
@@ -143,7 +143,7 @@ class OperationBottomSheetFragment : BottomSheetDialogFragment(), OnDialogIntera
 
     private fun addUserAppointment() {
         // Get the selections
-        val appointment = AddAppointment(
+        val appointment = AppointmentDTO(
             dateAdapter.getSelection().split(" ")[0],
             timeAdapter.getSelection(),
             navArgs<OperationBottomSheetFragmentArgs>().value.location,
@@ -152,7 +152,8 @@ class OperationBottomSheetFragment : BottomSheetDialogFragment(), OnDialogIntera
             navArgs<OperationBottomSheetFragmentArgs>().value.doctor?.username,
             null,
             null,
-            "Operation"
+            "Operation",
+            null
         )
 
         viewModel.addHospitalDoctorAppointment(appointment)

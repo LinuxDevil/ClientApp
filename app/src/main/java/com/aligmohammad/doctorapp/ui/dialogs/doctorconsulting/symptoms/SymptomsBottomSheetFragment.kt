@@ -19,8 +19,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.aligmohammad.doctorapp.R
-import com.aligmohammad.doctorapp.data.model.Doctor
-import com.aligmohammad.doctorapp.data.model.firebasemodels.ConsultationFirebaseModel
 import com.aligmohammad.doctorapp.data.network.UserSingleton
 import com.aligmohammad.doctorapp.databinding.SymptomsBottomSheetFragmentBinding
 import com.aligmohammad.doctorapp.ui.dialogs.OnDialogInteract
@@ -75,27 +73,6 @@ class SymptomsBottomSheetFragment : BottomSheetDialogFragment(), OnDialogInterac
 
     private fun getAllDoctors() {
         val db = Firebase.database.reference
-        db.child("Doctors").addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                snapshot.children.forEach { snap ->
-                    val doctor: Doctor = snap.getValue(Doctor::class.java)!!
-                    if (navArgs<SymptomsBottomSheetFragmentArgs>().value.city!!.isNotEmpty()) {
-                        if (doctor.city!!.indexOf(navArgs<SymptomsBottomSheetFragmentArgs>().value.city!!) != -1) {
-                            if (doctor.district!!.indexOf(navArgs<SymptomsBottomSheetFragmentArgs>().value.district!!) != -1) {
-                                if (doctor.insuranceCompany!!.indexOf(navArgs<SymptomsBottomSheetFragmentArgs>().value.insuranceName!!) != -1) {
-                                    selectedDoctorUuid = doctor.uuid!!
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                binding.heatTempEditText.snackbar(error.message)
-                dismiss()
-            }
-        })
     }
 
 
@@ -113,47 +90,6 @@ class SymptomsBottomSheetFragment : BottomSheetDialogFragment(), OnDialogInterac
         // 1- Get user id
         val userId = UserSingleton.getCurrentUser().username
         // 2- Create appointment
-        val appointment = ConsultationFirebaseModel(
-            consultIn,
-            temperatureSelected,
-            userId,
-            navArgs<SymptomsBottomSheetFragmentArgs>().value.city,
-            navArgs<SymptomsBottomSheetFragmentArgs>().value.district,
-            selectedDoctorUuid
-        )
-        // 3- Push Appointment to db
-        val database = Firebase.database.reference
-        val appointmentUuid = database.push().key
-        if (appointmentUuid != null) {
-            hideKeyboard()
-            database.child("Consultation").child(appointmentUuid).setValue(appointment)
-                .addOnCompleteListener {
-                    // 4- Add appointment id to user
-                    // 5- Push user changes
-                    database.child("Users").child(userId!!.substring(1, userId!!.length))
-                        .child("Consultation").child(appointmentUuid).setValue(appointmentUuid)
-                        .addOnCompleteListener {
-                            database.child("Doctors")
-                                .child(selectedDoctorUuid)
-                                .child("Consultation").child(appointmentUuid)
-                                .setValue(appointmentUuid)
-//                            val navController =
-//                                Navigation.findNavController(activity!!, R.id.fragment)
-//                            if (navController.currentDestination!!.id == R.id.symptomsFragment) {
-//                                this.navigateSafe(SymptomsBottomSheetFragmentDirections.symptomsToResult())
-//                            }
-                            dismiss()
-                        }.addOnFailureListener {
-                            binding.heatTempEditText.snackbar(it.localizedMessage)
-                            dismiss()
-                        }
-                }.addOnFailureListener {
-                    binding.heatTempEditText.snackbar(it.localizedMessage)
-                    dismiss()
-                }
-        }
-
     }
-
 
 }

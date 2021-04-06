@@ -12,11 +12,12 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.aligmohammad.doctorapp.R
-import com.aligmohammad.doctorapp.data.model.firebasemodels.AppointmentFirebaseModel
+import com.aligmohammad.doctorapp.data.network.responses.AppointmentResponse
+import com.aligmohammad.doctorapp.data.network.responses.HospitalAppointment
 import com.aligmohammad.doctorapp.databinding.AppointmentListFragmentBinding
 import com.aligmohammad.doctorapp.ui.adapters.InProgressAppointmentRecyclerViewAdapter
 import com.aligmohammad.doctorapp.util.snackbar
-import com.aligmohammad.doctorappclient.ui.adapters.AppointmentRecyclerViewAdapter
+import com.aligmohammad.doctorapp.ui.adapters.AppointmentRecyclerViewAdapter
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -32,8 +33,8 @@ class AppointmentListFragment : Fragment() {
     private lateinit var viewModel: AppointmentListViewModel
     private lateinit var binding: AppointmentListFragmentBinding
 
-    private var inProgressAppointments = arrayListOf<AppointmentFirebaseModel>()
-    private var appointmentHistory = arrayListOf<AppointmentFirebaseModel>()
+    private var inProgressAppointments = arrayListOf<AppointmentResponse>()
+    private var appointmentHistory = arrayListOf<AppointmentResponse>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -85,27 +86,7 @@ class AppointmentListFragment : Fragment() {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     inProgressAppointments.clear()
                     appointmentHistory.clear()
-                    snapshot.children.forEach { snap ->
-                        db.child("Appointments").child(snap.value.toString()).addListenerForSingleValueEvent(object: ValueEventListener{
-                            override fun onDataChange(snapshot: DataSnapshot) {
-                                val appointment: AppointmentFirebaseModel =
-                                    snapshot.getValue(AppointmentFirebaseModel::class.java)!!
-                                if (appointment.inProgress) {
-                                    inProgressAppointments.add(appointment)
 
-                                } else {
-                                    appointmentHistory.add(appointment)
-                                }
-                                initRecycler()
-                            }
-
-                            override fun onCancelled(error: DatabaseError) {
-                            }
-
-                        })
-
-                        initRecycler()
-                    }
                 }
 
                 override fun onCancelled(error: DatabaseError) {

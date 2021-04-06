@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.aligmohammad.doctorapp.data.model.dto.UserInfoModel
 import com.aligmohammad.doctorapp.data.network.Resource
 import com.aligmohammad.doctorapp.data.network.repository.HomeRepository
-import com.aligmohammad.doctorapp.data.network.responses.InsuranceCompanyResponse
+import com.aligmohammad.doctorapp.data.network.responses.GetInsuranceResponse
 import com.aligmohammad.doctorapp.data.network.responses.UserInfoResponse
 import com.aligmohammad.doctorapp.ui.base.BaseViewModel
 import kotlinx.coroutines.launch
@@ -15,12 +15,13 @@ import kotlinx.coroutines.launch
 class InsuranceViewModel @ViewModelInject constructor(private val repository: HomeRepository) :
     BaseViewModel(repository) {
 
-    private val _insuranceResponse: MutableLiveData<Resource<InsuranceCompanyResponse>> =
+    private val _insuranceResponse: MutableLiveData<Resource<GetInsuranceResponse>> =
         MutableLiveData()
-    val insuranceResponse: LiveData<Resource<InsuranceCompanyResponse>>
+    val insuranceResponse: LiveData<Resource<GetInsuranceResponse>>
         get() = _insuranceResponse
 
-    private val _addInsuranceResponse: MutableLiveData<Resource<UserInfoResponse>> = MutableLiveData()
+    private val _addInsuranceResponse: MutableLiveData<Resource<UserInfoResponse>> =
+        MutableLiveData()
     val addInsuranceResponse: LiveData<Resource<UserInfoResponse>> get() = _addInsuranceResponse
 
     fun getInsuranceCompanies() = viewModelScope.launch {

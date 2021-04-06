@@ -13,9 +13,9 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.aligmohammad.doctorapp.R
-import com.aligmohammad.doctorapp.data.model.Doctor
 import com.aligmohammad.doctorapp.data.network.Resource
-import com.aligmohammad.doctorapp.data.network.response.PlaceListResponseItem
+import com.aligmohammad.doctorapp.data.network.responses.Doctor
+import com.aligmohammad.doctorapp.data.network.responses.Place
 import com.aligmohammad.doctorapp.databinding.DoctorListFragmentBinding
 import com.aligmohammad.doctorapp.ui.adapters.DoctorListRecyclerViewAdapter
 import com.aligmohammad.doctorapp.ui.adapters.PlaceListRecyclerViewAdapter
@@ -33,7 +33,7 @@ class DoctorListFragment : Fragment(R.layout.doctor_list_fragment) {
     private lateinit var placeAdapter: PlaceListRecyclerViewAdapter
 
     private val doctors = arrayListOf<Doctor>()
-    private var places = arrayListOf<PlaceListResponseItem>()
+    private var places = arrayListOf<Place>()
 
     private var selectedCity = ""
     private var selectedDistrict = ""
@@ -64,7 +64,7 @@ class DoctorListFragment : Fragment(R.layout.doctor_list_fragment) {
                     }
                     "x-rays" -> {
                         val filteredDoctors = places.filter { doc ->
-                            doc.name.toLowerCase(Locale.ROOT).indexOf(searchText) > -1
+                            doc.nameEn.toLowerCase(Locale.ROOT).indexOf(searchText) > -1
                         }
                         placeAdapter = PlaceListRecyclerViewAdapter(filteredDoctors)
                         placeAdapter.notifyDataSetChanged()
@@ -72,7 +72,7 @@ class DoctorListFragment : Fragment(R.layout.doctor_list_fragment) {
                     }
                     "labs" -> {
                         val filteredDoctors = places.filter { doc ->
-                            doc.name.toLowerCase(Locale.ROOT).indexOf(searchText) > -1
+                            doc.nameEn.toLowerCase(Locale.ROOT).indexOf(searchText) > -1
                         }
                         placeAdapter = PlaceListRecyclerViewAdapter(filteredDoctors)
                         placeAdapter.notifyDataSetChanged()
@@ -80,7 +80,7 @@ class DoctorListFragment : Fragment(R.layout.doctor_list_fragment) {
                     }
                     "pharmacies" -> {
                         val filteredDoctors = places.filter { doc ->
-                            doc.name.toLowerCase(Locale.ROOT).indexOf(searchText) > -1
+                            doc.nameEn.toLowerCase(Locale.ROOT).indexOf(searchText) > -1
                         }
                         placeAdapter = PlaceListRecyclerViewAdapter(filteredDoctors)
                         placeAdapter.notifyDataSetChanged()
@@ -135,7 +135,7 @@ class DoctorListFragment : Fragment(R.layout.doctor_list_fragment) {
                     Log.v("ViewModel", "Loading")
                 }
                 is Resource.Success -> {
-                    Log.v("ViewModel", "Success ${it.value.size} size")
+                    Log.v("ViewModel", "Success ${it.value.places.size} size")
 
                 }
                 is Resource.Failure -> {

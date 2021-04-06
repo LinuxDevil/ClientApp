@@ -9,8 +9,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.aligmohammad.doctorapp.R
-import com.aligmohammad.doctorapp.data.model.Doctor
-import com.aligmohammad.doctorapp.data.model.firebasemodels.RequestDoctorNurseFirebaseModel
 import com.aligmohammad.doctorapp.data.network.UserSingleton
 import com.aligmohammad.doctorapp.databinding.RequestDoctorNurseBottomSheetFragmentBinding
 import com.aligmohammad.doctorapp.ui.dialogs.OnDialogInteract
@@ -95,72 +93,11 @@ class RequestDoctorNurseBottomSheetFragment : BottomSheetDialogFragment(), OnDia
         this.dismiss()
     }
 
-    private fun getAllDoctors() {
-        val db = Firebase.database.reference
-        db.child("Doctors").addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                snapshot.children.forEach { snap ->
-                    val doctor: Doctor = snap.getValue(Doctor::class.java)!!
-                    if (doctor.city!!.indexOf(citySelected) != -1) {
-                        if (doctor.district!!.indexOf(districtSelected) != -1) {
-                            if (doctor.major!!.indexOf(majorSelected) != -1) {
-                                selectedDoctorUuid = doctor.uuid!!
-                                addUserAppointment()
-                            }
-                        }
-                    }
-                }
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                binding.citiesSpinner.snackbar(error.message)
-                dismiss()
-            }
-        })
-
-
-    }
-
 
     private fun addUserAppointment() {
         // 1- Get user id
         val userId = UserSingleton.getCurrentUser().username
         // 2- Create appointment
-        val appointment = RequestDoctorNurseFirebaseModel(
-            majorSelected,
-            userId,
-            citySelected,
-            districtSelected,
-            "5.0 JD"
-        )
-        // 3- Push Appointment to db
-        val database = Firebase.database.reference
-        val appointmentUuid = database.push().key
-        if (appointmentUuid != null) {
-            hideKeyboard()
-            database.child("Requests")
-                .child(appointmentUuid).setValue(appointment)
-                .addOnCompleteListener {
-                    // 4- Add appointment id to user
-                    // 5- Push user changes
-                    database.child("Users").child(userId!!.substring(1, userId!!.length))
-                        .child("Requests").child(appointmentUuid).setValue(appointmentUuid)
-                        .addOnCompleteListener {
-                            database.child("Doctors")
-                                .child(selectedDoctorUuid)
-                                .child("Requests").child(appointmentUuid)
-                                .setValue(appointmentUuid)
-                            dismiss()
-                        }.addOnFailureListener {
-                            binding.citiesSpinner.snackbar(it.localizedMessage)
-                            dismiss()
-                        }
-                }.addOnFailureListener {
-                    binding.citiesSpinner.snackbar(it.localizedMessage)
-                    dismiss()
-                }
-        }
-
     }
 
 

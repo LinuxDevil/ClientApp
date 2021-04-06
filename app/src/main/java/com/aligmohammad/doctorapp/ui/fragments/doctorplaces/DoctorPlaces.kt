@@ -16,7 +16,7 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.aligmohammad.doctorapp.R
 import com.aligmohammad.doctorapp.data.network.Resource
-import com.aligmohammad.doctorapp.data.network.response.DoctorPlaceResponseItem
+import com.aligmohammad.doctorapp.data.network.responses.DoctorPlace
 import com.aligmohammad.doctorapp.databinding.DoctorPlacesFragmentBinding
 import com.aligmohammad.doctorapp.ui.adapters.DoctorPlaceRecyclerViewAdapter
 import com.aligmohammad.doctorapp.ui.fragments.doctorlist.DoctorListFragmentArgs
@@ -37,7 +37,7 @@ class DoctorPlaces : Fragment() {
     private val viewModel: DoctorPlacesViewModel by viewModels<DoctorPlacesViewModel>()
     private lateinit var binding: DoctorPlacesFragmentBinding
 
-    private var places: List<DoctorPlaceResponseItem> = listOf()
+    private var places: List<DoctorPlace> = listOf()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -116,7 +116,7 @@ class DoctorPlaces : Fragment() {
 
                 }
                 is Resource.Success -> {
-                    places = it.value
+                    places = it.value.doctorPlaces
                     initRecycler()
                 }
             }

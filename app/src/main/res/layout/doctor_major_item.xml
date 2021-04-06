@@ -17,7 +17,7 @@
 
         <variable
             name="menuItem"
-            type="com.aligmohammad.doctorapp.data.model.firebasemodels.MajorsFirebaseModel" />
+            type="com.aligmohammad.doctorapp.data.network.responses.Major" />
 
         <variable
             name="listener"
@@ -40,7 +40,7 @@
                 android:id="@+id/profile_image"
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
-                android:imageUrl="@{menuItem.image_url}"
+                android:imageUrl="@{menuItem.imageUrl}"
                 android:src="@drawable/logo"
                 app:civ_border_color="#FF000000"
                 app:civ_border_width="2dp"
@@ -53,7 +53,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="@{menuItem.name_en}"
+                android:text="@{menuItem.nameEn}"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@id/profile_image"

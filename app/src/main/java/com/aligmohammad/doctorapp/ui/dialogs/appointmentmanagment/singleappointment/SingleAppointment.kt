@@ -10,7 +10,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.aligmohammad.doctorapp.R
-import com.aligmohammad.doctorapp.data.model.firebasemodels.AppointmentFirebaseModel
 import com.aligmohammad.doctorapp.data.network.UserSingleton
 import com.aligmohammad.doctorapp.databinding.SingleAppointmentFragmentBinding
 import com.aligmohammad.doctorapp.ui.adapters.DateRecyclerAdapter
@@ -103,57 +102,6 @@ class SingleAppointment : BottomSheetDialogFragment(), OnDialogInteract {
 
     private fun addUserAppointment() {
         // 1- Get user id
-        val userId = UserSingleton.getCurrentUser().username
-        timeSelected = (binding.timeRecyclerView.adapter as TimeRecyclerAdapter).getSelection()
-        dateSelected = (binding.dateRecyclerView.adapter as DateRecyclerAdapter).getSelection()
-        val database = Firebase.database.reference
-        val appointmentUuid = database.push().key
-        // 2- Create appointment
-        val appointment = AppointmentFirebaseModel(
-            dateSelected,
-            timeSelected,
-            shiftSelected,
-            userId,
-            navArgs<SingleAppointmentArgs>().value.doctorUuid!!,
-            null,
-            null,
-            true,
-            appointmentUuid
-        )
-        // 3- Push Appointment to db
-        if (appointmentUuid != null) {
-            database.child("Appointments").child(appointmentUuid).setValue(appointment)
-                .addOnCompleteListener {
-                    // 4- Add appointment id to user
-                    // 5- Push user changes
-                    database.child("Users").child(userId!!.substring(1, userId!!.length))
-                        .child("Appointments").child(appointmentUuid).setValue(appointmentUuid)
-                        .addOnCompleteListener {
-                        }.addOnFailureListener {
-                        binding.reserveButton.snackbar(it.localizedMessage!!)
-                    }
-
-                    database.child("Doctors")
-                        .child(navArgs<SingleAppointmentArgs>().value.doctorUuid!!)
-                        .child("Appointments").child(appointmentUuid).setValue(appointmentUuid)
-                        .addOnCompleteListener {
-                            database.child("Doctors")
-                                .child(navArgs<SingleAppointmentArgs>().value.doctorUuid!!)
-                                .child("Dates").child(dateSelected).removeValue()
-                            database.child("Doctors")
-                                .child(navArgs<SingleAppointmentArgs>().value.doctorUuid!!)
-                                .child("Times").child(timeSelected).removeValue()
-                            binding.reserveButton.snackbar("Reserved!")
-                            dismiss()
-                        }.addOnFailureListener {
-                        binding.reserveButton.snackbar(it.localizedMessage!!)
-                    }
-
-                }.addOnFailureListener {
-                binding.reserveButton.snackbar(it.localizedMessage!!)
-            }
-        }
-
     }
 
     override fun onBackButtonClicked(view: View) {

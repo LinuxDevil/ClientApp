@@ -12,9 +12,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.aligmohammad.doctorapp.R
-import com.aligmohammad.doctorapp.data.model.RecyclerMenuItem
-import com.aligmohammad.doctorapp.data.model.firebasemodels.MajorsFirebaseModel
-import com.aligmohammad.doctorapp.data.model.firebasemodels.OfferFirebaseModel
+import com.aligmohammad.doctorapp.data.network.responses.Offer
 import com.aligmohammad.doctorapp.databinding.FragmentOffersListBinding
 import com.aligmohammad.doctorapp.ui.adapters.OfferRecyclerViewAdapter
 import com.aligmohammad.doctorapp.ui.adapters.OnMenuItemClick
@@ -29,8 +27,8 @@ import kotlinx.android.synthetic.main.doctor_major_fragment_item_list.view.*
 
 class OffersListFragment : Fragment(), OnMenuItemClick {
 
-    private val arrayList = arrayListOf<RecyclerMenuItem>()
-    private val arrayListOfMajors = arrayListOf<OfferFirebaseModel>()
+    private val arrayList = arrayListOf<Offer>()
+    private val arrayListOfMajors = arrayListOf<Offer>()
 
     private lateinit var binding: FragmentOffersListBinding
 
@@ -62,123 +60,14 @@ class OffersListFragment : Fragment(), OnMenuItemClick {
 
     private fun getFirebaseData() {
         val db = Firebase.database.reference
-        db.child("Offers").addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                snapshot.children.forEach { snap ->
-                    arrayListOfMajors.clear()
-                    snap.getValue(OfferFirebaseModel::class.java)?.let {
-                        arrayListOfMajors.add(
-                            it
-                        )
-                        initRecycler()
-                    }
-                }
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-            }
-
-        })
     }
 
     private fun getData() {
-        arrayList.clear()
-        arrayList.add(
-            RecyclerMenuItem(
-                "New Name",
-                "https://images.pexels.com/photos/3825586/pexels-photo-3825586.jpeg",
-                HomeFragmentDirections.homeToAppointemtnsUser()
-            )
-        )
-        arrayList.add(
-            RecyclerMenuItem(
-                "New Name",
-                "https://images.pexels.com/photos/3825586/pexels-photo-3825586.jpeg",
-                HomeFragmentDirections.homeToAppointemtnsUser()
-            )
-        )
-        arrayList.add(
-            RecyclerMenuItem(
-                "New Name",
-                "https://images.pexels.com/photos/3825586/pexels-photo-3825586.jpeg",
-                HomeFragmentDirections.homeToAppointemtnsUser()
-            )
-        )
-        arrayList.add(
-            RecyclerMenuItem(
-                "New Name",
-                "https://images.pexels.com/photos/3825586/pexels-photo-3825586.jpeg",
-                HomeFragmentDirections.homeToAppointemtnsUser()
-            )
-        )
-        arrayList.add(
-            RecyclerMenuItem(
-                "New Name",
-                "https://images.pexels.com/photos/3825586/pexels-photo-3825586.jpeg",
-                HomeFragmentDirections.homeToAppointemtnsUser()
-            )
-        )
-        arrayList.add(
-            RecyclerMenuItem(
-                "New Name",
-                "https://images.pexels.com/photos/3825586/pexels-photo-3825586.jpeg",
-                HomeFragmentDirections.homeToAppointemtnsUser()
-            )
-        )
-        arrayList.add(
-            RecyclerMenuItem(
-                "New Name",
-                "https://images.pexels.com/photos/3825586/pexels-photo-3825586.jpeg",
-                HomeFragmentDirections.homeToAppointemtnsUser()
-            )
-        )
-        arrayList.add(
-            RecyclerMenuItem(
-                "New Name",
-                "https://images.pexels.com/photos/3825586/pexels-photo-3825586.jpeg",
-                HomeFragmentDirections.homeToAppointemtnsUser()
-            )
-        )
-        arrayList.add(
-            RecyclerMenuItem(
-                "New Name",
-                "https://images.pexels.com/photos/3825586/pexels-photo-3825586.jpeg",
-                HomeFragmentDirections.homeToAppointemtnsUser()
-            )
-        )
-        arrayList.add(
-            RecyclerMenuItem(
-                "New Name",
-                "https://images.pexels.com/photos/3825586/pexels-photo-3825586.jpeg",
-                HomeFragmentDirections.homeToAppointemtnsUser()
-            )
-        )
-        arrayList.add(
-            RecyclerMenuItem(
-                "New Name",
-                "https://images.pexels.com/photos/3825586/pexels-photo-3825586.jpeg",
-                HomeFragmentDirections.homeToAppointemtnsUser()
-            )
-        )
-        arrayList.add(
-            RecyclerMenuItem(
-                "New Name",
-                "https://images.pexels.com/photos/3825586/pexels-photo-3825586.jpeg",
-                HomeFragmentDirections.homeToAppointemtnsUser()
-            )
-        )
+
     }
 
     override fun onClick(v: View) {
         // pass list here
-    }
-
-    override fun onClickMenu(v: View?, menuItem: OfferFirebaseModel) {
-        super.onClickMenu(v, menuItem)
-//        Navigation.findNavController(v!!).navigate(
-//            DoctorMajorFragmentDirections.majorToDoctorList("")
-//                .setDoctorArray(menuItem.doctorList!!.toTypedArray())
-//        )
     }
 
 

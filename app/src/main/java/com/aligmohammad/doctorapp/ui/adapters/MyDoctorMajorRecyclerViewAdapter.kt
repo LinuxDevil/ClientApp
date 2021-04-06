@@ -6,12 +6,12 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.aligmohammad.doctorapp.R
-import com.aligmohammad.doctorapp.data.model.firebasemodels.MajorsFirebaseModel
+import com.aligmohammad.doctorapp.data.network.responses.Major
 import com.aligmohammad.doctorapp.databinding.DoctorMajorItemBinding
 
 
 class MyDoctorMajorRecyclerViewAdapter(
-    private val values: List<MajorsFirebaseModel>,
+    private val values: List<Major>,
     private val onMenuItemClick: OnMenuItemClick
 ) : RecyclerView.Adapter<MyDoctorMajorRecyclerViewAdapter.ViewHolder>(), OnMenuItemClick {
 

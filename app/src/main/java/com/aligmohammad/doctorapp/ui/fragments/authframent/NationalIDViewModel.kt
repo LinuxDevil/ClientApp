@@ -7,15 +7,15 @@ import androidx.lifecycle.viewModelScope
 import com.aligmohammad.doctorapp.data.model.dto.UserDTO
 import com.aligmohammad.doctorapp.data.network.Resource
 import com.aligmohammad.doctorapp.data.network.repository.UserRepository
-import com.aligmohammad.doctorapp.data.network.response.User
+import com.aligmohammad.doctorapp.data.network.responses.UserInfoResponse
 import com.aligmohammad.doctorapp.ui.base.BaseViewModel
 import kotlinx.coroutines.launch
 
 class NationalIDViewModel @ViewModelInject constructor(private val repository: UserRepository) :
     BaseViewModel(repository) {
 
-    private val _userInfoResponse: MutableLiveData<Resource<User>> = MutableLiveData()
-    val userResponse: LiveData<Resource<User>>
+    private val _userInfoResponse: MutableLiveData<Resource<UserInfoResponse>> = MutableLiveData()
+    val userResponse: LiveData<Resource<UserInfoResponse>>
         get() = _userInfoResponse
 
     fun updateUser(userDto: UserDTO) = viewModelScope.launch {

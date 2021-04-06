@@ -12,7 +12,7 @@ data class Place(
     val appointmentDurations: List<String>,
     val appointmentTimes: List<String>,
     val created: String,
-    val doctors: List<Any>,
+    val doctors: List<Doctor>,
     val duration: String,
     val email: String,
     val endTime: String,

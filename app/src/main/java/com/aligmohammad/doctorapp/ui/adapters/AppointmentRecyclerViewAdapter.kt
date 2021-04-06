@@ -1,6 +1,4 @@
-
-
-package com.aligmohammad.doctorappclient.ui.adapters
+package com.aligmohammad.doctorapp.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -9,14 +7,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.aligmohammad.doctorapp.R
-import com.aligmohammad.doctorapp.data.model.Appointment
-import com.aligmohammad.doctorapp.data.model.firebasemodels.AppointmentFirebaseModel
+import com.aligmohammad.doctorapp.data.network.responses.AppointmentResponse
 import com.aligmohammad.doctorapp.databinding.AppointmentItemBinding
-import com.aligmohammad.doctorapp.ui.adapters.OnMenuItemClick
 import com.aligmohammad.doctorapp.ui.fragments.appointment_list.AppointmentListFragmentDirections
 
 class AppointmentRecyclerViewAdapter(
-    private val appointments: List<AppointmentFirebaseModel>,
+    val appointments: List<AppointmentResponse>,
     val type: Int = 0
 ) : RecyclerView.Adapter<AppointmentRecyclerViewAdapter.AppointmentViewHolder>(), OnMenuItemClick {
 
@@ -46,7 +42,7 @@ class AppointmentRecyclerViewAdapter(
 
     override fun onClick(v: View) {
         val appointment = appointments.filter {
-            it.userId == v.tag.toString()
+            it.user?.id.toString() == v.tag.toString()
         }[0]
 
         Navigation.findNavController(v)

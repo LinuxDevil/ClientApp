@@ -1,10 +1,11 @@
 package com.aligmohammad.doctorapp.data.network.responses
 
 import com.aligmohammad.doctorapp.data.model.Status
+import com.aligmohammad.doctorapp.data.model.User
 
-data class RegistrationResponse(
+data class AuthResponse(
     val status: Status,
-    val user: UserRegister
+    val user: User
 )
 
 data class UserRegister(

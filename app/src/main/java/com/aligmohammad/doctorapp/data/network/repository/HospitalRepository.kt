@@ -1,6 +1,6 @@
 package com.aligmohammad.doctorapp.data.network.repository
 
-import com.aligmohammad.doctorapp.data.model.nest.AddAppointment
+import com.aligmohammad.doctorapp.data.model.dto.AppointmentDTO
 import com.aligmohammad.doctorapp.data.network.api.HospitalApi
 import javax.inject.Inject
 
@@ -24,12 +24,12 @@ class HospitalRepository @Inject constructor(
         api.getFilteredGenernalHospitals(city, langId)
     }
 
-    suspend fun addHospitalDoctorAppointment(addAppointment: AddAppointment) = safeApiCall {
+    suspend fun addHospitalDoctorAppointment(addAppointment: AppointmentDTO) = safeApiCall {
         api.addHospitalDoctorAppointment(addAppointment)
     }
 
-    suspend fun addGeneralHospitalAppointment(addAppointment: AddAppointment) = safeApiCall {
-        api.addGeneralHospitalAppointment(addAppointment)
+    suspend fun addGeneralHospitalAppointment(addAppointment: AppointmentDTO) = safeApiCall {
+        api.addHospitalAppointment(addAppointment)
     }
 
 }

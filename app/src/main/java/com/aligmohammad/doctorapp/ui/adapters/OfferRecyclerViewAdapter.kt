@@ -6,13 +6,12 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.aligmohammad.doctorapp.R
-import com.aligmohammad.doctorapp.data.model.firebasemodels.MajorsFirebaseModel
-import com.aligmohammad.doctorapp.data.model.firebasemodels.OfferFirebaseModel
+import com.aligmohammad.doctorapp.data.network.responses.Offer
 import com.aligmohammad.doctorapp.databinding.DoctorMajorItemBinding
 import com.aligmohammad.doctorapp.databinding.OfferItemBinding
 
 class OfferRecyclerViewAdapter(
-    private val values: List<OfferFirebaseModel>,
+    private val values: List<Offer>,
     private val onMenuItemClick: OnMenuItemClick
 ) : RecyclerView.Adapter<OfferRecyclerViewAdapter.ViewHolder>(), OnMenuItemClick {
 

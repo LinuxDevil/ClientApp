@@ -19,7 +19,7 @@
 
         <variable
             name="doctor"
-            type="com.aligmohammad.doctorapp.data.model.Doctor" />
+            type="com.aligmohammad.doctorapp.data.network.responses.Doctor" />
     </data>
 
     <androidx.constraintlayout.motion.widget.MotionLayout
@@ -51,7 +51,7 @@
             android:layout_height="100dp"
             android:layout_marginTop="40dp"
             android:contentDescription="@string/doctor_image"
-            android:imageUrl="@{doctor.imageUrl}"
+            android:imageUrl="@{doctor.image}"
             app:civ_border_color="@color/secondary"
             app:civ_border_overlay="true"
             app:civ_border_width="2dp"
@@ -96,7 +96,7 @@
                     android:layout_margin="3dp"
                     android:layout_weight="20"
                     android:gravity="center_vertical"
-                    android:text="@{doctor.major}" />
+                    android:text="@{doctor.email}" />
 
                 <TextView
                     android:id="@+id/doctorYearsOfExperience"
@@ -106,7 +106,7 @@
                     android:layout_margin="3dp"
                     android:layout_weight="20"
                     android:gravity="center_vertical"
-                    android:text="@{doctor.yearsOfExperience.toString()}" />
+                    android:text="@{doctor.insuranceNumber}" />
 
                 <TextView
                     android:id="@+id/doctorRelatedInsurances"
@@ -116,7 +116,7 @@
                     android:layout_margin="3dp"
                     android:layout_weight="20"
                     android:gravity="center_vertical"
-                    android:text="@{doctor.relatedInsurances.get(0)}" />
+                    android:text="@{doctor.shiftDuration}" />
 
             </LinearLayout>
 
@@ -145,7 +145,7 @@
                     style="@style/TextAppearance.AppCompat.Body1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@{doctor.locationName}"
+                    android:text="@{doctor.duration}"
                     android:textStyle="italic" />
 
                 <RatingBar
@@ -154,7 +154,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
-                    android:rating="@{doctor.rating}" />
+                    android:rating="@{doctor.id}" />
 
 
             </LinearLayout>

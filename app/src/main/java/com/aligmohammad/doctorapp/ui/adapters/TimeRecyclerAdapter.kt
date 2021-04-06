@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.aligmohammad.doctorapp.R
-import com.aligmohammad.doctorapp.data.model.DateTime
 import com.aligmohammad.doctorapp.databinding.TimeSingleItemBinding
 
 class TimeRecyclerAdapter(private val times: List<String>) :
@@ -66,7 +65,7 @@ class TimeRecyclerAdapter(private val times: List<String>) :
         }
         notifyDataSetChanged()
     }
-    public fun getSelection(): String = selection
+    fun getSelection(): String = selection
 
     override fun getItemCount(): Int = times.size
 

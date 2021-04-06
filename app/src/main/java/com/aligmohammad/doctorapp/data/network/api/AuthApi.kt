@@ -2,17 +2,16 @@ package com.aligmohammad.doctorapp.data.network.api
 
 import com.aligmohammad.doctorapp.data.model.dto.RegisterLoginData
 import com.aligmohammad.doctorapp.data.model.dto.UserLoginData
-import com.aligmohammad.doctorapp.data.model.nest.VerifyOTP
-import com.aligmohammad.doctorapp.data.network.response.AuthResponse
-import com.aligmohammad.doctorapp.data.network.response.User
-import com.aligmohammad.doctorapp.data.network.response.VerifyResponse
-
+import com.aligmohammad.doctorapp.data.model.dto.VerifyDTO
+import com.aligmohammad.doctorapp.data.network.responses.AuthResponse
+import com.aligmohammad.doctorapp.data.network.responses.CurrentUserResponse
+import com.aligmohammad.doctorapp.data.network.responses.VerifyOTPResponse
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.POST
 
-interface AuthApi: BaseApi {
+interface AuthApi : BaseApi {
 
     @Headers("Content-Type: application/json")
     @POST("/api/users/login")
@@ -24,10 +23,10 @@ interface AuthApi: BaseApi {
 
     @Headers("Content-Type: application/json")
     @POST("/api/users/verify")
-    suspend fun verifyCode(@Body code: VerifyOTP): VerifyResponse
+    suspend fun verifyCode(@Body code: VerifyDTO): VerifyOTPResponse
 
     @Headers("Content-Type: application/json")
     @GET("/api/user/current")
-    suspend fun getCurrentUser(): User
+    suspend fun getCurrentUser(): CurrentUserResponse
 
 }

@@ -17,7 +17,7 @@
 
         <variable
             name="data"
-            type="com.aligmohammad.doctorapp.data.network.response.DoctorPlaceResponseItem" />
+            type="com.aligmohammad.doctorapp.data.network.responses.DoctorPlace" />
 
         <variable
             name="listener"
@@ -69,7 +69,7 @@
                     style="@style/TextAppearance.AppCompat.Body1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@{data.location.nameEn}"
+                    android:text="@{data.email}"
                     android:textStyle="italic" />
 
                 <RatingBar

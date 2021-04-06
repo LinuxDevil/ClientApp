@@ -7,7 +7,7 @@
 
         <variable
             name="userInfo"
-            type="com.aligmohammad.doctorapp.data.network.response.User" />
+            type="com.aligmohammad.doctorapp.data.network.responses.User" />
     </data>
 
     <androidx.constraintlayout.motion.widget.MotionLayout

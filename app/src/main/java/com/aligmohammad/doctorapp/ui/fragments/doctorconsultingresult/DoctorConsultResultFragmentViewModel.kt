@@ -1,9 +1,3 @@
-
-
-
-
-
-
 /*******************************************************************************
  * Copyright Recticode(c) 2020.
  * All Rights Reserved
@@ -23,9 +17,9 @@ class DoctorConsultResultFragmentViewModel : ViewModel() {
     fun getMedicine(): List<Medicine> {
 
         val medicineList = arrayListOf<Medicine>()
-        medicineList.add(Medicine("Panadol Extra", 5.30, 5, "", "", " JD"))
-        medicineList.add(Medicine("Vitamin C", 11.50, 2, "", "", " JD"))
-        medicineList.add(Medicine("Eye Drops", 1.30, 1, "", "", " JD"))
+        medicineList.add(Medicine("Panadol Extra", 11, " JD"))
+        medicineList.add(Medicine("Vitamin C", 9,  " JD"))
+        medicineList.add(Medicine("Eye Drops", 1,  " JD"))
 
         return medicineList
     }

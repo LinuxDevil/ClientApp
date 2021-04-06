@@ -39,10 +39,10 @@ class DoctorProfileFragment : Fragment() {
                 if (binding.doctor != null) {
                     val doc = binding.doctor!!
                     this.navigateSafe(
-                        DoctorProfileFragmentDirections.doctorToAppointment(doc.uuid!!)
-                        .setDates(doc.dates!!.toTypedArray())
-                        .setTimes(doc.times!!.toTypedArray())
-                        .setDoctorShifts(doc.shifts!!.toTypedArray())
+                        DoctorProfileFragmentDirections.doctorToAppointment(doc.id.toString())
+                        .setDates(doc.appointmentDates!!.toTypedArray())
+                        .setTimes(doc.appointmentTimes!!.toTypedArray())
+                        .setDoctorShifts(arrayOf("Morning","Night"))
                     )
                 }
 

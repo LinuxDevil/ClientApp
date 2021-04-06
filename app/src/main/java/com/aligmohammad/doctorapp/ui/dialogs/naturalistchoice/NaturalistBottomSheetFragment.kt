@@ -13,7 +13,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.aligmohammad.doctorapp.R
-import com.aligmohammad.doctorapp.data.model.nest.AddAppointment
+import com.aligmohammad.doctorapp.data.model.dto.AppointmentDTO
 import com.aligmohammad.doctorapp.data.network.Resource
 import com.aligmohammad.doctorapp.data.network.UserSingleton
 import com.aligmohammad.doctorapp.databinding.NaturalistBottomSheetFragmentBinding
@@ -81,10 +81,10 @@ class NaturalistBottomSheetFragment : BottomSheetDialogFragment(), OnDialogInter
         viewModel.addAppointmentResponse.observe(viewLifecycleOwner, Observer {
             when (it) {
                 is Resource.Success -> {
-                    if (it.value.hospital != null) {
+                    if (it.value.appointmentEntity.hospital != null) {
                         Toast.makeText(
                             requireContext(),
-                            "Success ${it.value.hospital.nameEn}",
+                            "Success ${it.value.appointmentEntity.hospital.nameEn}",
                             Toast.LENGTH_LONG
                         ).show()
                         dialog.dismiss()
@@ -129,7 +129,7 @@ class NaturalistBottomSheetFragment : BottomSheetDialogFragment(), OnDialogInter
 
     private fun addUserAppointment() {
         // Get the selections
-        val appointment = AddAppointment(
+        val appointment = AppointmentDTO(
             dateAdapter.getSelection().split(" ")[0],
             timeAdapter.getSelection(),
             navArgs<NaturalistBottomSheetFragmentArgs>().value.location + " - Naturalist",

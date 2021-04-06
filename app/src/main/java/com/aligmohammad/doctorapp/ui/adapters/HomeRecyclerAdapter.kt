@@ -10,7 +10,7 @@ import com.aligmohammad.doctorapp.data.network.responses.MenuItemResponseItem
 import com.aligmohammad.doctorapp.databinding.HomeScreenMenuItemBinding
 
 class HomeRecyclerAdapter(
-    private val items: ArrayList<MenuItemResponseItem>,
+    private val items: List<MenuItemResponseItem>,
     val onMenuItemClick: OnMenuItemClick
 ) : RecyclerView.Adapter<HomeRecyclerAdapter.HomeRecyclerViewHolder>() {
 

@@ -12,10 +12,12 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.aligmohammad.doctorapp.R
 import com.aligmohammad.doctorapp.data.network.Resource
-import com.aligmohammad.doctorapp.data.network.responses.ArmyPlaceResponseItem
+import com.aligmohammad.doctorapp.data.network.responses.ArmyPlace
+import com.aligmohammad.doctorapp.data.network.responses.ArmyPlaceResponse
 import com.aligmohammad.doctorapp.databinding.ArmyListFragmentBinding
 import com.aligmohammad.doctorapp.ui.adapters.ArmyPlacesRecyclerViewAdapter
 import com.aligmohammad.doctorapp.ui.fragments.doctorlist.DoctorListFragmentArgs
@@ -36,7 +38,7 @@ class ArmyListFragment : Fragment() {
     private val viewModel: ArmyListViewModel by viewModels<ArmyListViewModel>()
     private lateinit var binding: ArmyListFragmentBinding
 
-    private var places: List<ArmyPlaceResponseItem> = listOf()
+    private var places: List<ArmyPlace> = listOf()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -117,7 +119,7 @@ class ArmyListFragment : Fragment() {
 
                 }
                 is Resource.Success -> {
-                    places = it.value
+                    places = it.value.armyPlaces
                     initRecycler()
                 }
             }

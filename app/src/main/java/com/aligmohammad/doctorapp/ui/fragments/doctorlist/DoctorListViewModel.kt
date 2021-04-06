@@ -11,7 +11,7 @@ import com.aligmohammad.doctorapp.data.network.responses.PlaceResponse
 import com.aligmohammad.doctorapp.ui.base.BaseViewModel
 import kotlinx.coroutines.launch
 
-/**
+ /**
  * Doctor list view model
  *
  * @property repository

@@ -6,11 +6,12 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.aligmohammad.doctorapp.R
-import com.aligmohammad.doctorapp.data.network.responses.DoctorResponseItem
+import com.aligmohammad.doctorapp.data.network.responses.Doctor
+import com.aligmohammad.doctorapp.data.network.responses.DoctorInner
 import com.aligmohammad.doctorapp.databinding.DoctorListItemBinding
 
 class DoctorListRecyclerViewAdapter(
-    private val doctors: List<DoctorResponseItem>,
+    private val doctors: List<DoctorInner>,
     private val type: String = "doctor"
 ) : RecyclerView.Adapter<DoctorListRecyclerViewAdapter.DoctorListViewHolder>(), OnMenuItemClick {
 

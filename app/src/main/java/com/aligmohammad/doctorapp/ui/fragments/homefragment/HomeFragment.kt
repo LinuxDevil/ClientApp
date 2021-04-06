@@ -13,6 +13,7 @@ import androidx.lifecycle.asLiveData
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupWithNavController
 import com.aligmohammad.doctorapp.R
 import com.aligmohammad.doctorapp.data.network.Resource
 import com.aligmohammad.doctorapp.data.network.UserSingleton
@@ -65,8 +66,8 @@ class HomeFragment : Fragment(R.layout.home_fragment), OnMenuItemClick {
         authViewModel.currentUserResponse.observe(viewLifecycleOwner, Observer {
             when (it) {
                 is Resource.Success -> {
-                    UserSingleton.setUser(it.value)
-                    Log.v("Current User", "Success ${it.value.name}")
+                    UserSingleton.setUser(it.value.user)
+                    Log.v("Current User", "Success ${it.value.user.name}")
                 }
                 is Resource.Failure -> {
                     Log.v("Current User", "Failed")

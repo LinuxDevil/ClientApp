@@ -7,19 +7,17 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.aligmohammad.doctorapp.R
-import com.aligmohammad.doctorapp.data.model.firebasemodels.AppointmentFirebaseModel
+import com.aligmohammad.doctorapp.data.network.responses.AppointmentResponse
 import com.aligmohammad.doctorapp.databinding.InProgressAppointmentBinding
 import com.aligmohammad.doctorapp.ui.fragments.appointment_list.AppointmentListFragmentDirections
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
 
 class InProgressAppointmentRecyclerViewAdapter(
-    private var appointments: List<AppointmentFirebaseModel>,
+    private var appointments: List<AppointmentResponse>,
     val type: Int = 0
 ) : RecyclerView.Adapter<InProgressAppointmentRecyclerViewAdapter.InProgressAppointmentViewHolder>(),
     OnMenuItemClick {
 
-    private var currentItem: AppointmentFirebaseModel? = null
+    private var currentItem: AppointmentResponse? = null
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -42,7 +40,7 @@ class InProgressAppointmentRecyclerViewAdapter(
 
         binding.cancelButton.setOnClickListener {
             if (currentItem != null) {
-                cancelAppointment(currentItem!!.uuid!!)
+//                cancelAppointment(currentItem!!.id!!)
             }
         }
 
@@ -50,30 +48,30 @@ class InProgressAppointmentRecyclerViewAdapter(
     }
 
     private fun cancelAppointment(tag: String) {
-        val appointment = appointments.filter {
-            it.uuid == tag
-        }[0]
-        val db = Firebase.database.reference
-        db.child("Appointments").child(appointment.uuid!!).removeValue()
-        db.child("Users").child(appointment.userId!!.substring(1, appointment.userId!!.length)).child("Appointments")
-            .child(appointment.uuid!!).removeValue()
-        if (appointment.doctorId != null && appointment.doctorId!!.isNotEmpty()) {
-            db.child("Doctors").child(appointment.doctorId!!).child("Appointments")
-                .child(appointment.uuid!!).removeValue()
-        } else {
-            db.child("Places/Labs").child(appointment.doctorId!!).child("Appointments")
-                .child(appointment.uuid!!).removeValue()
-            db.child("Places/X-Rays").child(appointment.doctorId!!).child("Appointments")
-                .child(appointment.uuid!!).removeValue()
-        }
-        val arr = appointments.toMutableList()
-        arr.remove(appointment)
-        appointments = arr.toList()
-        notifyDataSetChanged()
+//        val appointment = appointments.filter {
+//            it.uuid == tag
+//        }[0]
+//        val db = Firebase.database.reference
+//        db.child("Appointments").child(appointment.uuid!!).removeValue()
+//        db.child("Users").child(appointment.userId!!.substring(1, appointment.userId!!.length)).child("Appointments")
+//            .child(appointment.uuid!!).removeValue()
+//        if (appointment.doctorId != null && appointment.doctorId!!.isNotEmpty()) {
+//            db.child("Doctors").child(appointment.doctorId!!).child("Appointments")
+//                .child(appointment.uuid!!).removeValue()
+//        } else {
+//            db.child("Places/Labs").child(appointment.doctorId!!).child("Appointments")
+//                .child(appointment.uuid!!).removeValue()
+//            db.child("Places/X-Rays").child(appointment.doctorId!!).child("Appointments")
+//                .child(appointment.uuid!!).removeValue()
+//        }
+//        val arr = appointments.toMutableList()
+//        arr.remove(appointment)
+//        appointments = arr.toList()
+//        notifyDataSetChanged()
     }
 
     override fun onBindViewHolder(holder: InProgressAppointmentViewHolder, position: Int) {
-        holder.appointmentItemBinding.root.tag = appointments[position].uuid
+        holder.appointmentItemBinding.root.tag = appointments[position].id
         holder.appointmentItemBinding.data = appointments[position]
         currentItem = appointments[position]
     }
@@ -85,7 +83,7 @@ class InProgressAppointmentRecyclerViewAdapter(
 
     override fun onClick(v: View) {
         val appointment = appointments.filter {
-            it.userId == v.tag.toString()
+            it.id.toString() == v.tag.toString()
         }[0]
 
         Navigation.findNavController(v)

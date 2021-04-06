@@ -138,7 +138,7 @@
             app:argType="string" />
         <argument
             android:name="hospital"
-            app:argType="com.aligmohammad.doctorapp.data.network.response.HospitalResponseItem"
+            app:argType="com.aligmohammad.doctorapp.data.network.responses.HospitalResponseItem"
             app:nullable="true" />
     </dialog>
     <dialog
@@ -168,7 +168,7 @@
             app:exitAnim="@anim/nav_default_exit_anim" />
         <argument
             android:name="hospital"
-            app:argType="com.aligmohammad.doctorapp.data.network.response.HospitalResponseItem"
+            app:argType="com.aligmohammad.doctorapp.data.network.responses.HospitalResponseItem"
             app:nullable="true" />
     </dialog>
     <dialog
@@ -188,7 +188,7 @@
             app:nullable="true" />
         <argument
             android:name="doctor"
-            app:argType="com.aligmohammad.doctorapp.data.network.response.Doctor"
+            app:argType="com.aligmohammad.doctorapp.data.network.responses.Doctor"
             app:nullable="true" />
         <argument
             android:name="doctorShifts"
@@ -404,7 +404,7 @@
             app:exitAnim="@anim/nav_default_exit_anim" />
         <argument
             android:name="hospital"
-            app:argType="com.aligmohammad.doctorapp.data.network.response.HospitalResponseItem"
+            app:argType="com.aligmohammad.doctorapp.data.network.responses.HospitalResponseItem"
             app:nullable="true" />
     </dialog>
     <dialog
@@ -423,7 +423,7 @@
             app:nullable="true" />
         <argument
             android:name="doctor"
-            app:argType="com.aligmohammad.doctorapp.data.network.response.Doctor"
+            app:argType="com.aligmohammad.doctorapp.data.network.responses.Doctor"
             app:nullable="true" />
         <argument
             android:name="doctorShifts"
@@ -532,7 +532,7 @@
         tools:layout="@layout/doctor_profile_fragment">
         <argument
             android:name="doctor"
-            app:argType="com.aligmohammad.doctorapp.data.model.Doctor" />
+            app:argType="com.aligmohammad.doctorapp.data.network.responses.Doctor" />
         <action
             android:id="@+id/doctorToAppointment"
             app:destination="@id/singleAppointment" />
@@ -725,7 +725,7 @@
         tools:layout="@layout/details_appointment_bottom_sheet_fragment">
         <argument
             android:name="appointment"
-            app:argType="com.aligmohammad.doctorapp.data.model.firebasemodels.AppointmentFirebaseModel" />
+            app:argType="com.aligmohammad.doctorapp.data.network.responses.AppointmentResponse" />
     </dialog>
     <dialog
         android:id="@+id/singleAppointment"
@@ -769,8 +769,7 @@
             app:destination="@id/homeFragment" />
         <argument
             android:name="user"
-            android:defaultValue="@null"
-            app:argType="com.aligmohammad.doctorapp.data.network.response.User"
+            app:argType="com.aligmohammad.doctorapp.data.model.User"
             app:nullable="true" />
     </fragment>
     <fragment

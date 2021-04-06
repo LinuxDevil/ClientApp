@@ -4,13 +4,15 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.aligmohammad.doctorapp.data.model.dto.UserLoginData
+import com.aligmohammad.doctorapp.data.model.dto.VerifyDTO
 import com.aligmohammad.doctorapp.data.network.Resource
 import com.aligmohammad.doctorapp.data.network.repository.AuthRepository
-import com.aligmohammad.doctorapp.data.network.response.AuthResponse
-import com.aligmohammad.doctorapp.data.network.response.User
-import com.aligmohammad.doctorapp.data.network.response.VerifyResponse
+import com.aligmohammad.doctorapp.data.network.responses.AuthResponse
+import com.aligmohammad.doctorapp.data.network.responses.CurrentUserResponse
+import com.aligmohammad.doctorapp.data.network.responses.User
+import com.aligmohammad.doctorapp.data.network.responses.VerifyOTPResponse
 import com.aligmohammad.doctorapp.ui.base.BaseViewModel
-import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.launch
 
 class AuthViewModel @ViewModelInject constructor(private val repository: AuthRepository) :
@@ -20,19 +22,20 @@ class AuthViewModel @ViewModelInject constructor(private val repository: AuthRep
     val authResponse: LiveData<Resource<AuthResponse>>
         get() = _authResponse
 
-    private val _verifyResponse: MutableLiveData<Resource<VerifyResponse>> = MutableLiveData()
-    val verifyResponse: LiveData<Resource<VerifyResponse>>
+    private val _verifyResponse: MutableLiveData<Resource<VerifyOTPResponse>> = MutableLiveData()
+    val verifyResponse: LiveData<Resource<VerifyOTPResponse>>
         get() = _verifyResponse
 
-    private val _currentUserResponse: MutableLiveData<Resource<User>> = MutableLiveData()
-    val currentUserResponse: LiveData<Resource<User>>
+    private val _currentUserResponse: MutableLiveData<Resource<CurrentUserResponse>> =
+        MutableLiveData()
+    val currentUserResponse: LiveData<Resource<CurrentUserResponse>>
         get() = _currentUserResponse
 
     fun register(
         phoneNumber: String,
     ) = viewModelScope.launch {
         _authResponse.value = Resource.Loading
-        _authResponse.value = repository.registerUser(phoneNumber)
+        _authResponse.value = repository.registerUser(UserLoginData(phoneNumber))
     }
 
     fun login(
@@ -44,7 +47,7 @@ class AuthViewModel @ViewModelInject constructor(private val repository: AuthRep
 
     fun verify(phoneNumber: String, code: String) = viewModelScope.launch {
         _verifyResponse.value = Resource.Loading
-        _verifyResponse.value = repository.verifyCode(phoneNumber, code)
+        _verifyResponse.value = repository.verifyCode(VerifyDTO(phoneNumber, code))
     }
 
     fun getCurrentUserDetails(token: String) = viewModelScope.launch {
@@ -57,7 +60,7 @@ class AuthViewModel @ViewModelInject constructor(private val repository: AuthRep
     }
 
     fun logoutUser() = viewModelScope.launch {
-        repository.logoutUser();
+        repository.logoutUser()
     }
 
 }

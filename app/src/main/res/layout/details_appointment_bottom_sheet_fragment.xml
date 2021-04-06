@@ -16,7 +16,7 @@
 
         <variable
             name="appointment"
-            type="com.aligmohammad.doctorapp.data.model.firebasemodels.AppointmentFirebaseModel" />
+            type="com.aligmohammad.doctorapp.data.network.responses.AppointmentResponse" />
 
     </data>
 
@@ -62,7 +62,7 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:contentDescription="Image"
-            android:imageUrl="@{appointment.userId}"
+            android:imageUrl="@{appointment.imageUrl}"
             android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -101,7 +101,7 @@
             android:layout_margin="10dp"
             android:background="@drawable/active_drawable"
             android:padding="5dp"
-            android:text="Blood Pressure Test"
+            android:text="@{appointment.tests}"
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -128,7 +128,7 @@
             android:layout_margin="10dp"
             android:background="@drawable/active_drawable"
             android:padding="5dp"
-            android:text="@{appointment.userId}"
+            android:text="@{appointment.tests}"
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

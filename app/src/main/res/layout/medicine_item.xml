@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="30"
                 android:drawableEnd="@drawable/delete_icon"
-                android:text="@{medicine.price.toString().concat(medicine.currency)}"
+                android:text="@{medicine.price}"
                 android:textAlignment="center"
                 android:textColor="@color/black" />
 

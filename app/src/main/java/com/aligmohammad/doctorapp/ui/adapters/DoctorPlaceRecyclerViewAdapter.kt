@@ -7,12 +7,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.aligmohammad.doctorapp.R
-import com.aligmohammad.doctorapp.data.network.response.DoctorPlaceResponseItem
+import com.aligmohammad.doctorapp.data.network.responses.DoctorPlace
 import com.aligmohammad.doctorapp.databinding.DoctorplaceListItemBinding
 import com.aligmohammad.doctorapp.ui.fragments.doctorplaces.DoctorPlacesDirections
 
 class DoctorPlaceRecyclerViewAdapter(
-    private val places: List<DoctorPlaceResponseItem>,
+    private val places: List<DoctorPlace>,
     private val type: String = "Labs"
 ) : RecyclerView.Adapter<DoctorPlaceRecyclerViewAdapter.DoctorPlaceListViewHolder>(),
     OnMenuItemClick {

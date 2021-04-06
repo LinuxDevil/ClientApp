@@ -14,7 +14,8 @@ import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.aligmohammad.doctorapp.R
-import com.aligmohammad.doctorapp.data.model.nest.AddAppointment
+import com.aligmohammad.doctorapp.data.model.Appointment
+import com.aligmohammad.doctorapp.data.model.dto.AppointmentDTO
 import com.aligmohammad.doctorapp.data.network.Resource
 import com.aligmohammad.doctorapp.data.network.UserSingleton
 import com.aligmohammad.doctorapp.databinding.DateAndTimeBottomSheetFragmentBinding
@@ -92,7 +93,7 @@ class DateAndTimeBottomSheetFragment : BottomSheetDialogFragment(), OnDialogInte
             when (it) {
                 is Resource.Success -> {
                     dialog.dismiss()
-                    if (it.value.doctor != null) {
+                    if (it.value.status.status == 1) {
                         val navController =
                             Navigation.findNavController(requireActivity(), R.id.fragment)
                         if (navController.currentDestination?.id == R.id.dateAndTimeBottomSheetFragment)
@@ -107,7 +108,7 @@ class DateAndTimeBottomSheetFragment : BottomSheetDialogFragment(), OnDialogInte
                     } else {
                         Toast.makeText(
                             requireContext(),
-                            "Failed, There was no time",
+                            it.value.status.message,
                             Toast.LENGTH_LONG
                         ).show()
                     }
@@ -125,16 +126,17 @@ class DateAndTimeBottomSheetFragment : BottomSheetDialogFragment(), OnDialogInte
         binding.confirmButton.setOnClickListener {
             dateSelected = dateAdapter.getSelection()
             timeSelected = timeAdapter.getSelection()
-            val appointment = AddAppointment(
-                dateSelected,
+            val appointment = AppointmentDTO(
+                dateSelected.split(" ")[0],
                 timeSelected,
                 navArgs<DateAndTimeBottomSheetFragmentArgs>().value.location!! + " - " + navArgs<DateAndTimeBottomSheetFragmentArgs>().value.type,
                 shiftSelected,
-                UserSingleton.getCurrentUser().username,
-                navArgs<DateAndTimeBottomSheetFragmentArgs>().value.doctor,
+                UserSingleton.getCurrentUser().username!!,
+                navArgs<DateAndTimeBottomSheetFragmentArgs>().value.doctor!!,
                 null,
                 null,
-                navArgs<DateAndTimeBottomSheetFragmentArgs>().value.type
+                navArgs<DateAndTimeBottomSheetFragmentArgs>().value.type,
+                null
             )
             viewModel.addHospitalDoctorAppointment(appointment)
 

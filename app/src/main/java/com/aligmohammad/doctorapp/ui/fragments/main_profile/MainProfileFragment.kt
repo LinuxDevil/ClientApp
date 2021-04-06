@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.widget.Toast
-import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -12,15 +11,13 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.aligmohammad.doctorapp.R
+import com.aligmohammad.doctorapp.data.model.User
 import com.aligmohammad.doctorapp.data.network.Resource
 import com.aligmohammad.doctorapp.data.network.UserSingleton
-import com.aligmohammad.doctorapp.data.network.response.User
 import com.aligmohammad.doctorapp.databinding.MainProfileFragmentBinding
-import com.aligmohammad.doctorapp.ui.adapters.OnMenuItemClick
 import com.aligmohammad.doctorapp.ui.fragments.authframent.AuthViewModel
 import com.aligmohammad.doctorapp.util.loadImage
 import dagger.hilt.android.AndroidEntryPoint
@@ -62,10 +59,10 @@ class MainProfileFragment : Fragment() {
         authViewModel.currentUserResponse.observe(viewLifecycleOwner, Observer {
             when (it) {
                 is Resource.Success -> {
-                    UserSingleton.setUser(it.value)
-                    userInfo = it.value;
+                    UserSingleton.setUser(it.value.user)
+                    userInfo = it.value.user
                     updateUI(false)
-                    Log.v("Current User", "Success ${it.value.name}")
+                    Log.v("Current User", "Success ${it.value.user.name}")
                 }
                 is Resource.Failure -> {
                     Log.v("Current User", "Failed")
@@ -92,7 +89,9 @@ class MainProfileFragment : Fragment() {
         binding.toolbar.setOnMenuItemClickListener { item ->
             when (item.itemId) {
                 R.id.editProfile -> {
-                    navigateSafe(MainProfileFragmentDirections.profileToEditProfile().setUser(userInfo))
+//                    navigateSafe(
+//                        MainProfileFragmentDirections.profileToEditProfile.setUser(userInfo)
+//                    )
                     true
                 }
                 else -> {
@@ -105,7 +104,6 @@ class MainProfileFragment : Fragment() {
     }
 
 
-
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.profile_menu, menu)
         return
@@ -113,27 +111,27 @@ class MainProfileFragment : Fragment() {
 
     private fun updateUI(isLoading: Boolean) {
         if (isLoading) {
-            binding.doctorName.setText("Loading")
-            binding.doctorMajor.setText("Loading")
-            binding.doctorYearsOfExperience.setText("Loading")
+            binding.doctorName.text = "Loading"
+            binding.doctorMajor.text = "Loading"
+            binding.doctorYearsOfExperience.text = "Loading"
 
-            binding.doctorLocation.setText("Loading")
-            binding.bioTextView.setText("Loading")
-            binding.emailTextView.setText("Loading")
-            binding.nicknameTextView.setText("Loading")
+            binding.doctorLocation.text = "Loading"
+            binding.bioTextView.text = "Loading"
+            binding.emailTextView.text = "Loading"
+            binding.nicknameTextView.text = "Loading"
         } else {
             binding.doctorImage.loadImage(
                 userInfo.image,
                 CircularProgressDrawable(requireContext())
             )
-            binding.doctorName.setText("Name: " + userInfo.name)
-            binding.doctorMajor.setText("Insurance No. : " + userInfo.insuranceNumber)
-            binding.doctorYearsOfExperience.setText("Mobile: " + userInfo.username)
+            binding.doctorName.text = "Name: " + userInfo.name
+            binding.doctorMajor.text = "Insurance No. : " + userInfo.insuranceNumber
+            binding.doctorYearsOfExperience.text = "Mobile: " + userInfo.username
 
-            binding.doctorLocation.setText("Location: " + userInfo.city + ", " + userInfo.district)
-            binding.bioTextView.setText("Bio: ${userInfo.bio}")
-            binding.emailTextView.setText("Email: ${userInfo.email}")
-            binding.nicknameTextView.setText("Nickname: ${userInfo.nickname}")
+            binding.doctorLocation.text = "Location: " + userInfo.city + ", " + userInfo.district
+            binding.bioTextView.text = "Bio: ${userInfo.bio}"
+            binding.emailTextView.text = "Email: ${userInfo.email}"
+            binding.nicknameTextView.text = "Nickname: ${userInfo.nickname}"
         }
     }
 

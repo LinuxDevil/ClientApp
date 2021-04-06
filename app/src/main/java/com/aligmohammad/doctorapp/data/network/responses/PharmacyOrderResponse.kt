@@ -1,12 +1,21 @@
 package com.aligmohammad.doctorapp.data.network.responses
 
-import com.aligmohammad.doctorapp.data.model.User
+data class PharmacyOrderResponse(
+    val length: Int,
+    val orders: List<Order>,
+    val status: Status
+)
 
-data class CurrentUserResponse(
+data class Order(
+    val created: String,
+    val id: Int,
+    val medicine: String,
+    val place: Place,
+    val updated: String,
     val user: User
 )
 
-data class CurrentUser(
+data class User(
     val bio: String,
     val city: String,
     val created: String,

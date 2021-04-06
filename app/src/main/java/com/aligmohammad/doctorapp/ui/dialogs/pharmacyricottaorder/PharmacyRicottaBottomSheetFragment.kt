@@ -21,7 +21,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.aligmohammad.doctorapp.R
-import com.aligmohammad.doctorapp.data.model.firebasemodels.PharmacyOrder
+import com.aligmohammad.doctorapp.data.model.dto.PharmacyOrder
 import com.aligmohammad.doctorapp.data.network.UserSingleton
 import com.aligmohammad.doctorapp.databinding.PharmacyRicottaBottomSheetFragmentBinding
 import com.aligmohammad.doctorapp.ui.dialogs.OnDialogInteract
@@ -87,34 +87,15 @@ class PharmacyRicottaBottomSheetFragment : BottomSheetDialogFragment(), OnDialog
         val userId = UserSingleton.getCurrentUser().username
         // 2- Create appointment
         val order = PharmacyOrder(
+            medicineSelected,
             userId,
             navArgs<LabsBottomSheetFragmentArgs>().value.placeUuid,
-            medicineSelected,
-            null
         )
         // 3- Push Appointment to db
         val database = Firebase.database.reference
         val orderUuid = database.push().key
         if (orderUuid != null) {
             hideKeyboard()
-            database.child("Orders").child(orderUuid).setValue(order).addOnCompleteListener {
-                // 4- Add appointment id to user
-                // 5- Push user changes
-                database.child("Users").child(userId!!.substring(1, userId!!.length))
-                    .child("Orders").child(orderUuid).setValue(orderUuid)
-                    .addOnCompleteListener {
-                        database.child("Places").child("Pharmacy")
-                            .child(navArgs<LabsBottomSheetFragmentArgs>().value.placeUuid!!)
-                            .child("Orders").child(orderUuid).setValue(orderUuid)
-                        dismiss()
-                    }.addOnFailureListener {
-                    binding.medicineSpinner.snackbar(it.localizedMessage)
-                    dismiss()
-                }
-            }.addOnFailureListener {
-                binding.medicineSpinner.snackbar(it.localizedMessage)
-                dismiss()
-            }
         }
 
     }
